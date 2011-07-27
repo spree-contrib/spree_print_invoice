@@ -9,13 +9,13 @@ INSTALLATION
 
 1. The gem relies only on the prawn gem, to install you need to add the following lines to your Gemfile
 
-    gem 'spree_print_invoice' , :git => 'git://github.com/dancinglightning/spree-print-invoice.git'
+    gem 'spree_print_invoice' , :git => 'git://github.com/spree/spree-print-invoice.git'
 
 2. run bundler
 
     bundle install
   
-3. Enjoy!
+3. Enjoy! now displays the items variant options 
 
 Configuration
 ==============
@@ -32,7 +32,7 @@ Configuration
 
 5. Enable packaging slips, by setting 
 
-  Spree::Config.set(:print_buttons => "invoice,packaging_slip"  #comma separated list
+  Spree::Config.set(:print_buttons => "invoice,packaging_slip")  #comma separated list
 
  Use above feature for your own template if you want. For each button_name, define button_name_print text in your locale.
 
