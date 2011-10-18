@@ -8,6 +8,11 @@ module PrintInvoice
     def self.activate
 
       Admin::OrdersController.class_eval do
+        if Spree.version < '0.60'
+          respond_to :html
+          alias_method :load_order, :load_object
+        end
+        
         def show
           load_order
           respond_with(@order) do |format|
