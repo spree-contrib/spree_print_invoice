@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.files        = Dir['README.markdown', 'lib/**/*', 'app/**/*', 'config/*']
   s.require_path = 'lib'
   s.requirements << 'none'
-
+  s.authors      = 'spree core'
   s.has_rdoc = true
 
   s.add_dependency('prawn', '0.8.4')
