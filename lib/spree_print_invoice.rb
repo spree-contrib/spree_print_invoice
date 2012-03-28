@@ -7,7 +7,7 @@ module PrintInvoice
     
     def self.activate
 
-      Admin::OrdersController.class_eval do
+      Spree::Admin::OrdersController.class_eval do
         if Spree.version < '0.60'
           respond_to :html
           alias_method :load_order, :load_object
@@ -18,7 +18,7 @@ module PrintInvoice
           respond_with(@order) do |format|
             format.pdf do
               template = params[:template] || "invoice"
-              render :layout => false , :template => "admin/orders/#{template}.pdf.prawn"
+              render :layout => false , :template => "spree/admin/orders/#{template}.pdf.prawn"
             end
           end
         end
