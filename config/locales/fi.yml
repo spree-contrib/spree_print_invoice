@@ -1,9 +1,9 @@
 fi:
-  footer_left: "Maksuehto\nViivästyskorko \n IBAN\nBIC "
-  footer_left2: " 14 päivää netto \n 15 % \n FI1017 4530 0013 2474\n NDEAFIHH (Nordea)"
+  footer_left: "Maksuehto Viivästyskorko IBAN BIC "
+  footer_left2: " 14 päivää netto  15 %  FI1017 4530 0013 2474 NDEAFIHH (Nordea)"
 
-  footer_right: "Sähköposti  \nPuhelin  \n Nettikauppa \nY-Tunnus"
-  footer_right2: " tukku@auringostaitaan.fi \n040 146 1222 \n  tukku.auringostaitaan.fi \n 2380478-1"
+  footer_right: "Sähköposti  Puhelin   Nettikauppa Y-Tunnus"
+  footer_right2: " tukku@auringostaitaan.fi 040 146 1222   tukku.auringostaitaan.fi 2380478-1"
   customer_invoice: Lasku
   thanks: Kiitos tilauksesta.
   packaging_slip_print: Kuormakirja

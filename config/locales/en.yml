@@ -2,11 +2,11 @@
 
 en:
   customer_invoice: Customer Invoice
-  footer_left: "Return in\Other info"
-  footer_left2: " 14 days \n or never"
+  footer_left: "Return in Other info"
+  footer_left2: " 14 days or never"
 
-  footer_right: "Company  \Phone  \n www "
-  footer_right2: " My great company \n040 146 1222 \n  www.gohereoften.com"
+  footer_right: "Company  Phone  www "
+  footer_right2: " My great company 040 146 1222 www.gohereoften.com"
   
   print_note: This is not an original invoice (DO NOT SEND THIS TO CUSTOMER)
   
