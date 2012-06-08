@@ -2,6 +2,6 @@
   <% buttons = "invoice" 
      buttons = buttons.split(",").collect{|b| b.strip } %>
   <%  buttons.each do |button| %>
-    <%= button_link_to('Invoice', spree.admin_order_path(@order, :pdf , :template => button)) %>
+    <%= button_link_to(t(:invoice_print), spree.admin_order_path(@order, :pdf , :template => button)) %>
   <% end %>
 <% end %>  
