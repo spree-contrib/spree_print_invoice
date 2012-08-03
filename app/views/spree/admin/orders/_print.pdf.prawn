@@ -1,17 +1,14 @@
-require 'prawn/layout'
+require 'prawn'
 
-font "Helvetica"
-im = "#{Rails.root.to_s}/public/assets/#{Spree::PrintInvoice::Config[:print_invoice_logo_path]}"
+fill_color "000000"
+font "Helvetica", :size => 9, :style => :bold
+text_box Spree::Config.site_name, :at => [0,720], :size => 25
 
-image im , :at => [0,720] #, :scale => 0.35
-
-fill_color "E99323"
 if @hide_prices
   text I18n.t(:packaging_slip), :align => :right, :style => :bold, :size => 18
 else
   text I18n.t(:customer_invoice), :align => :right, :style => :bold, :size => 18
 end
-fill_color "000000"
 
 move_down 4
 
@@ -22,14 +19,23 @@ move_down 2
 font "Helvetica", :size => 9
 text "#{I18n.l @order.completed_at.to_date}", :align => :right
 
-
 render :partial => "address"
 
-move_down 30
+move_cursor_to 500
 
 render :partial => "line_items_box"
 
-move_down 8
+move_down 150
+
+font "Helvetica", :size => 9
+
+bounding_box [20,cursor  ], :width => 400 do
+  render :partial => "bye" unless @hide_prices
+end
+
+render :partial => "totals" unless @hide_prices
+
+move_down 2
 
 # Footer
 # render :partial => "footer"
