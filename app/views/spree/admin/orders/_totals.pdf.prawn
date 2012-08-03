@@ -10,5 +10,5 @@ totals << [make_cell( :content => t(:order_total), :font_style => :bold), number
 
 span(540, :position => :center) do
   table totals,
-    :column_widths => [425, 75]
+    :column_widths => [425, 115]
 end
