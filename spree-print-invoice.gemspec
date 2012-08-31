@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_print_invoice'
-  s.version     = '1.0.0'
+  s.version     = '1.1'
   s.summary     = 'Print invoices from a spree order'
   s.homepage    = 'https://github.com/spree/spree_print_invoice'
 
@@ -14,5 +14,5 @@ Gem::Specification.new do |s|
   s.authors      = 'Spree Community'
 
   s.add_dependency('prawn', '~> 1.0.0.rc1')
-  s.add_dependency('spree_core', '~> 1.1.0')
+  s.add_dependency('spree_core', '~> 1.2.0')
 end

@@ -25,7 +25,7 @@ move_cursor_to 500
 
 render :partial => "line_items_box"
 
-move_down 150
+move_cursor_to 80 
 
 font "Helvetica", :size => 9
 
