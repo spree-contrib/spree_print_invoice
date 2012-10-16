@@ -1,7 +1,7 @@
 require 'prawn'
 
 module ActionView
-  module TemplateHandlers
+  module Template::Handlers
     class Prawn 
       def self.register!
         Template.register_template_handler :prawn, self
@@ -26,4 +26,4 @@ module ActionView
   end
 end
 
-ActionView::TemplateHandlers::Prawn.register!
+ActionView::Template::Handlers::Prawn.register!
