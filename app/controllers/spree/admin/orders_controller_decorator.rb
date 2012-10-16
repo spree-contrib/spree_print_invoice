@@ -1,4 +1,6 @@
 Spree::Admin::OrdersController.class_eval do
+  respond_to :pdf
+
   def show
     load_order
     respond_with(@order) do |format|
