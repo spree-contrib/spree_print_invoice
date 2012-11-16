@@ -1,0 +1,14 @@
+es:
+  customer_invoice: "Factura del cliente"
+  footer_left: "Devolver en Otro"
+  footer_left2: " 14 días o nunca"
+
+  footer_right: "Empresa  Teléfono  Web "
+  footer_right2: " My Genial Empresa 040 146 1222 www.visitanosamenudo.com"
+
+  print_note: "Esta no es la factura original (NO ENVIAR AL CLIENTE)"
+
+  invoice_print: "Imprimir Factura"
+  packaging_slip_print: "Imprimir Recibo para el Embalaje"
+  packaging_slip: "Recibo para el Embalaje"
+
