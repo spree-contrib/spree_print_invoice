@@ -1,4 +1,4 @@
-<% if @order.completed_at? %>
+<% if @order and @order.completed_at? %>
   <% buttons = Spree::PrintInvoice::Config[:print_buttons]
      buttons = buttons.split(",").collect{|b| b.strip } %>
   <%  buttons.each do |button| %>
