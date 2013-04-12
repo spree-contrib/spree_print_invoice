@@ -7,7 +7,7 @@ module SpreePrintInvoice
     end
     
     initializer "spree.print_invoice.mimetypes" do |app|
-      Mime::Type.register 'application/pdf', :pdf
+      Mime::Type.register('application/pdf', :pdf) unless Mime::Type.lookup_by_extension(:pdf)
     end
     
     def self.activate
