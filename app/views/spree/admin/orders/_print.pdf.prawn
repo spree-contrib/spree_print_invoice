@@ -1,7 +1,7 @@
 require 'prawn/layout'
 
 font "Helvetica"
-im = "#{Rails.root.to_s}/public/assets/#{Spree::PrintInvoice::Config[:print_invoice_logo_path]}"
+im = "#{Rails.root}/app/assets/images/#{Spree::PrintInvoice::Config[:print_invoice_logo_path]}"
 
 image im , :at => [0,720] #, :scale => 0.35
 
@@ -32,4 +32,4 @@ render :partial => "line_items_box"
 move_down 8
 
 # Footer
-# render :partial => "footer"
+render :partial => "footer"
