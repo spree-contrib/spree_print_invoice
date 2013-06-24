@@ -9,12 +9,12 @@ end
 # Line Items
 bounding_box [0,cursor], :width => 540, :height => 430 do
   move_down 2
-  header =  [Prawn::Table::Cell.new( :text => t(:sku), :font_style => :bold),
-                Prawn::Table::Cell.new( :text => t(:item_description), :font_style => :bold ) ]
-  header <<  Prawn::Table::Cell.new( :text => t(:options), :font_style => :bold ) 
-  header <<  Prawn::Table::Cell.new( :text => t(:price), :font_style => :bold ) unless @hide_prices
-  header <<  Prawn::Table::Cell.new( :text => t(:qty), :font_style => :bold, :align => 1 )
-  header <<  Prawn::Table::Cell.new( :text => t(:total), :font_style => :bold ) unless @hide_prices
+  header =  [Prawn::Table::Cell.new( :text => Spree.t(:sku), :font_style => :bold),
+                Prawn::Table::Cell.new( :text => Spree.t(:item_description), :font_style => :bold ) ]
+  header <<  Prawn::Table::Cell.new( :text => Spree.t(:options), :font_style => :bold ) 
+  header <<  Prawn::Table::Cell.new( :text => Spree.t(:price), :font_style => :bold ) unless @hide_prices
+  header <<  Prawn::Table::Cell.new( :text => Spree.t(:qty), :font_style => :bold, :align => 1 )
+  header <<  Prawn::Table::Cell.new( :text => Spree.t(:total), :font_style => :bold ) unless @hide_prices
     
   table [header],
     :position           => :center,
