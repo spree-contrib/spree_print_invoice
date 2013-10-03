@@ -7,8 +7,8 @@ anonymous = @order.email =~ /@example.net$/
 
 bounding_box [0,600], :width => 540 do
   move_down 2
-  data = [[Prawn::Table::Cell.new( :text => I18n.t(:billing_address), :font_style => :bold ),
-                Prawn::Table::Cell.new( :text =>I18n.t(:shipping_address), :font_style => :bold )]]
+  data = [[Prawn::Table::Cell.new( :text => Spree.t(:billing_address), :font_style => :bold ),
+                Prawn::Table::Cell.new( :text => Spree.t(:shipping_address), :font_style => :bold )]]
 
   table data,
     :position           => :center,
@@ -25,19 +25,20 @@ bounding_box [0,600], :width => 540 do
   bounding_box [0,0], :width => 540 do
     move_down 2
     if anonymous and Spree::Config[:suppress_anonymous_address]
-      data2 = [[" "," "]] * 6 
+      data2 = [[" "," "]] * 6
     else
       data2 = [["#{bill_address.firstname} #{bill_address.lastname}", "#{ship_address.firstname} #{ship_address.lastname}"],
             [bill_address.address1, ship_address.address1]]
-      data2 << [bill_address.address2, ship_address.address2] unless 
+      data2 << [bill_address.address2, ship_address.address2] unless
                 bill_address.address2.blank? and ship_address.address2.blank?
       data2 << ["#{@order.bill_address.zipcode} #{@order.bill_address.city}  #{(@order.bill_address.state ? @order.bill_address.state.abbr : "")} ",
                   "#{@order.ship_address.zipcode} #{@order.ship_address.city} #{(@order.ship_address.state ? @order.ship_address.state.abbr : "")}"]
       data2 << [bill_address.country.name, ship_address.country.name]
       data2 << [bill_address.phone, ship_address.phone]
-      data2 << [@order.shipping_method.try(:name), @order.shipping_method.try(:name)]
+      shipping_method_name = @order.shipments.map{|sh| sh.shipping_method.try(:name)}.compact.uniq.join(', ')
+      data2 << [shipping_method_name, shipping_method_name]
     end
-    
+
     table data2,
       :position           => :center,
       :border_width => 0.0,
