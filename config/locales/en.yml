@@ -1,16 +1,17 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 
 en:
-  customer_invoice: Customer Invoice
-  footer_left: "Return in Other info"
-  footer_left2: " 14 days or never"
+  spree:
+    customer_invoice: Customer Invoice
+    footer_left: "Return in Other info"
+    footer_left2: " 14 days or never"
 
-  footer_right: "Company  Phone  www "
-  footer_right2: " My great company 040 146 1222 www.gohereoften.com"
-  
-  print_note: This is not an original invoice (DO NOT SEND THIS TO CUSTOMER)
-  
-  invoice_print: Print Invoice
-  packaging_slip_print: Print Slip
-  packaging_slip: Packaging Slip
+    footer_right: "Company  Phone  www "
+    footer_right2: " My great company 040 146 1222 www.gohereoften.com"
+    
+    print_note: This is not an original invoice (DO NOT SEND THIS TO CUSTOMER)
+    
+    invoice_print: Print Invoice
+    packaging_slip_print: Print Slip
+    packaging_slip: Packaging Slip
   
