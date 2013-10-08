@@ -1,12 +1,12 @@
 totals = []
 
-totals << [Prawn::Table::Cell.new( :text => Spree.t(:subtotal), :font_style => :bold), number_to_currency(@order.item_total)]
+totals << [Prawn::Table::Cell.new( :text => Spree.t(:subtotal), :font_style => :bold), order.display_item_total.to_s]
 
 @order.adjustments.each do |charge|
-  totals << [Prawn::Table::Cell.new( :text => charge.label + ":", :font_style => :bold), number_to_currency(charge.amount)]
+  totals << [Prawn::Table::Cell.new( :text => charge.label + ":", :font_style => :bold), charge.display_amount.to_s)]
 end
 
-totals << [Prawn::Table::Cell.new( :text => Spree.t(:order_total), :font_style => :bold), number_to_currency(@order.total)]
+totals << [Prawn::Table::Cell.new( :text => Spree.t(:order_total), :font_style => :bold), @order.display_total.to_s]
 
 bounding_box [bounds.right - 500, bounds.bottom + (totals.length * 18)], :width => 500 do
   table totals,

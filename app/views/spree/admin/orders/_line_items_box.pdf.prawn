@@ -33,9 +33,9 @@ bounding_box [0,cursor], :width => 540, :height => 430 do
     @order.line_items.each do |item|
       row = [ item.variant.product.sku, item.variant.product.name]
       row << item.variant.option_values.map {|ov| "#{ov.option_type.presentation}: #{ov.presentation}"}.concat(item.respond_to?('ad_hoc_option_values') ? item.ad_hoc_option_values.map {|pov| "#{pov.option_value.option_type.presentation}: #{pov.option_value.presentation}"} : []).join(', ')
-      row << number_to_currency(item.price) unless @hide_prices
+      row << item.single_display_amount.to_s unless @hide_prices
       row << item.quantity
-      row << number_to_currency(item.price * item.quantity) unless @hide_prices
+      row << item.display_total.to_s unless @hide_prices
       content << row
     end
 
