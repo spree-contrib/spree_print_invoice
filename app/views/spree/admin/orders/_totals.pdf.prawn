@@ -3,7 +3,7 @@ totals = []
 totals << [Prawn::Table::Cell.new( :text => Spree.t(:subtotal), :font_style => :bold), order.display_item_total.to_s]
 
 @order.adjustments.each do |charge|
-  totals << [Prawn::Table::Cell.new( :text => charge.label + ":", :font_style => :bold), charge.display_amount.to_s)]
+  totals << [Prawn::Table::Cell.new( :text => charge.label + ":", :font_style => :bold), charge.display_amount.to_s]
 end
 
 totals << [Prawn::Table::Cell.new( :text => Spree.t(:order_total), :font_style => :bold), @order.display_total.to_s]
