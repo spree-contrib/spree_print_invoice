@@ -1,0 +1,9 @@
+<fieldset class="currency no-border-bottom">
+  <legend align="center"><%= Spree.t(:invoices_settings)%></legend>
+
+  <div class="field">
+    <%= label_tag :print_invoice_next_number, Spree.t(:next_invoice_number) %><br>
+    <%= number_field_tag :print_invoice_next_number, Spree::PrintInvoice::Config[:print_invoice_next_number], :size => 8 %>
+  </div>
+
+</fieldset>

@@ -3,7 +3,7 @@ SUMMARY
 
 This extension provides a "Print Invoice" button on the Admin Orders view screen which generates a PDF of the order details.
 
- 
+
 INSTALLATION
 ============
 
@@ -11,11 +11,16 @@ INSTALLATION
 
     gem 'spree_print_invoice' , :git => 'git://github.com/spree/spree_print_invoice.git'
 
-2. run bundler
+2. Run bundler
 
     bundle install
-  
-3. Enjoy! now displays the items variant options 
+
+3. Install migration
+
+    rails g spree_print_invoice:install
+
+4. Enjoy! Now allow to generate invoices with sequential numbers
+
 
 Configuration
 ==============
@@ -30,7 +35,12 @@ Configuration
 
 4. Set :suppress_anonymous_address option to get blank addresses for anonymous email addresses (as created by my spree_last_address extension for empty/unknown user info)
 
-5. Enable packaging slips, by setting 
+5. Many european countries requires numeric and sequential invoices numbers. To use invoices sequential number fill the specific field in "General Settings" or by set
+  Spree::PrintInvoice::Config.set(:print_invoice_next_number => [1|{your current next invoice number}])
+
+ The next invoice number will be the one that you specified. You will able to increase it in any moment, for example, to re-sync invoices number if you are making invoices also in other programs for the same business name.
+
+6. Enable packaging slips, by setting
 
   Spree::PrintInvoice::Config.set(:print_buttons => "invoice,packaging_slip")  #comma separated list
 
