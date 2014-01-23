@@ -15,13 +15,26 @@ fill_color "000000"
 
 move_down 4
 
-font "Helvetica",  :size => 9,  :style => :bold
-text "#{Spree.t(:order_number)} #{@order.number}", :align => :right
+if Spree::PrintInvoice::Config.use_sequential_number? && @order.invoice_number.present? && !@hide_prices
 
-move_down 2
-font "Helvetica", :size => 9
-text "#{I18n.l @order.completed_at.to_date}", :align => :right
+  font "Helvetica",  :size => 9,  :style => :bold
+  text "#{Spree.t(:invoice_number)} #{@order.invoice_number}", :align => :right
 
+  move_down 2
+  font "Helvetica", :size => 9
+  text "#{Spree.t(:invoice_date)} #{I18n.l @order.invoice_date}", :align => :right
+
+else
+
+  move_down 2
+  font "Helvetica",  :size => 9
+  text "#{Spree.t(:order_number)} #{@order.number}", :align => :right
+
+  move_down 2
+  font "Helvetica", :size => 9
+  text "#{I18n.l @order.completed_at.to_date}", :align => :right
+
+end
 
 render :partial => "address"
 

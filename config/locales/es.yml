@@ -12,3 +12,6 @@ es:
     invoice_print: "Imprimir Factura"
     packaging_slip_print: "Imprimir Recibo para el Embalaje"
     packaging_slip: "Recibo para el Embalaje"
+
+    invoice_number: Número Factura
+    invoice_date: Expedida el
