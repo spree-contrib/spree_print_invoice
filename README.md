@@ -17,7 +17,7 @@ INSTALLATION
 
 3. Install migration
 
-    rails g spree_i18n:install
+    rails g spree_print_invoice:install
 
 4. Enjoy! Now allow to generate invoices with sequential numbers
 
