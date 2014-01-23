@@ -38,7 +38,7 @@ Configuration
 5. Many european countries requires numeric and sequential invoices numbers. To use invoices sequential number fill the specific field in "General Settings" or by set
   Spree::PrintInvoice::Config.set(:print_invoice_next_number => [1|{your current next invoice number}])
 
-The next invoice number will be the one that you specified. You will able to increase it in any moment, for example, to re-sync invoices number if you are making invoices also in other programs for the same business name.
+ The next invoice number will be the one that you specified. You will able to increase it in any moment, for example, to re-sync invoices number if you are making invoices also in other programs for the same business name.
 
 6. Enable packaging slips, by setting
 
