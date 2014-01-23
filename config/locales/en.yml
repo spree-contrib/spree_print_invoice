@@ -8,10 +8,12 @@ en:
 
     footer_right: "Company  Phone  www "
     footer_right2: " My great company 040 146 1222 www.gohereoften.com"
-    
+
     print_note: This is not an original invoice (DO NOT SEND THIS TO CUSTOMER)
-    
+
     invoice_print: Print Invoice
     packaging_slip_print: Print Slip
     packaging_slip: Packaging Slip
-  
+
+    invoice_number: Invoice Number
+    invoice_date: Invoice issued on
