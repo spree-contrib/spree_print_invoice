@@ -13,6 +13,6 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
   s.authors      = 'Spree Community'
 
-  s.add_dependency('prawn', '0.8.4')
-  s.add_dependency('spree_core', '~> 2.0')
+  s.add_dependency('prawn', '1.0.0')
+  s.add_dependency('spree_core', '~> 2.1.0')
 end

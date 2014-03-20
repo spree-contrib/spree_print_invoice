@@ -6,62 +6,49 @@ else
   @align = { 0 => :left, 1 => :left, 2 => :left, 3 => :right, 4 => :right, 5 => :right}
 end
 
-# Line Items
-bounding_box [0,cursor], :width => 540, :height => 430 do
-  move_down 2
-  header =  [Prawn::Table::Cell.new( :text => Spree.t(:sku), :font_style => :bold),
-                Prawn::Table::Cell.new( :text => Spree.t(:item_description), :font_style => :bold ) ]
-  header <<  Prawn::Table::Cell.new( :text => Spree.t(:options), :font_style => :bold )
-  header <<  Prawn::Table::Cell.new( :text => Spree.t(:price), :font_style => :bold ) unless @hide_prices
-  header <<  Prawn::Table::Cell.new( :text => Spree.t(:qty), :font_style => :bold, :align => 1 )
-  header <<  Prawn::Table::Cell.new( :text => Spree.t(:total), :font_style => :bold ) unless @hide_prices
+data = [[Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]]  
+@order.line_items.each do |item|
+  row = [ item.variant.product.sku, item.variant.product.name]
+  row << item.variant.options_text
+  row << item.single_display_amount.to_s
+  row << item.quantity
+  row << item.display_total.to_s
+  data << row
+end
 
-  table [header],
-    :position           => :center,
-    :border_width => 1,
-    :vertical_padding   => 2,
-    :horizontal_padding => 6,
-    :font_size => 9,
-    :column_widths => @column_widths ,
-    :align => @align
+data << [""] * 5
+data << [nil, nil, nil, nil, Spree.t(:subtotal), @order.display_item_total.to_s]
 
-  move_down 4
+extra_row_count = 1
+@order.all_adjustments.eligible.each do |adjustment|
+  extra_row_count += 1
+  data << [nil, nil, nil, nil, adjustment.label, adjustment.display_amount.to_s]
+end
 
-  bounding_box [0,cursor], :width => 540 do
-    move_down 2
-    content = []
-    @order.line_items.each do |item|
-      row = [ item.variant.product.sku, item.variant.product.name]
-      row << item.variant.option_values.map {|ov| "#{ov.option_type.presentation}: #{ov.presentation}"}.concat(item.respond_to?('ad_hoc_option_values') ? item.ad_hoc_option_values.map {|pov| "#{pov.option_value.option_type.presentation}: #{pov.option_value.presentation}"} : []).join(', ')
-      row << item.single_display_amount.to_s unless @hide_prices
-      row << item.quantity
-      row << item.display_total.to_s unless @hide_prices
-      content << row
-    end
+@order.shipments.each do |shipment|
+  extra_row_count += 1
+  data << [nil, nil, nil, nil, shipment.shipping_method.name, shipment.display_cost.to_s]
+end
+
+data << [nil, nil, nil, nil, Spree.t(:total), @order.display_total.to_s]
 
 
-    table content,
-      :position           => :center,
-      :border_width => 0.5,
-      :vertical_padding   => 5,
-      :horizontal_padding => 6,
-      :font_size => 9,
-      :column_widths => @column_widths ,
-      :align => @align
-  end
+move_down(250)
+table(data, :width => 525) do
+  cells.border_width = 0.5
 
-  font "Helvetica", :size => 9
+  row(0).borders = [:bottom]
+  row(0).font_style = :bold
 
-  render :partial => "totals" unless @hide_prices
+  row(0).columns(0..5).borders = [:top, :right, :bottom, :left]
+  row(0).columns(0..5).border_widths = [0.5, 0, 0.5, 0.5]
 
-  move_down 2
+  row(0).column(5).border_widths = [0.5, 0.5, 0.5, 0.5]
 
-  stroke do
-    line_width 0.5
-    line bounds.top_left, bounds.top_right
-    line bounds.top_left, bounds.bottom_left
-    line bounds.top_right, bounds.bottom_right
-    line bounds.bottom_left, bounds.bottom_right
-  end
+  extra_rows = row((-2-extra_row_count)..-2)
+  extra_rows.columns(0..5).borders = []
+  extra_rows.column(4).font_style = :bold
 
+  row(-1).columns(0..5).borders = []
+  row(-1).column(4).font_style = :bold
 end
