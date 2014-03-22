@@ -25,7 +25,7 @@ data = [
 ]
 
 move_down 75
-table(data, :width => 525) do
+table(data, :width => 540) do
   row(0).font_style = :bold
 
   # Billing address header
