@@ -15,5 +15,6 @@ en:
     packaging_slip_print: Print Slip
     packaging_slip: Packaging Slip
 
+    print_font_face: Font Face
     invoice_number: Invoice Number
     invoice_date: Invoice issued on

@@ -2,6 +2,11 @@
   <legend align="center"><%= Spree.t(:invoices_settings)%></legend>
 
   <div class="field">
+    <%= label_tag :print_font_face, Spree.t(:print_font_face) %><br>
+    <%= select_tag :print_font_face, font_faces, :class => 'fullwidth select2' %>
+  </div>
+
+  <div class="field">
     <%= label_tag :print_invoice_next_number, Spree.t(:next_invoice_number) %><br>
     <%= number_field_tag :print_invoice_next_number, Spree::PrintInvoice::Config[:print_invoice_next_number], :size => 8 %>
   </div>
