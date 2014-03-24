@@ -11,4 +11,9 @@
     <%= number_field_tag :print_invoice_next_number, Spree::PrintInvoice::Config[:print_invoice_next_number], :size => 8 %>
   </div>
 
+  <div class="field">
+    <%= label_tag :print_invoice_logo_scale, Spree.t(:invoice_logo_scale) %><br>
+    <%= number_field_tag :print_invoice_logo_scale, Spree::PrintInvoice::Config[:print_invoice_logo_scale], :in => 1...100 %>
+  </div>
+
 </fieldset>
