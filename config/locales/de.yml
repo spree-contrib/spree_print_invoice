@@ -1,0 +1,17 @@
+de:
+  spree:
+    customer_invoice: Kundenrechnung
+    footer_left: "Andere Informationen"
+    footer_left2: " 14 Tage oder nie"
+
+    footer_right: "Firma Telefon www "
+    footer_right2: "Meine Firma 040 146 1222 www.gohereoften.com"
+
+    print_note: Dies ist keine echte Rechnung (NICH AN KUNDEN SENDEN!)
+
+    invoice_print: Rechnung drucken
+    packaging_slip_print: Warenbegleitschein drucken
+    packaging_slip: Packzettel drucken
+
+    invoice_number: Rechnungsnummer
+    invoice_date: Rechnungsdatum
