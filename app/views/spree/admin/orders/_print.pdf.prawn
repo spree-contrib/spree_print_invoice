@@ -1,6 +1,6 @@
 require 'prawn/layout'
 
-@font_face = Spree::PrintInvoice::Config[:print_font_face]
+@font_face = Spree::PrintInvoice::Config[:print_invoice_font_face]
 
 font @font_face
 
