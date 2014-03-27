@@ -1,17 +1,37 @@
+---
 de:
   spree:
-    customer_invoice: Kundenrechnung
-    footer_left: "Andere Informationen"
-    footer_left2: " 14 Tage oder nie"
-
-    footer_right: "Firma Telefon www "
-    footer_right2: "Meine Firma 040 146 1222 www.gohereoften.com"
-
-    print_note: Dies ist keine echte Rechnung (NICH AN KUNDEN SENDEN!)
-
-    invoice_print: Rechnung drucken
-    packaging_slip_print: Warenbegleitschein drucken
-    packaging_slip: Packzettel drucken
-
-    invoice_number: Rechnungsnummer
-    invoice_date: Rechnungsdatum
+    print_invoice:
+      buttons:
+        invoice: Rechnung drucken
+        packaging_slip: Warenbegleitschein drucken
+      invoice: Kundenrechnung
+      item_name: Item Name or SKU
+      of: of
+      via: via
+      on_date: Order Date
+      packaging_slip: Packzettel drucken
+      page: Page
+      payment_via: "%{gateway} Online Payment #%{number} on %{date}"
+      preferences:
+        print_invoice_next_number: Print Invoice Next Number
+        use_footer: Use Footer
+        use_page_numbers: Use Page Numbers
+        anomaly_message: Order Anomaly Message
+        footer_left: Left footer content
+        footer_left_info: E.g. Your company name and address.
+        footer_right: Right footer content
+        footer_right_info: E.g. Your phone and email address.
+        page_layout: Page Layout
+        page_size: Page Size
+        print_buttons: Print Buttons
+        print_buttons_info: Comma separated list.
+        print_logo_path: Print Invoice Logo Path
+        return_message: Order Return Message
+      settings: Print Invoice Settings
+      unprocessed: Unprocessed
+      vat: VAT not applicable
+      pdf_legend: PDF
+      invoice_slip_legend: Invoice / Slip
+      invoice_number: 'Rechnungsnummer %{number}'
+      invoice_date: Rechnungsdatum

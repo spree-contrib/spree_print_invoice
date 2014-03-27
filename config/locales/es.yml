@@ -1,17 +1,37 @@
+---
 es:
   spree:
-    customer_invoice: "Factura del cliente"
-    footer_left: "Devolver en Otro"
-    footer_left2: " 14 días o nunca"
-
-    footer_right: "Empresa  Teléfono  Web "
-    footer_right2: " My Genial Empresa 040 146 1222 www.visitanosamenudo.com"
-
-    print_note: "Esta no es la factura original (NO ENVIAR AL CLIENTE)"
-
-    invoice_print: "Imprimir Factura"
-    packaging_slip_print: "Imprimir Recibo para el Embalaje"
-    packaging_slip: "Recibo para el Embalaje"
-
-    invoice_number: Número Factura
-    invoice_date: Expedida el
+    print_invoice:
+      buttons:
+        invoice: Imprimir Factura
+        packaging_slip: Imprimir Recibo para el Embalaje
+      invoice: Factura del cliente
+      item_name: Item Name or SKU
+      of: of
+      via: via
+      on_date: Order Date
+      packaging_slip: Recibo para el Embalaje
+      page: Page
+      payment_via: "%{gateway} Online Payment #%{number} on %{date}"
+      preferences:
+        print_invoice_next_number: Print Invoice Next Number
+        use_footer: Use Footer
+        use_page_numbers: Use Page Numbers
+        anomaly_message: Order Anomaly Message
+        footer_left: Left footer content
+        footer_left_info: E.g. Your company name and address.
+        footer_right: Right footer content
+        footer_right_info: E.g. Your phone and email address.
+        page_layout: Page Layout
+        page_size: Page Size
+        print_buttons: Print Buttons
+        print_buttons_info: Comma separated list.
+        print_logo_path: Print Invoice Logo Path
+        return_message: Order Return Message
+      settings: Print Invoice Settings
+      unprocessed: Unprocessed
+      vat: VAT not applicable
+      pdf_legend: PDF
+      invoice_slip_legend: Invoice / Slip
+      invoice_number: 'Invoice Number %{number}'
+      invoice_date: Invoice Date

@@ -1,0 +1,37 @@
+---
+fr:
+  spree:
+    print_invoice:
+      buttons:
+        invoice: Imprimer Facture
+        packaging_slip: Imprimer Bordereau de Livraison
+      invoice: Facture
+      item_name: Nom ou Reference Article
+      of: de
+      via: via
+      on_date: Date de commande
+      packaging_slip: Bordereau de Livraison
+      page: Page
+      payment_via: "Payé en ligne le %{date} via %{gateway} - %{number}"
+      preferences:
+        print_invoice_next_number: Imprimer la facture prochain numéro
+        use_footer: Utilisez le pied de page
+        use_page_numbers: Utilisez des numéros de page
+        anomaly_message: Message d'anomalie
+        footer_left: Contenu pied de gauche
+        footer_left_info: Par exemple Votre nom et adresse d'entreprise.
+        footer_right: Contenu pied de droit
+        footer_right_info: Par exemple Votre téléphone et votre adresse e-mail.
+        page_layout: La mise en page
+        page_size: Taille de la page
+        print_buttons: Boutons Imprimer
+        print_buttons_info: Séparés par des virgules.
+        print_logo_path: Chemin de logo
+        return_message: Message de retour
+      settings: Les paramètres d'impression des factures
+      unprocessed: Non traité
+      vat: "TVA non applicable, article 293 B du Code Général des Impôts"
+      pdf_legend: PDF
+      invoice_slip_legend: Facture / Slip
+      invoice_number: 'Numéro de facture %{number}'
+      invoice_date: Date de la facture

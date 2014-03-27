@@ -1,7 +1,12 @@
-<% if @order and @order.completed_at? %>
-  <% buttons = Spree::PrintInvoice::Config[:print_buttons]
-     buttons = buttons.split(",").collect{|b| b.strip } %>
-  <%  buttons.each do |button| %>
-    <li><%= link_to(Spree.t(button.to_s + "_print"), spree.admin_order_path(@order, :pdf , :template => button), :class => "button icon-print") %></li>
-  <% end %>
-<% end %>  
+<% if @order && @order.completed_at? %>
+  <div style="margin-bottom:4px" data-hook="admin_order_print_buttons">
+    <% buttons = Spree::PrintInvoice::Config[:print_buttons].split(',').compact.collect{|b| b.strip } %>
+    <% buttons.each do |button| %>
+      <li>
+        <%= link_to(Spree.t(:"#{button}", scope: [:print_invoice, :buttons], default: 'PDF Slip'),
+          spree.admin_order_path(@order, :pdf , template: button),
+          class: 'button icon-print', target: :blank) %>
+      </li>
+    <% end %>
+  </div>
+<% end %>

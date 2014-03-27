@@ -1,56 +1,141 @@
-SUMMARY
-=======
+# Spree Print Invoice
 
-This extension provides a "Print Invoice" button on the Admin Orders view screen which generates a PDF of the order details.
+[![Build Status](https://api.travis-ci.org/spree/spree_print_invoice.png?branch=master)](https://travis-ci.org/spree/spree_print_invoice)
+[![Code Climate](https://codeclimate.com/github/spree/spree_print_invoice.png)](https://codeclimate.com/github/spree/spree_print_invoice)
 
+This extension provides a "Print Invoice" button (per default) on the Admin Orders view screen which generates a PDF of the order details. It's fully extendable so you can add own _print slips_ from your own Rails app. It also comes with a packaging slip.
 
-INSTALLATION
-============
+## Installation
 
-1. The gem relies only on the prawn gem, to install you need to add the following lines to your Gemfile
+Add to your `Gemfile`
+```ruby
+gem 'spree_print_invoice' , github: 'spree/spree_print_invoice', branch: 'master'
+```
 
-    gem 'spree_print_invoice' , :git => 'git://github.com/spree/spree_print_invoice.git'
+Run
+```
+bundle install
+rails g spree_print_invoice:install
+```
 
-2. Run bundler
+Enjoy! Now allow to generate invoices with sequential numbers.
 
-    bundle install
+---
 
-3. Install migration
+## Configuration
 
-    rails g spree_print_invoice:install
+Under admin contiguration you find _Print Invoice Settings_ where you can change standard settings for printing.
 
-4. Enjoy! Now allow to generate invoices with sequential numbers
+Set `:suppress_anonymous_address` option to get blank addresses for anonymous email addresses (as created by my spree_last_address extension for empty/unknown user info)
 
+Many european countries requires numeric and sequential invoices numbers. To use invoices sequential number fill the specific field in _Print Invoice Settings_ or by set:
+```ruby
+Spree::PrintInvoice::Config.set(print_invoice_next_number: [1|{your current next invoice number}])
+```
 
-Configuration
-==============
+The next invoice number will be the one that you specified. You will able to increase it in any moment, for example, to re-sync invoices number if you are making invoices also in other programs for the same business name.
 
-1. Set the logo path preference to include your store / company logo.
+Set the logo path preference to include your store/company logo.
+```ruby
+Spree::PrintInvoice::Config.set(logo_path: '/path/to/assets/images/company-logo.png')
+```
 
-    Spree::PrintInvoice::Config.set(:print_invoice_logo_path => "/path/to/public/images/company-logo.png")
+## Extending with new slips
 
-2. Add your own own footer texts to the locale. The current footer works with :footer_left1 , :footer_left2 and :footer_right1, :footer_right2 where the 1 version is on the left in bold, and the 2 version the "value" on the right.
+In your Rails app create new prawn template in:
 
-3. Override any of the partial templates. they are address, footer, totals, header, bye , and the line_items. In bye the text :thanks is printed.  The :extra_note hook has been deprecated as Spree no longer supports hooks.
+```
+views/spree/admin/orders/my_custom_slip.pdf.prawn
+```
 
-4. Set :suppress_anonymous_address option to get blank addresses for anonymous email addresses (as created by my spree_last_address extension for empty/unknown user info)
+For each _custom slip_, define its representation in your `config/locales/` for each locale you use:
 
-5. Many european countries requires numeric and sequential invoices numbers. To use invoices sequential number fill the specific field in "General Settings" or by set
-  Spree::PrintInvoice::Config.set(:print_invoice_next_number => [1|{your current next invoice number}])
+```yml
+---
+en:
+  spree:
+    print_invoice:
+      buttons:
+        my_custom_slip: My Custom Slip
+```
 
- The next invoice number will be the one that you specified. You will able to increase it in any moment, for example, to re-sync invoices number if you are making invoices also in other programs for the same business name.
+_Note: You can also add any xtra text keys here for your slip._
 
-6. Enable packaging slips, by setting
+Enable your _custom slip_, by adding it to the list of slips you would like to use:
 
-  Spree::PrintInvoice::Config.set(:print_buttons => "invoice,packaging_slip")  #comma separated list
+```ruby
+Spree::PrintInvoice::Config.set(print_buttons: 'invoice,packaging_slip,my_custom_slip') # comma separated list
+```
 
- Use above feature for your own template if you want. For each button_name, define button_name_print text in your locale.
+---
 
-Plans
-=====
-Next receipts and then product related stuff with barcodes.
+## Prawn-handler
 
+A Rails template handler for PDF library [Prawn][1]. Prawn-handler is lightweight, simple, and less of a hassle to use.
 
-Contributions welcome
+### Usage
 
-Torsten
+3. Name PDF view files like `foo.pdf.prawn`. Inside, use the `pdf` method to access a `Prawn::Document` object. In addition, this handler allows for lazy method calls: you don't have to specify the receiver explicitely, which cleans up the resulting view code.
+
+For example, the following code with formal calls:
+```ruby
+pdf.bounding_box [100, 600], width: 200 do
+  pdf.text 'The rain in spain falls mainly on the plains ' * 5
+  pdf.stroke do
+    pdf.line pdf.bounds.top_left,    pdf.bounds.top_right
+    pdf.line pdf.bounds.bottom_left, pdf.bounds.bottom_right
+  end
+end
+```
+
+Is equivalent to this one with lazy calls:
+```ruby
+bounding_box [100, 600], width: 200 do
+  text 'The rain in spain falls mainly on the plains ' * 5
+  stroke do
+    line bounds.top_left,    bounds.top_right
+    line bounds.bottom_left, bounds.bottom_right
+  end
+end
+```
+
+This is accomplished without `instance_eval`, so that access to instance variables set by the controller is retained.
+
+---
+
+## Contributing
+
+In the spirit of [free software][2], **everyone** is encouraged to help improve this project.
+
+Here are some ways *you* can contribute:
+
+* by using prerelease versions
+* by reporting [bugs][3]
+* by suggesting new features
+* by writing translations
+* by writing or editing documentation
+* by writing specifications
+* by writing code (*no patch is too small*: fix typos, add comments, clean up inconsistent whitespace)
+* by refactoring code
+* by resolving [issues][3]
+* by reviewing patches
+
+Starting point:
+
+* Fork the repo
+* Clone your repo
+* Run `bundle install`
+* Run `bundle exec rake test_app` to create the test application in `spec/test_app`
+* Make your changes
+* Ensure specs pass by running `bundle exec rspec spec`
+* Submit your pull request
+
+Copyright (c) 2014 [Roman Le Négrate][4], [Torsten Rüger][5] and other [contributors][6], released under the [New BSD License][7]
+
+[1]: http://prawn.majesticseacreature.com
+[2]: http://www.fsf.org/licensing/essays/free-sw.html
+[3]: https://github.com/spree/spree_print_invoice/issues
+[4]: https://github.com/Roman2K
+[5]: http://github.com/dancinglightning
+[6]: https://github.com/spree/spree_print_invoice/contributors
+[7]: https://github.com/spree/spree_print_invoice/blob/master/LICENSE.md
