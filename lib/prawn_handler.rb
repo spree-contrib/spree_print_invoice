@@ -13,7 +13,7 @@ module ActionView
       
       module DocumentProxy
         def pdf
-          @pdf ||= ::Prawn::Document.new
+          @pdf ||= ::Prawn::Document.new(Spree::PrintInvoice::Config[:prawn_options])
         end
         
       private
