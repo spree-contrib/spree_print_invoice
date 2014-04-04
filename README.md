@@ -46,6 +46,10 @@ Configuration
 
  Use above feature for your own template if you want. For each button_name, define button_name_print text in your locale.
 
+7. Set page/document options with
+
+  Spree::PrintInvoice::Config.set(:prawn_options => {:page_layout => :landscape, :page_size => "A4", :margin => [50, 100, 150, 200]})
+
 Plans
 =====
 Next receipts and then product related stuff with barcodes.
