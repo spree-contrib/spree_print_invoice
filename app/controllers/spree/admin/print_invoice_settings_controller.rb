@@ -6,7 +6,6 @@ module Spree
       end
 
       def update
-        binding.pry
         Spree::PrintInvoice::Config.set(params[:preferences])
         respond_to do |format|
           format.html {
