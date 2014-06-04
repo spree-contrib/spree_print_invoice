@@ -1,0 +1,65 @@
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+
+<% content_for :page_title do %>
+  <%= Spree.t(:invoice_settings) %>
+<% end %>
+
+<%= form_tag admin_print_invoice_settings_path, :method => :put do %>
+  <fieldset class="no-border-top">
+    <fieldset class="no-border-bottom">
+      <legend align="center"><%= Spree.t(:general_settings)%></legend>
+      <div data-hook="admin_print_invoice_settings_fields">
+        <div class="row">
+          <div class="alpha four columns">        
+            <div class="field">
+              <%= label_tag :print_invoice_next_number, Spree.t(:next_invoice_number) %><br>
+              <%= number_field_tag :"preferences[print_invoice_next_number]", Spree::PrintInvoice::Config[:print_invoice_next_number], :size => 8 %>
+            </div>
+          </div>
+
+          <div class="alpha four columns">
+            <div class="field">
+              <%= label_tag :print_invoice_logo_path, Spree.t(:logo_path) %><br>
+              <%= text_field_tag :"preferences[print_invoice_logo_path]", Spree::PrintInvoice::Config[:print_invoice_logo_path] %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="alpha four columns">
+            <div class="field">
+              <%= label_tag :print_invoice_footer_left1, Spree.t(:left_footer_label) %><br>
+              <%= text_field_tag :"preferences[print_invoice_footer_left1]", Spree::PrintInvoice::Config[:print_invoice_footer_left1] %>
+            </div>
+          </div>
+
+          <div class="alpha four columns">
+            <div class="field">
+              <%= label_tag :print_invoice_footer_left2, Spree.t(:left_footer_value) %><br>
+              <%= text_field_tag :"preferences[print_invoice_footer_left2]", Spree::PrintInvoice::Config[:print_invoice_footer_left2] %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="alpha four columns">
+            <div class="field">
+              <%= label_tag :print_invoice_footer_right1, Spree.t(:right_footer_label) %><br>
+              <%= text_field_tag :"preferences[print_invoice_footer_right1]", Spree::PrintInvoice::Config[:print_invoice_footer_right1] %>
+            </div>
+          </div>
+
+          <div class="alpha four columns">
+            <div class="field">
+              <%= label_tag :print_invoice_footer_right2, Spree.t(:right_footer_value) %><br>
+              <%= text_field_tag :"preferences[print_invoice_footer_right2]", Spree::PrintInvoice::Config[:print_invoice_footer_right2] %>
+            </div>
+          </div>
+        </div>
+    </fieldset>
+    <div class="form-buttons filter-actions actions" data-hook="buttons">
+      <%= button Spree.t('actions.update'), 'icon-refresh' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= link_to_with_icon 'icon-remove', Spree.t('actions.cancel'), edit_admin_general_settings_url, :class => 'button' %>
+    </div>
+  </fieldset>
+<% end %>

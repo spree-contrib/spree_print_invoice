@@ -4,6 +4,10 @@ module Spree
     preference :print_invoice_next_number, :integer, :default => nil
     preference :print_invoice_logo_path, :string, :default => Spree::Config[:admin_interface_logo]
     preference :print_buttons, :string, :default => 'invoice'
+    preference :print_invoice_footer_right1, :string, :default => 'Website:'
+    preference :print_invoice_footer_right2, :string, :default => 'http://www.google.com'
+    preference :print_invoice_footer_left1, :string, :default => 'Phone Number:'
+    preference :print_invoice_footer_left2, :string, :default => '+48-664-446-595'
     preference :prawn_options, :hash, :default => {}
 
     def use_sequential_number?
