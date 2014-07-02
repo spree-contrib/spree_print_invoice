@@ -40,7 +40,7 @@ unless @hide_prices
 end
 
 move_down(250)
-table(data, :width => 540, :column_widths => @column_widths) do
+table(data, :width => @column_widths.values.compact.sum, :column_widths => @column_widths) do
   cells.border_width = 0.5
 
   row(0).borders = [:bottom]
