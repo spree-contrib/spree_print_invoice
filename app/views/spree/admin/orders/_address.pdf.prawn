@@ -14,7 +14,7 @@ def address_info(address)
   state = address.state ? address.state.abbr : ""
   info += "#{address.zipcode} #{address.city} #{state}\n"
   info += "#{address.country.name}\n"
-  info += "#{address.phone}\n"
+  # info += "#{address.phone}\n"
   info.strip
 end
 
