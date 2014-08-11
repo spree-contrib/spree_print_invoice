@@ -11,9 +11,10 @@ end
 if @order.shipments.count > 1
   extra_row_count = 0  
   @order.shipments.each do |shipment|
-    extra_row_count += 1    
+    extra_row_count += 1
+    data << [""] * 4 
     data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
-             shipment.shipping_method.name, shipment.display_cost.to_s]
+             shipment.shipping_method.name, nil]
   
     if @hide_prices
       data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]
@@ -29,7 +30,7 @@ if @order.shipments.count > 1
       row << item.display_total.to_s unless @hide_prices
       data << row
     end
-
+   
   end
   
 else
