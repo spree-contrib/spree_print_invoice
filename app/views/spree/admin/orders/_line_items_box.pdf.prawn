@@ -4,7 +4,7 @@ if @order.shipments.count > 1
   
   @order.shipments.each do |shipment|
     
-    data << ["Shipment status: #{shipment.status}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
+    data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
              shipment.shipping_method.name, shipment.display_cost.to_s]
   
     if @hide_prices
