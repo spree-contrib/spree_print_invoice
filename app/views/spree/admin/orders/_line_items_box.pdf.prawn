@@ -1,23 +1,56 @@
 data = []
 
-if @hide_prices
-  @column_widths = { 0 => 100, 1 => 165, 2 => 75, 3 => 75 }
-  @align = { 0 => :left, 1 => :left, 2 => :right, 3 => :right }
-  data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]
-else
-  @column_widths = { 0 => 75, 1 => 205, 2 => 75, 3 => 50, 4 => 75, 5 => 60 }
-  @align = { 0 => :left, 1 => :left, 2 => :left, 3 => :right, 4 => :right, 5 => :right}
-  data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
-end
+if @order.shipments.count > 1
+  
+  @order.shipments.each do |shipment|
+    
+    data << ["Shipment status: #{shipment.status}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
+             shipment.shipping_method.name, shipment.display_cost.to_s]
+  
+    if @hide_prices
+      @column_widths = { 0 => 100, 1 => 165, 2 => 75, 3 => 75 }
+      @align = { 0 => :left, 1 => :left, 2 => :right, 3 => :right }
+      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]
+    else
+      @column_widths = { 0 => 75, 1 => 205, 2 => 75, 3 => 50, 4 => 75, 5 => 60 }
+      @align = { 0 => :left, 1 => :left, 2 => :left, 3 => :right, 4 => :right, 5 => :right}
+      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
+    end
+  
+    shipment.line_items.each do |item|
+      row = [ item.variant.product.sku, item.variant.product.name]
+      row << item.variant.options_text
+      row << item.single_display_amount.to_s unless @hide_prices
+      row << item.quantity
+      row << item.display_total.to_s unless @hide_prices
+      data << row
+    end
+    
+    move_down(250)
 
-@order.line_items.each do |item|
-  row = [ item.variant.product.sku, item.variant.product.name]
-  row << item.variant.options_text
-  row << item.single_display_amount.to_s unless @hide_prices
-  row << item.quantity
-  row << item.display_total.to_s unless @hide_prices
-  data << row
-end
+  end
+  
+else
+  data << ['Shipment Pending']
+  if @hide_prices
+    @column_widths = { 0 => 100, 1 => 165, 2 => 75, 3 => 75 }
+    @align = { 0 => :left, 1 => :left, 2 => :right, 3 => :right }
+    data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]
+  else
+    @column_widths = { 0 => 75, 1 => 205, 2 => 75, 3 => 50, 4 => 75, 5 => 60 }
+    @align = { 0 => :left, 1 => :left, 2 => :left, 3 => :right, 4 => :right, 5 => :right}
+    data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
+  end 
+    
+    @order.line_items.each do |item|
+      row = [ item.variant.product.sku, item.variant.product.name]
+      row << item.variant.options_text
+      row << item.single_display_amount.to_s unless @hide_prices
+      row << item.quantity
+      row << item.display_total.to_s unless @hide_prices
+      data << row
+    end  
+end  
 
 extra_row_count = 0
 
