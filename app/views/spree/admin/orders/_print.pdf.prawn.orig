@@ -7,7 +7,11 @@ font @font_face
 im = Rails.application.assets.find_asset(Spree::PrintInvoice::Config[:print_invoice_logo_path])
 image im , :at => [0,720], :scale => logo_scale
 
+<<<<<<< HEAD
+fill_color "000000"
+=======
 #fill_color "E99323"
+>>>>>>> 033486dc925ed11bc755b04c83a7ba70db7141db
 if @hide_prices
   text Spree.t(:packaging_slip), :align => :right, :style => :bold, :size => 18
 else
