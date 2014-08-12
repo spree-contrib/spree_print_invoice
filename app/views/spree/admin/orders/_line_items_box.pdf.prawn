@@ -48,6 +48,7 @@ if @order.shipments.count > 1
     end
 
     shipment.line_items.each do |item|
+      extra_row_count += 1
       row = [ item.variant.product.sku, item.variant.product.name]
       row << item.variant.options_text
       row << item.single_display_amount.to_s unless @hide_prices
