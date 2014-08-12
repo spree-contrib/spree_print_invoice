@@ -3,59 +3,66 @@ data = []
 if @hide_prices
   @column_widths = { 0 => 100, 1 => 165, 2 => 75, 3 => 75 }
   @align = { 0 => :left, 1 => :left, 2 => :right, 3 => :right }
+  data << ["Included in this shipment", "Shipment status: #{@shipment.state}", 
+          "Shiped at: #{@shipment.shipped_at.to_date if @shipment.shipped_at}", @shipment.shipping_method.name ]
+  data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]
 else
   @column_widths = { 0 => 75, 1 => 205, 2 => 75, 3 => 50, 4 => 75, 5 => 60 }
   @align = { 0 => :left, 1 => :left, 2 => :left, 3 => :right, 4 => :right, 5 => :right}
+  data << ["Included in this shipment", "Shipment status: #{@shipment.state}", 
+           "Shiped at: #{@shipment.shipped_at.to_date if @shipment.shipped_at}", @shipment.shipping_method.name,  nil, nil]
+  data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
 end
 
-if @order.shipments.count > 1
-  extra_row_count = 0  
-  @order.shipments.each do |shipment|
-    extra_row_count += 1
+@shipment.line_items.each do |item|
+  row = [ item.variant.product.sku, item.variant.product.name]
+  row << item.variant.options_text
+  row << item.single_display_amount.to_s unless @hide_prices
+  row << item.quantity
+  row << item.display_total.to_s unless @hide_prices
+  data << row
+end
+
+if @order.shipments.count > 1 
+  if @hide_prices
     data << [""] * 4 
+    data << ["Other Items from your order (not included in this shipment)", nil, nil, nil]               
+  else
+    data << [""] * 6
+    data << ["Other Items from your order (not included in this shipment)", nil, nil, nil, nil, nil]   
+  end  
+end
+  
+extra_row_count = 0  
+@order.shipments.each do |shipment|
+  next if @shipment == shipment
+  extra_row_count += 1
+
+  if @hide_prices
+    data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]
+    data << [""] * 4 
+    data << ["Other Items from your order (not included in this shipment)", nil, nil, nil]               
     data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
              shipment.shipping_method.name, nil]
-  
-    if @hide_prices
-      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]
-    else
-      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
-    end
-  
-    shipment.line_items.each do |item|
-      row = [ item.variant.product.sku, item.variant.product.name]
-      row << item.variant.options_text
-      row << item.single_display_amount.to_s unless @hide_prices
-      row << item.quantity
-      row << item.display_total.to_s unless @hide_prices
-      data << row
-    end
-   
-  end
-  
-else
-  data << ['Shipment Pending']
-  if @hide_prices
-    @column_widths = { 0 => 100, 1 => 165, 2 => 75, 3 => 75 }
-    @align = { 0 => :left, 1 => :left, 2 => :right, 3 => :right }
-    data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]
   else
-    @column_widths = { 0 => 75, 1 => 205, 2 => 75, 3 => 50, 4 => 75, 5 => 60 }
-    @align = { 0 => :left, 1 => :left, 2 => :left, 3 => :right, 4 => :right, 5 => :right}
+    data << [""] * 6 
+    data << ["Other Items from your order (not included in this shipment)", nil, nil, nil]
+    data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
+             shipment.shipping_method.name, nil, nil, nil]
     data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
-  end 
-    
-    @order.line_items.each do |item|
-      row = [ item.variant.product.sku, item.variant.product.name]
-      row << item.variant.options_text
-      row << item.single_display_amount.to_s unless @hide_prices
-      row << item.quantity
-      row << item.display_total.to_s unless @hide_prices
-      data << row
-    end  
-end  
+  end
 
-extra_row_count = 0
+  shipment.line_items.each do |item|
+    row = [ item.variant.product.sku, item.variant.product.name]
+    row << item.variant.options_text
+    row << item.single_display_amount.to_s unless @hide_prices
+    row << item.quantity
+    row << item.display_total.to_s unless @hide_prices
+    data << row
+  end
+ 
+end
+
 
 unless @hide_prices
   extra_row_count += 1
