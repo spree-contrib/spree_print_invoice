@@ -45,21 +45,17 @@ puts "******** @order.shipments.count #{@order.shipments.count} "
     if @hide_prices
       data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
                shipment.shipping_method.name, nil]
-      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)] 
     else
       data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
                shipment.shipping_method.name, nil, nil, nil]
-      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
     end
 
     shipment.line_items.each do |item|
-      
-      row = [ item.variant.product.sku, item.variant.product.name]
+      row = [item.variant.product.sku, item.variant.product.name]
       row << item.variant.options_text
       row << item.single_display_amount.to_s unless @hide_prices
       row << item.quantity
       row << item.display_total.to_s unless @hide_prices
-      puts "********* item #{item.inspect} -- row #{row.inspect}"
       data << row
     end
     
