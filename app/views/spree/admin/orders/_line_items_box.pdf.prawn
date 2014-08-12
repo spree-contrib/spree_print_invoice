@@ -36,8 +36,10 @@ if @order.shipments.count > 1
   end  
 end
 
+puts "******** @order.shipments.count #{@order.shipments.count} "
+
 @order.shipments.each do |shipment|
-  unless (@shipment == shipment)
+  if (shipment.number != @shipment.number)
   
     if @hide_prices
       data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
