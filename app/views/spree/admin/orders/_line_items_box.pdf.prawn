@@ -1,5 +1,7 @@
 data = []
 
+@hide_prices = true
+
 if @hide_prices
   @column_widths = { 0 => 100, 1 => 165, 2 => 75, 3 => 75 }
   @align = { 0 => :left, 1 => :left, 2 => :right, 3 => :right }
@@ -32,10 +34,9 @@ if @order.shipments.count > 1
     data << ["Other Items from your order (not included in this shipment)", nil, nil, nil, nil, nil]   
   end  
 
-
   @order.shipments.each do |shipment|
     next if @shipment == shipment
-    extra_row_count += 1
+    extra_row_count += 2
 
     if @hide_prices
       data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
