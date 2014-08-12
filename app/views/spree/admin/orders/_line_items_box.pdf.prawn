@@ -37,34 +37,35 @@ if @order.shipments.count > 1
 end
 
 @order.shipments.each do |shipment|
-  next if (@shipment == shipment)
+  unless (@shipment == shipment)
   
-  if @hide_prices
-    data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
-             shipment.shipping_method.name, nil]
-    data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)] 
-  else
-    data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
-             shipment.shipping_method.name, nil, nil, nil]
-    data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
-  end
+    if @hide_prices
+      data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
+               shipment.shipping_method.name, nil]
+      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)] 
+    else
+      data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
+               shipment.shipping_method.name, nil, nil, nil]
+      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
+    end
 
-  shipment.line_items.each do |item|
-    puts "********* item #{item.inspect}"
-    row = [ item.variant.product.sku, item.variant.product.name]
-    row << item.variant.options_text
-    row << item.single_display_amount.to_s unless @hide_prices
-    row << item.quantity
-    row << item.display_total.to_s unless @hide_prices
-    data << row
-  end
+    shipment.line_items.each do |item|
+      puts "********* item #{item.inspect}"
+      row = [ item.variant.product.sku, item.variant.product.name]
+      row << item.variant.options_text
+      row << item.single_display_amount.to_s unless @hide_prices
+      row << item.quantity
+      row << item.display_total.to_s unless @hide_prices
+      data << row
+    end
   
-  if @hide_prices
-    data << [""] * 4           
-  else
-    data << [""] * 5  
-  end  
-
+    if @hide_prices
+      data << [""] * 4           
+    else
+      data << [""] * 5  
+    end
+      
+  end    
 end
 
 
