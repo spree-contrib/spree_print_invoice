@@ -23,7 +23,10 @@ end
   data << row
 end
 
+data << []
+extra_row_count = 0  
 if @order.shipments.count > 1 
+   extra_row_count += 1
   if @hide_prices
     data << [""] * 4 
     data << ["Other Items from your order (not included in this shipment)", nil, nil, nil]               
@@ -32,21 +35,18 @@ if @order.shipments.count > 1
     data << ["Other Items from your order (not included in this shipment)", nil, nil, nil, nil, nil]   
   end  
 end
-  
-extra_row_count = 0  
+
 @order.shipments.each do |shipment|
   next if @shipment == shipment
   extra_row_count += 1
 
   if @hide_prices
     data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]
-    data << [""] * 4 
-    data << ["Other Items from your order (not included in this shipment)", nil, nil, nil]               
+    data << [""] * 4      
     data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
              shipment.shipping_method.name, nil]
   else
     data << [""] * 6 
-    data << ["Other Items from your order (not included in this shipment)", nil, nil, nil]
     data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
              shipment.shipping_method.name, nil, nil, nil]
     data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
