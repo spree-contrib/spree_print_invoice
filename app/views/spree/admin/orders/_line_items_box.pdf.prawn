@@ -36,6 +36,7 @@ if @order.shipments.count > 1
 
   @order.shipments.each do |shipment|
     next if @shipment == shipment
+    extra_row_count += 2
 
     if @hide_prices
       data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
