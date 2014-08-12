@@ -39,6 +39,7 @@ end
 puts "******** @order.shipments.count #{@order.shipments.count} "
 
 @order.shipments.each do |shipment|
+  puts "********* shipment #{shipment.inspect} "
   if (shipment.number != @shipment.number)
   
     if @hide_prices
@@ -52,21 +53,22 @@ puts "******** @order.shipments.count #{@order.shipments.count} "
     end
 
     shipment.line_items.each do |item|
-      puts "********* item #{item.inspect}"
+      
       row = [ item.variant.product.sku, item.variant.product.name]
       row << item.variant.options_text
       row << item.single_display_amount.to_s unless @hide_prices
       row << item.quantity
       row << item.display_total.to_s unless @hide_prices
+      puts "********* item #{item.inspect} -- row #{row.inspect}"
       data << row
     end
-  
+    
     if @hide_prices
       data << [""] * 4           
     else
       data << [""] * 5  
     end
-      
+        
   end    
 end
 
