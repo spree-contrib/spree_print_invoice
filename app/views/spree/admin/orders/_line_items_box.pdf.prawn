@@ -58,6 +58,12 @@ end
     row << item.display_total.to_s unless @hide_prices
     data << row
   end
+  
+  if @hide_prices
+    data << [""] * 4           
+  else
+    data << [""] * 5  
+  end  
 
 end
 
