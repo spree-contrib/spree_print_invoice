@@ -1,7 +1,5 @@
 data = []
 
-@hide_prices = true
-
 if @hide_prices
   @column_widths = { 0 => 100, 1 => 165, 2 => 75, 3 => 75 }
   @align = { 0 => :left, 1 => :left, 2 => :right, 3 => :right }

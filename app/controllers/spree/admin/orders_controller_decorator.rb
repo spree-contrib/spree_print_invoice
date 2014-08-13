@@ -5,9 +5,9 @@ Spree::Admin::OrdersController.class_eval do
     load_order
     respond_with(@order) do |format|
       format.pdf do
-        puts "********** params.inspect #{params.inspect} "
         template = params[:template] || "invoice"
         @shipment = Spree::Shipment.find(params[:ship][:id]) 
+        @hide_prices = params[:commit] == "Print Slip" ? true : false     
         if (template == "invoice") && Spree::PrintInvoice::Config.use_sequential_number? && !@order.invoice_number.present?
           @order.invoice_number = Spree::PrintInvoice::Config.increase_invoice_number
           @order.invoice_date = Date.today
