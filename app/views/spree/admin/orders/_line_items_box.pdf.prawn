@@ -7,7 +7,7 @@ if @hide_prices
           "Shiped at: #{@shipment.shipped_at.to_date if @shipment.shipped_at}", @shipment.shipping_method.name ]
   data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]
 else
-  @column_widths = { 0 => 75, 1 => 165, 2 => 65, 3 => 50, 4 => 65, 5 => 80 }
+  @column_widths = { 0 => 75, 1 => 205, 2 => 75, 3 => 50, 4 => 75, 5 => 60 }
   @align = { 0 => :left, 1 => :left, 2 => :left, 3 => :right, 4 => :right, 5 => :right}
   data << ["Included in this shipment", "Shipment status: #{@shipment.state}", 
            "Shiped at: #{@shipment.shipped_at.to_date if @shipment.shipped_at}", @shipment.shipping_method.name,  nil, nil]
@@ -15,7 +15,7 @@ else
 end
 
 @shipment.line_items.each do |item|
-  row = [item.variant.product.sku, "#{item.variant.product.name} - #{item.variant.options_text} "]
+  row = [item.variant.product.sku, "#{item.variant.product.name} - #{item.variant.options_text} #{item.variant.product.name} - #{item.variant.options_text} #{item.variant.product.name} - #{item.variant.options_text}"]
   row << item.variant.options_text
   row << item.single_display_amount.to_s unless @hide_prices
   row << item.quantity
@@ -94,7 +94,7 @@ end
 
 
 move_down(250)
-table(data, :width => 540) do
+table(data, :width => @column_widths.values.compact.sum, :column_widths => @column_widths) do
   cells.border_width = 0.5
 
   row(0).borders = [:bottom]
