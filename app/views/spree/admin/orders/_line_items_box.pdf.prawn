@@ -62,11 +62,11 @@ end
       #data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]  
     end
     
-#    if @hide_prices
-#        data << [""] * 4       
-#    else
-#        data << [""] * 5
-#    end
+    if @hide_prices
+        data << [""] * 4       
+    else
+        data << [""] * 5
+    end
         
   end    
 end
