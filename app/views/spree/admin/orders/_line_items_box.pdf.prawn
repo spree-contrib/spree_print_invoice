@@ -48,7 +48,7 @@ end
 unless @hide_prices
   extra_row_count += 1
   data << [""] * 5
-  data << [nil, nil, nil, nil, Spree.t(:subtotal), @order.display_item_total.to_s]
+  data << [nil, nil, nil, nil, Spree.t(:subtotal), @shipment.item_cost.to_s]
 
   @order.all_adjustments.eligible.each do |adjustment|
     extra_row_count += 1
