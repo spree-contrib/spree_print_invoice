@@ -52,7 +52,7 @@ end
 unless @hide_prices
   extra_row_count += 1
   data << [""] * 5
-  data << [nil, nil, nil, nil, Spree.t(:subtotal), @shipment.item_cost.to_s]
+  data << [nil, nil, nil, nil, Spree.t(:subtotal), sprintf( "%.2f", @shipment.item_cost.to_f)]
 
 #  @order.all_adjustments.eligible.each do |adjustment|
 #    extra_row_count += 1
@@ -61,12 +61,12 @@ unless @hide_prices
 
 #  @order.shipments.each do |shipment|
     extra_row_count += 1
-    data << [nil, nil, nil, nil, @shipment.shipping_method.name, @shipment.final_price ]
+    data << [nil, nil, nil, nil, @shipment.shipping_method.name, sprintf( "%.2f", @shipment.final_price) ]
 #  end
 
  # data << [nil, nil, nil, nil, Spree.t(:total), @order.display_total.to_s]
  
- data << [nil, nil, nil, nil, Spree.t(:total), (@shipment.item_cost + @shipment.final_price).to_s ]
+ data << [nil, nil, nil, nil, Spree.t(:total), sprintf( "%.2f", @shipment.item_cost + @shipment.final_price)]
 end
 
 move_down(250)
