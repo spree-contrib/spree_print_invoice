@@ -15,7 +15,7 @@ else
 end
 
 @shipment.line_items.each do |item|
-  row = [item.variant.product.sku, "#{item.variant.product.name} - #{item.variant.options_text} #{item.variant.product.name} - #{item.variant.options_text} #{item.variant.product.name} - #{item.variant.options_text}"]
+  row = [item.variant.product.sku, "#{item.variant.product.name} - #{item.variant.options_text} "]
   row << item.variant.options_text
   row << item.single_display_amount.to_s unless @hide_prices
   row << item.quantity
