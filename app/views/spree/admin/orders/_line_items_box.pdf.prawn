@@ -21,14 +21,14 @@ end
   data << row
 end
 
-data << []
+#data << []
 extra_row_count = 0  
 
 if @order.shipments.count > 1 
   if @hide_prices
-    data << ["Other Items from your order (not included in this shipment)", nil, nil, nil]               
+    data << ["Other Items ordered (not included in this shipment)", nil, nil, nil]               
   else
-    data << ["Other Items from your order (not included in this shipment)", nil, nil, nil, nil, nil]   
+    data << ["Other Items ordered (not included in this shipment)", nil, nil, nil, nil, nil]   
   end  
 end
 
