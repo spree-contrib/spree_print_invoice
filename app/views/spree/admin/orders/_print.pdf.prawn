@@ -52,4 +52,4 @@ render :partial => "footer"
 
 move_down 700
 
-text "If you wish to exchange or return one of your Peach products, please email aysebaybars@peach.company."
+text "If you wish to exchange or return one of your Peach products, please email aysebaybars@peach.company.", :style => :italic 
