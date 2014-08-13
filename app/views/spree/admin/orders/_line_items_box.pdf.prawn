@@ -28,30 +28,33 @@ end
 data << []
 extra_row_count = 0  
 
-#if @order.shipments.count > 1 
+if @order.shipments.count > 1 
   if @hide_prices
-    data << [ "Items in original order", nil, nil, nil]               
+    data << ["Other Items from your order (not included in this shipment)", nil, nil, nil]               
   else
-    data << ["Items in original order", nil, nil, nil, nil, nil]   
+    data << ["Other Items from your order (not included in this shipment)", nil, nil, nil, nil, nil]   
   end  
-#end
+end
 
 #puts "******** @order.shipments.count #{@order.shipments.count} "
 
-#@order.shipments.each do |shipment|
-#  puts "********* shipment #{shipment.inspect} "
-#  if (shipment.number != @shipment.number)
+@order.shipments.each do |shipment|
+  puts "********* shipment #{shipment.inspect} "
+  if (shipment.number != @shipment.number)
   
     if @hide_prices
       data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
                shipment.shipping_method.name, nil]
-
+              
+       data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)] 
     else
       data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
                shipment.shipping_method.name, nil, nil, nil]
+      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]      
     end
+   
 
-    @order.line_items.each do |item|
+    shipment.line_items.each do |item|
       row = [item.variant.product.sku, item.variant.product.name]
       row << item.variant.options_text
       row << item.single_display_amount.to_s unless @hide_prices
@@ -60,14 +63,15 @@ extra_row_count = 0
       data << row
     end
     
-#    if @hide_prices
-#      data << [""] * 4           
-#    else
-#      data << [""] * 5  
-#    end
+    
+    if @hide_prices
+      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]         
+    else
+      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]   
+    end
         
-#  end    
-#end
+  end    
+end
 
 
 unless @hide_prices
