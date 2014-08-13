@@ -50,3 +50,6 @@ move_down 8
 # Footer
 render :partial => "footer"
 
+move_down 700
+
+text "If you wish to exchange or return one of your Peach products, please email returns@peach.company."
