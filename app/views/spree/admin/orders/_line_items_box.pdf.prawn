@@ -3,14 +3,12 @@ data = []
 if @hide_prices
   @column_widths = { 0 => 100, 1 => 165, 2 => 75, 3 => 75 }
   @align = { 0 => :left, 1 => :left, 2 => :right, 3 => :right }
-  data << ["Included in this shipment", "Shipment status: #{@shipment.state}", 
-          "Shiped at: #{@shipment.shipped_at.to_date if @shipment.shipped_at}", @shipment.shipping_method.name ]
+  data << ["Included in this shipment", nil, nil, nil]
   data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]
 else
   @column_widths = { 0 => 75, 1 => 205, 2 => 75, 3 => 50, 4 => 75, 5 => 60 }
   @align = { 0 => :left, 1 => :left, 2 => :left, 3 => :right, 4 => :right, 5 => :right}
-  data << ["Included in this shipment", "Shipment status: #{@shipment.state}", 
-           "Shiped at: #{@shipment.shipped_at.to_date if @shipment.shipped_at}", @shipment.shipping_method.name,  nil, nil]
+  data << ["Included in this shipment", nil, nil, nil,  nil, nil]
   data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
 end
 
@@ -34,23 +32,14 @@ if @order.shipments.count > 1
   end  
 end
 
-#puts "******** @order.shipments.count #{@order.shipments.count} "
-
 @order.shipments.each do |shipment|
-  puts "********* shipment #{shipment.inspect} "
   if (shipment.number != @shipment.number)
   
     if @hide_prices
-      data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
-               shipment.shipping_method.name, nil]
-              
-       data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)] 
+      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)] 
     else
-      data << ["Shipment status: #{shipment.state}", "Shiped at: #{shipment.shipped_at.to_date if shipment.shipped_at}", 
-               shipment.shipping_method.name, nil, nil, nil]
       data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]      
     end
-   
 
     shipment.line_items.each do |item|
       row = [item.variant.product.sku, "#{item.variant.product.name} - #{item.variant.options_text} "]
@@ -59,7 +48,6 @@ end
       row << item.quantity
       row << item.display_total.to_s unless @hide_prices
       data << row
-      
     end
     
     if @hide_prices
@@ -70,7 +58,6 @@ end
         
   end    
 end
-
 
 unless @hide_prices
   extra_row_count += 1
@@ -89,9 +76,6 @@ unless @hide_prices
 
   data << [nil, nil, nil, nil, Spree.t(:total), @order.display_total.to_s]
 end
-
-
-
 
 move_down(250)
 table(data, :width => @column_widths.values.compact.sum, :column_widths => @column_widths) do
