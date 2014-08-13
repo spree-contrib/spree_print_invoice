@@ -7,7 +7,7 @@ if @hide_prices
           "Shiped at: #{@shipment.shipped_at.to_date if @shipment.shipped_at}", @shipment.shipping_method.name ]
   data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]
 else
-  @column_widths = { 0 => 75, 1 => 205, 2 => 75, 3 => 50, 4 => 65, 5 => 70 }
+  @column_widths = { 0 => 75, 1 => 165, 2 => 65, 3 => 50, 4 => 65, 5 => 80 }
   @align = { 0 => :left, 1 => :left, 2 => :left, 3 => :right, 4 => :right, 5 => :right}
   data << ["Included in this shipment", "Shipment status: #{@shipment.state}", 
            "Shiped at: #{@shipment.shipped_at.to_date if @shipment.shipped_at}", @shipment.shipping_method.name,  nil, nil]
