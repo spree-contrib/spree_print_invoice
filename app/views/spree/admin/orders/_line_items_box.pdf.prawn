@@ -33,16 +33,20 @@ if @order.shipments.count > 1
 end
 
 @order.shipments.each do |shipment|
-  if (shipment.number != @shipment.number)
-    shipment.line_items.each do |item|
-      row = [item.variant.product.sku, "#{item.variant.product.name} - #{item.variant.options_text} "]
-      row << item.variant.options_text
-      row << item.single_display_amount.to_s unless @hide_prices
-      row << item.quantity
-      row << item.display_total.to_s unless @hide_prices
-      data << row
-    end
-  end    
+  unless @hide_prices
+  
+    if (shipment.number != @shipment.number)
+      shipment.line_items.each do |item|
+        row = [item.variant.product.sku, "#{item.variant.product.name} - #{item.variant.options_text} "]
+        row << item.variant.options_text
+        row << item.single_display_amount.to_s unless @hide_prices
+        row << item.quantity
+        row << item.display_total.to_s unless @hide_prices
+        data << row
+      end
+    end    
+    
+  end  
 end
 
 unless @hide_prices
@@ -50,10 +54,10 @@ unless @hide_prices
   data << [""] * 5
   data << [nil, nil, nil, nil, Spree.t(:subtotal), @shipment.item_cost.to_s]
 
-  @order.all_adjustments.eligible.each do |adjustment|
-    extra_row_count += 1
-    data << [nil, nil, nil, nil, adjustment.label, adjustment.display_amount.to_s]
-  end
+#  @order.all_adjustments.eligible.each do |adjustment|
+#    extra_row_count += 1
+#    data << [nil, nil, nil, nil, adjustment.label, adjustment.display_amount.to_s]
+#  end
 
   @order.shipments.each do |shipment|
     extra_row_count += 1
