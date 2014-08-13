@@ -15,7 +15,7 @@ else
 end
 
 @shipment.line_items.each do |item|
-  row = [ item.variant.product.sku, item.variant.product.name]
+  row = [item.variant.product.sku, "#{item.variant.product.name} - #{item.variant.options_text} "]
   row << item.variant.options_text
   row << item.single_display_amount.to_s unless @hide_prices
   row << item.quantity
@@ -59,14 +59,14 @@ end
       row << item.quantity
       row << item.display_total.to_s unless @hide_prices
       data << row
-      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]  
+      #data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]  
     end
     
-    if @hide_prices
-        data << [""] * 4       
-    else
-        data << [""] * 5
-    end
+#    if @hide_prices
+#        data << [""] * 4       
+#    else
+#        data << [""] * 5
+#    end
         
   end    
 end
