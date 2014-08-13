@@ -61,12 +61,12 @@ unless @hide_prices
 
 #  @order.shipments.each do |shipment|
     extra_row_count += 1
-    data << [nil, nil, nil, nil, @shipment.shipping_method.name, @shipment.display_cost.to_s]
+    data << [nil, nil, nil, nil, @shipment.shipping_method.name, @shipment.final_price ]
 #  end
 
  # data << [nil, nil, nil, nil, Spree.t(:total), @order.display_total.to_s]
  
- data << [nil, nil, nil, nil, Spree.t(:total), (@order.display_total + @shipment.display_cost).to_s ]
+ data << [nil, nil, nil, nil, Spree.t(:total), (@shipment.item_cost + @shipment.final_price).to_s ]
 end
 
 move_down(250)
