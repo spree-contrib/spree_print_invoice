@@ -34,13 +34,6 @@ end
 
 @order.shipments.each do |shipment|
   if (shipment.number != @shipment.number)
-  
-    if @hide_prices
-      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)] 
-    else
-      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]      
-    end
-
     shipment.line_items.each do |item|
       row = [item.variant.product.sku, "#{item.variant.product.name} - #{item.variant.options_text} "]
       row << item.variant.options_text
@@ -49,13 +42,6 @@ end
       row << item.display_total.to_s unless @hide_prices
       data << row
     end
-    
-    if @hide_prices
-        data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]       
-    else
-        data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]  
-    end
-        
   end    
 end
 
