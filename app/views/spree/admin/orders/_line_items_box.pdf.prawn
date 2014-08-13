@@ -59,13 +59,13 @@ end
       row << item.quantity
       row << item.display_total.to_s unless @hide_prices
       data << row
+      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]  
     end
     
-    
     if @hide_prices
-      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]         
+        data << [""] * 4       
     else
-      data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]   
+        data << [""] * 5
     end
         
   end    
