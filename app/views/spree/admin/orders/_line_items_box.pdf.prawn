@@ -27,13 +27,13 @@ extra_row_count = 0
 if @order.shipments.count > 1 
   if @hide_prices
     data << ["Other Items ordered (not included in this shipment)", nil, nil, nil]               
-  else
-    data << ["Other Items ordered (not included in this shipment)", nil, nil, nil, nil, nil]   
+#  else
+#    data << ["Other Items ordered (not included in this shipment)", nil, nil, nil, nil, nil]   
   end  
 end
 
 @order.shipments.each do |shipment|
-  unless @hide_prices
+  if @hide_prices
   
     if (shipment.number != @shipment.number)
       shipment.line_items.each do |item|
@@ -59,12 +59,14 @@ unless @hide_prices
 #    data << [nil, nil, nil, nil, adjustment.label, adjustment.display_amount.to_s]
 #  end
 
-  @order.shipments.each do |shipment|
+#  @order.shipments.each do |shipment|
     extra_row_count += 1
-    data << [nil, nil, nil, nil, shipment.shipping_method.name, shipment.display_cost.to_s]
-  end
+    data << [nil, nil, nil, nil, @shipment.shipping_method.name, @shipment.display_cost.to_s]
+#  end
 
-  data << [nil, nil, nil, nil, Spree.t(:total), @order.display_total.to_s]
+ # data << [nil, nil, nil, nil, Spree.t(:total), @order.display_total.to_s]
+ 
+ data << [nil, nil, nil, nil, Spree.t(:total), (@order.display_total + @shipment.display_cost).to_s ]
 end
 
 move_down(250)
