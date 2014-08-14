@@ -4,12 +4,12 @@ if @hide_prices
   @column_widths = { 0 => 100, 1 => 165, 2 => 75, 3 => 75 }
   @align = { 0 => :left, 1 => :left, 2 => :right, 3 => :right }
   data << ["Included in this shipment", nil, nil, nil]
-  data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:qty)]
+  data << [Spree.t(:sku), Spree.t(:item_description), "Size and Color", Spree.t(:qty)]
 else
   @column_widths = { 0 => 75, 1 => 205, 2 => 75, 3 => 50, 4 => 75, 5 => 60 }
   @align = { 0 => :left, 1 => :left, 2 => :left, 3 => :right, 4 => :right, 5 => :right}
   data << ["Included in this shipment", nil, nil, nil,  nil, nil]
-  data << [Spree.t(:sku), Spree.t(:item_description), Spree.t(:options), Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
+  data << [Spree.t(:sku), Spree.t(:item_description), "Size and Color", Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
 end
 
 @shipment.line_items.each do |item|
@@ -62,7 +62,7 @@ unless @hide_prices
 #  @order.shipments.each do |shipment|
     if @shipment.final_price > 0
       extra_row_count += 1
-      data << [nil, nil, nil, nil, @shipment.shipping_method.name, "$#{sprintf( "%.2f", @shipment.final_price)}" ] 
+      data << [nil, nil, nil, nil, "Shipping", "$#{sprintf( "%.2f", @shipment.final_price)}" ] 
     end  
 #  end
 
