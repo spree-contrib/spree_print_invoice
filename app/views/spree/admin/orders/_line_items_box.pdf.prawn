@@ -60,8 +60,10 @@ unless @hide_prices
 #  end
 
 #  @order.shipments.each do |shipment|
-    extra_row_count += 1
-    data << [nil, nil, nil, nil, @shipment.shipping_method.name, "$#{sprintf( "%.2f", @shipment.final_price)}" ]
+    if @shipment.final_price > 0
+      extra_row_count += 1
+      data << [nil, nil, nil, nil, @shipment.shipping_method.name, "$#{sprintf( "%.2f", @shipment.final_price)}" ] 
+    end  
 #  end
 
  # data << [nil, nil, nil, nil, Spree.t(:total), @order.display_total.to_s]
