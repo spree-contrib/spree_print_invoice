@@ -60,9 +60,11 @@ unless @hide_prices
 #  end
 
 #  @order.shipments.each do |shipment|
-    if @shipment.final_price > 0
+    if ( @shipment.final_price > 0 ) and ( @shipment == @order.shipments.first )
       extra_row_count += 1
       data << [nil, nil, nil, nil, "Shipping", "$#{sprintf( "%.2f", @shipment.final_price)}" ] 
+    else
+      data << [nil, nil, nil, nil, "Shipping", "Free shipping" ]  
     end  
 #  end
 
