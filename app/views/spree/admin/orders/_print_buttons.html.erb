@@ -4,8 +4,10 @@
   <%  buttons.each do |button| %>
     <li>
 		<%= form_tag( spree.admin_order_path(@order, :pdf , :template => button), method: "get") do %>
-		  
-	      <%= label_tag(:q, 'Ship:' ) %>
+		  <span>
+		  <%= label_tag(:q, 'Free Ship:' ) %>	  
+		  <%= check_box("free_shipping", "validated") %>
+	      </span>
 	      <%= select("ship", "id", @order.shipments.collect {|ship| [ ship.number, ship.id ] } ) %>
 		  <%= submit_tag(Spree.t(button.to_s + "_print")) %>
 	    <% end %>

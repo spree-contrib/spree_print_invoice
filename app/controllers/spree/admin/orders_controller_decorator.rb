@@ -6,6 +6,7 @@ Spree::Admin::OrdersController.class_eval do
     respond_with(@order) do |format|
       format.pdf do
         template = params[:template] || "invoice"
+        @free_shipping = params[:free_shipping][:validated] == '1' ? true : false
         @shipment = Spree::Shipment.find(params[:ship][:id]) 
         @hide_prices = params[:commit] == "Print Slip" ? true : false     
         if (template == "invoice") && Spree::PrintInvoice::Config.use_sequential_number? && !@order.invoice_number.present?
