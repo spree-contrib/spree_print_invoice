@@ -26,7 +26,7 @@ if Spree::PrintInvoice::Config.use_sequential_number? && @order.invoice_number.p
   move_down 2
   font @font_face, :size => 9
  # text "#{Spree.t(:invoice_date)} #{I18n.l @order.invoice_date}", :align => :right
-  text "#{Spree.t(:invoice_date)} #{I18n.l Date.today}", :align => :right
+  text "#{Spree.t(:invoice_date)} #{I18n.l Date.today.strftime("%m/%d/%Y")}", :align => :right
 
 else
 
