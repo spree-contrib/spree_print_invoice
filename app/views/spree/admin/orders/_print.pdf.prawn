@@ -20,11 +20,13 @@ move_down 4
 if Spree::PrintInvoice::Config.use_sequential_number? && @order.invoice_number.present? && !@hide_prices
 
   font @font_face,  :size => 9,  :style => :bold
-  text "#{Spree.t(:invoice_number)} #{@order.invoice_number}", :align => :right
+   text "#{Spree.t(:invoice_number)} #{@order.invoice_number}", :align => :right
+
 
   move_down 2
   font @font_face, :size => 9
-  text "#{Spree.t(:invoice_date)} #{I18n.l @order.invoice_date}", :align => :right
+ # text "#{Spree.t(:invoice_date)} #{I18n.l @order.invoice_date}", :align => :right
+  text "#{Spree.t(:invoice_date)} #{I18n.l Date.today}", :align => :right
 
 else
 
@@ -34,7 +36,7 @@ else
 
   move_down 2
   font @font_face, :size => 9
-  text "#{I18n.l @order.completed_at.to_date}", :align => :right
+  text "#{I18n.l Date.today}", :align => :right
 
 end
 
@@ -52,4 +54,4 @@ render :partial => "footer"
 
 move_down 700
 
-text "If you wish to exchange or return one of your Peach products, please email aysebaybars@peach.company and use the return label included in your package.", :style => :italic 
+text "If you wish to exchange or return one of your Peach products, please email returns@peach.company and use the return label included in your package.", :style => :italic 
