@@ -67,9 +67,17 @@ unless @hide_prices
   else
     data << [nil, nil, nil, nil, "Shipping", "$#{sprintf( "%.2f", @shipment.final_price)}" ] 
     data << [nil, nil, nil, nil, 'Shipping Total', "$#{sprintf( '%.2f', @shipment.item_cost + @shipment.final_price)}"]
-    data << [nil, nil, nil, nil, adjustment.label, adjustment.display_amount.to_s]
+    
+    @order.all_adjustments.eligible.each do |adjustment|
+      extra_row_count += 1
+      data << [nil, nil, nil, nil, adjustment.label, adjustment.display_amount.to_s]
+    end
     data << [nil, nil, nil, nil, Spree.t(:total), @order.display_total.to_s]
   end  
+  
+
+  
+  
 #  end
 
  # data << [nil, nil, nil, nil, Spree.t(:total), @order.display_total.to_s]
