@@ -15,7 +15,7 @@ else
 end
 fill_color "000000"
 
-move_down 4
+move_down 2
 
 if Spree::PrintInvoice::Config.use_sequential_number? && @order.invoice_number.present? && !@hide_prices
 
@@ -43,7 +43,7 @@ end
 
 render :partial => "address"
 
-move_down 30
+move_down 10
 
 render :partial => "line_items_box"
 
