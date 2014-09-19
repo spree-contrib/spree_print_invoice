@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+version = File.read(File.expand_path("../SPREE_VERSION", __FILE__)).strip
+
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_print_invoice'
@@ -14,7 +16,8 @@ Gem::Specification.new do |s|
   s.authors      = 'Spree Community'
 
   s.add_dependency('prawn', '1.0.0')
-  s.add_dependency('spree_core', '2.3.3.beta')
+
+  s.add_dependency 'spree_core', version
 
   s.add_development_dependency 'rspec-rails', '~> 2.14.0'
 end
