@@ -2,6 +2,6 @@
   <% buttons = Spree::PrintInvoice::Config[:print_buttons]
      buttons = buttons.split(",").collect{|b| b.strip } %>
   <%  buttons.each do |button| %>
-    <li><%= link_to(Spree.t(button.to_s + "_print"), spree.admin_order_path(@order, :pdf , :template => button), :class => "button icon-print") %></li>
+    <li><%= link_to(Spree.t(button.to_s + "_print"), spree.admin_order_path(@order, :pdf , :template => button), :class => "button fa fa-print") %></li>
   <% end %>
 <% end %>  
