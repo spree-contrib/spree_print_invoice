@@ -1,0 +1,40 @@
+---
+sv:
+  spree:
+    print_it:
+      buttons:
+        invoice: Skriv ut faktura
+        packaging_slip: Skriv ut följesedel
+      invoice: Kundfaktura
+      item_name: Artikelnamn eller SKU
+      of: av
+      via: via
+      on_date: Order datum
+      packaging_slip: Följesedel
+      page: Sida
+      payment_via: "%{gateway} betalning #%{number} den %{date}"
+      preferences:
+        next_number: Skriv ut faktura nästa nummer
+        use_footer: Använd sidfot
+        use_page_numbers: Använd sidnummer
+        anomaly_message: Avvikelse meddelande
+        footer_left: Vänster sidfot
+        footer_left_info: T.ex. Ditt företagsnamn och adress.
+        footer_right: Höger sidfot
+        footer_right_info: T.ex. Din telefon och e-postadress.
+        page_layout: Sidolayout
+        page_size: Pappers format
+        print_buttons: Utskriftsknappar
+        print_buttons_info: Kommaseparerad lista.
+        logo_path: Sökväg för logotyp
+        return_message: Returmeddelande
+        font_face: Typsnitt
+        font_scale: Typsnitt skala
+        logo_scale: Logo skala
+      settings: Utskrift inställningar
+      unprocessed: Obearbetad
+      vat: Moms inte tillämpligt
+      pdf_legend: PDF
+      invoice_slip_legend: Faktura / följesedel
+      invoice_number: 'Faktura Nummer %{number}'
+      invoice_date: Faktura Datum
