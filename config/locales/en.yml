@@ -1,22 +1,40 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-
+---
 en:
   spree:
-    customer_invoice: Customer Invoice
-    footer_left: "Return in Other info"
-    footer_left2: " 14 days or never"
-
-    footer_right: "Company  Phone  www "
-    footer_right2: " My great company 040 146 1222 www.gohereoften.com"
-
-    print_note: This is not an original invoice (DO NOT SEND THIS TO CUSTOMER)
-
-    invoice_print: Print Invoice
-    packaging_slip_print: Print Slip
-    packaging_slip: Packaging Slip
-
-    invoice_font_face: Invoice Font Face
-    invoice_logo_scale: Invoice Logo Scale
-
-    invoice_number: Invoice Number
-    invoice_date: Invoice issued on
+    print_invoice:
+      buttons:
+        invoice: Print Invoice
+        packaging_slip: Print Slip
+      invoice: Customer Invoice
+      item_name: Item Name or SKU
+      of: of
+      via: via
+      on_date: Order Date
+      packaging_slip: Packaging Slip
+      page: Page
+      payment_via: "%{gateway} Online Payment #%{number} on %{date}"
+      preferences:
+        next_number: Print Invoice Next Number
+        use_footer: Use Footer
+        use_page_numbers: Use Page Numbers
+        anomaly_message: Order Anomaly Message
+        footer_left: Left footer content
+        footer_left_info: E.g. Your company name and address.
+        footer_right: Right footer content
+        footer_right_info: E.g. Your phone and email address.
+        page_layout: Page Layout
+        page_size: Page Size
+        print_buttons: Print Buttons
+        print_buttons_info: Comma separated list.
+        logo_path: Print Invoice Logo Path
+        return_message: Order Return Message
+        font_face: Font Face
+        font_scale: Font Scale
+        logo_scale: Logo Scale
+      settings: Print Invoice Settings
+      unprocessed: Unprocessed
+      vat: VAT not applicable
+      pdf_legend: PDF
+      invoice_slip_legend: Invoice / Slip
+      invoice_number: 'Invoice Number %{number}'
+      invoice_date: Invoice Date

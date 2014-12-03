@@ -1,17 +1,40 @@
+---
 es:
   spree:
-    customer_invoice: "Factura del cliente"
-    footer_left: "Devolver en Otro"
-    footer_left2: " 14 días o nunca"
-
-    footer_right: "Empresa  Teléfono  Web "
-    footer_right2: " My Genial Empresa 040 146 1222 www.visitanosamenudo.com"
-
-    print_note: "Esta no es la factura original (NO ENVIAR AL CLIENTE)"
-
-    invoice_print: "Imprimir Factura"
-    packaging_slip_print: "Imprimir Recibo para el Embalaje"
-    packaging_slip: "Recibo para el Embalaje"
-
-    invoice_number: Número Factura
-    invoice_date: Expedida el
+    print_invoice:
+      buttons:
+        invoice: Imprimir Factura
+        packaging_slip: Imprimir Recibo para el Embalaje
+      invoice: Factura del cliente
+      item_name: Nombre de elemento o SKU
+      of: de
+      via: vía
+      on_date: Fecha del pedido
+      packaging_slip: Recibo para el Embalaje
+      page: Página
+      payment_via: "%{gateway} El pago en línea #%{number} en %{date}"
+      preferences:
+        next_number: Imprimir factura siguiente número
+        use_footer: Utilice el pie de página
+        use_page_numbers: Usar números de página
+        anomaly_message: Mensaje de anomalía del pedido
+        footer_left: Contenido del pie izquierdo
+        footer_left_info: Por ejemplo Nombre de su empresa y la dirección.
+        footer_right: Contenido del pie derecho
+        footer_right_info: Por ejemplo Su teléfono y correo electrónico.
+        page_layout: Diseño de página
+        page_size: Tamaño de página
+        print_buttons: Botones de imprimir
+        print_buttons_info: Lista separada por comas.
+        logo_path: Logo ruta imprimir factura
+        return_message: Mensaje de vuelta del pedido
+        font_face: Tipo de letra
+        font_scale: Eescala de letra
+        logo_scale: Eescala de Logo
+      settings: Configuración de impresión de facturas
+      unprocessed: No procesado
+      vat: IVA no aplicable
+      pdf_legend: PDF
+      invoice_slip_legend: Factura / Deslizamiento
+      invoice_number: 'Número de factura %{number}'
+      invoice_date: Fecha de la factura
