@@ -1,0 +1,13 @@
+\#*
+*~
+.#*
+.DS_Store
+.bundle
+coverage
+Gemfile.lock
+tmp
+pkg
+spec/dummy
+.rvmrc
+.ruby-version
+.ruby-gemset
