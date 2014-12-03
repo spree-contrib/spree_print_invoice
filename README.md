@@ -1,7 +1,7 @@
 # Spree Print Invoice
 
-[![Build Status](https://api.travis-ci.org/spree-contrib/spree_print_invoice.png?branch=master)](https://travis-ci.org/spree-contrib/spree_print_invoice)
-[![Coverage Status](https://coveralls.io/repos/spree-contrib/spree_print_invoice/badge.png?branch=master)](https://coveralls.io/r/spree-contrib/spree_print_invoice)
+[![Build Status](https://travis-ci.org/spree-contrib/spree_print_invoice.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_print_invoice)
+[![Code Climate](https://codeclimate.com/github/spree-contrib/spree_print_invoice/badges/gpa.svg)](https://codeclimate.com/github/spree-contrib/spree_print_invoice)
 
 This extension provides a "Print Invoice" button (per default) on the Admin Orders view screen which generates a PDF of the order details. It's fully extendable so you can add own _print slips_ from your own Rails app. It also comes with a packaging slip.
 
