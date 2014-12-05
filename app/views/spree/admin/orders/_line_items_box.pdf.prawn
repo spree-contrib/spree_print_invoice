@@ -19,6 +19,7 @@ else
 end
 
 @shipment.line_items.each do |item|
+  next if @hide_prices and item.tbd?
   row = [item.variant.product.sku, "#{item.variant.product.name} - #{item.variant.options_text} "]
   row << item.variant.options_text
   row << item.single_display_amount.to_s unless @hide_prices
