@@ -1,6 +1,7 @@
 define_grid(columns: 5, rows: 8, gutter: 10)
 
 @font_face = Spree::PrintInvoice::Config[:font_face]
+@font_size = Spree::PrintInvoice::Config[:font_size]
 
 # HEADER
 repeat(:all) do
@@ -10,7 +11,7 @@ repeat(:all) do
   end
 
   grid([0,3], [0,4]).bounding_box do
-    font @font_face, size: 9
+    font @font_face, size: @font_size
     text Spree.t(:packaging_slip, scope: :print_invoice), align: :right, style: :bold, size: 18
     move_down 4
 
@@ -33,7 +34,7 @@ end
 # CONTENT
 grid([1,0], [6,4]).bounding_box do
 
-  font @font_face, size: 9
+  font @font_face, size: @font_size
 
   # address block on first page only
   repeat(lambda { |pg| pg == 1 }) do
@@ -90,7 +91,7 @@ grid([1,0], [6,4]).bounding_box do
   end
 
   move_down 30
-  text Spree::PrintInvoice::Config[:anomaly_message], align: :left, size: 9
+  text Spree::PrintInvoice::Config[:anomaly_message], align: :left, size: @font_size
 
   move_down 20
   bounding_box([0, cursor], width: 540, height: 250) do

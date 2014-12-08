@@ -29,7 +29,7 @@ sv:
         logo_path: Sökväg för logotyp
         return_message: Returmeddelande
         font_face: Typsnitt
-        font_scale: Typsnitt skala
+        font_size: Typsnitt storlek
         logo_scale: Logo skala
       settings: Utskrift inställningar
       unprocessed: Obearbetad

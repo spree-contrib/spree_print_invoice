@@ -43,17 +43,18 @@ RSpec.describe Spree::PrintInvoiceSetting do
     end
   end
 
-  context '.font_scaling' do
-    it 'converts font scale to percent' do
-      subject.font_scale = 100
-      expect(subject.font_scaling).to be(1.0)
+  context '.font_sizes' do
+    it 'has a list of font sizes' do
+      expect(subject.font_sizes).to be_a(Array)
+      expect(subject.font_sizes.first).to be(7)
+      expect(subject.font_sizes.last).to  be(14)
     end
   end
 
   context '.logo_scaling' do
     it 'converts logo scale to percent' do
-      subject.logo_scale = 50
-      expect(subject.logo_scaling).to be(0.5)
+      subject.logo_scale = 100
+      expect(subject.logo_scaling).to be(1.0)
     end
   end
 end

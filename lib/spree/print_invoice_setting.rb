@@ -13,7 +13,7 @@ module Spree
     preference :use_page_numbers, :boolean, default: false
     preference :logo_scale,       :integer, default: 50
     preference :font_face,        :string,  default: 'Helvetica'
-    preference :font_scale,       :integer, default: 100
+    preference :font_size,        :integer, default: 9
 
     def page_sizes
       ::PDF::Core::PageGeometry::SIZES.keys
@@ -39,12 +39,12 @@ module Spree
       end
     end
 
-    def logo_scaling
-      logo_scale.to_f / 100
+    def font_sizes
+      (7..14).to_a
     end
 
-    def font_scaling
-      font_scale.to_f / 100
+    def logo_scaling
+      logo_scale.to_f / 100
     end
   end
 end

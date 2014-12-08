@@ -2,9 +2,7 @@ RSpec.feature 'Settings for Print Invoice', :js do
   stub_authorization!
 
   scenario 'can update settings' do
-    visit spree.admin_path
-    click_link 'Configuration'
-    click_link 'Print Invoice Settings'
+    visit spree.edit_admin_print_invoice_settings_path
 
     check 'use_footer'
     check 'use_page_numbers'
@@ -15,7 +13,7 @@ RSpec.feature 'Settings for Print Invoice', :js do
     select2 'A4', from: 'Page Size'
     select2 'portrait', from: 'Page Layout'
     select2 'Courier', from: 'Font Face'
-    fill_in 'font_scale', with: '50'
+    select2 '11', from: 'Font Size'
     fill_in 'logo_scale', with: '99'
     fill_in 'footer_left', with: 'left text..'
     fill_in 'footer_right', with: 'right text..'
@@ -35,7 +33,7 @@ RSpec.feature 'Settings for Print Invoice', :js do
     expect(setting.preferred_page_size).to eq 'A4'
     expect(setting.preferred_page_layout).to eq 'portrait'
     expect(setting.preferred_font_face).to eq 'Courier'
-    expect(setting.preferred_font_scale).to eq 50
+    expect(setting.preferred_font_size).to eq 11
     expect(setting.preferred_logo_scale).to eq 99
     expect(setting.preferred_footer_left).to eq 'left text..'
     expect(setting.preferred_footer_right).to eq 'right text..'

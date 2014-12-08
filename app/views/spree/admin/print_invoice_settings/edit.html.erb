@@ -58,8 +58,8 @@
             </div>
 
             <div class="form-group">
-              <%= label_tag :font_scale, Spree.t(:font_scale, scope: [:print_invoice, :preferences]) %>
-              <%= number_field_tag(:font_scale, Spree::PrintInvoice::Config[:font_scale], in: 1...101, class: 'form-control') %>
+              <%= label_tag :font_size, Spree.t(:font_size, scope: [:print_invoice, :preferences]) %>
+              <%= select_tag(:font_size, options_for_select(Spree::PrintInvoice::Config.font_sizes.map(&:to_s), Spree::PrintInvoice::Config[:font_size]), class: 'select2') %>
             </div>
 
             <div class="form-group">

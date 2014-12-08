@@ -4,7 +4,7 @@ en:
     print_invoice:
       buttons:
         invoice: Print Invoice
-        packaging_slip: Print Slip
+        packaging_slip: Print Packaging Slip
       invoice: Customer Invoice
       item_name: Item Name or SKU
       of: of
@@ -18,9 +18,9 @@ en:
         use_footer: Use Footer
         use_page_numbers: Use Page Numbers
         anomaly_message: Order Anomaly Message
-        footer_left: Left footer content
+        footer_left: Left Footer Content
         footer_left_info: E.g. Your company name and address.
-        footer_right: Right footer content
+        footer_right: Right Footer Content
         footer_right_info: E.g. Your phone and email address.
         page_layout: Page Layout
         page_size: Page Size
@@ -29,12 +29,12 @@ en:
         logo_path: Print Invoice Logo Path
         return_message: Order Return Message
         font_face: Font Face
-        font_scale: Font Scale
+        font_size: Font Size
         logo_scale: Logo Scale
       settings: Print Invoice Settings
       unprocessed: Unprocessed
       vat: VAT not applicable
-      pdf_legend: PDF
-      invoice_slip_legend: Invoice / Slip
+      pdf_legend: PDF Layout
+      invoice_slip_legend: Invoice/Slip Content
       invoice_number: 'Invoice Number %{number}'
       invoice_date: Invoice Date

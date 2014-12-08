@@ -29,7 +29,7 @@ fr:
         logo_path: Chemin de logo
         return_message: Message de retour
         font_face: Face à font
-        font_scale: Échelle de font
+        font_size: Taille de font
         logo_scale: Échelle de logo
       settings: Les paramètres d'impression des factures
       unprocessed: Non traité

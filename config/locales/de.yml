@@ -29,7 +29,7 @@ de:
         logo_path: Rechnung drucken logo Weg
         return_message: Bestellrückmeldung
         font_face: Schriftart
-        font_scale: Font-Skala
+        font_size: Schriftgröße
         logo_scale: Logo Maßstab
       settings: Rechnung drucken Einstellungen
       unprocessed: Unverarbeitet
