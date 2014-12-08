@@ -1,6 +1,10 @@
 module Spree
   module Admin
     class PrintInvoiceSettingsController < ResourceController
+
+      def edit
+      end
+
       def update
         settings = Spree::PrintInvoiceSetting.new
         params.each do |name, value|

@@ -12,7 +12,7 @@ module Spree
     preference :use_footer,       :boolean, default: false
     preference :use_page_numbers, :boolean, default: false
     preference :logo_scale,       :integer, default: 50
-    preference :font_face,        :string, default: 'Helvetica'
+    preference :font_face,        :string,  default: 'Helvetica'
     preference :font_scale,       :integer, default: 100
 
     def page_sizes

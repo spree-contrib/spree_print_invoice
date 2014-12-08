@@ -14,8 +14,7 @@ gem 'spree_print_invoice', github: 'spree-contrib/spree_print_invoice', branch: 
 
 Run
 ```
-bundle install
-rails g spree_print_invoice:install
+bundle && exec rails g spree_print_invoice:install
 ```
 
 Enjoy! Now allow to generate invoices with sequential numbers.
@@ -39,7 +38,7 @@ Spree::PrintInvoice::Config.set(logo_path: '/path/to/public/images/company-logo.
 5. Many european countries requires numeric and sequential invoices numbers. To use invoices sequential number fill the specific field in "General Settings" or by setting:
 
 ```ruby
-Spree::PrintInvoice::Config.set(next_number: [1|{your current next invoice number}])
+Spree::PrintInvoice::Config.set(next_number: [1|'your current next invoice number'])
 ```
 
 The next invoice number will be the one that you specified. You will able to increase it in any moment, for example, to re-sync invoices number if you are making invoices also in other programs for the same business name.
