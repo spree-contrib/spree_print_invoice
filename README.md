@@ -10,7 +10,7 @@ INSTALLATION
 1. The gem relies only on the prawn gem, to install you need to add the following lines to your Gemfile
 
   ```ruby
-  gem 'spree_print_invoice' , github: 'spree/spree_print_invoice'
+  gem 'spree_print_invoice' , github: 'spree/spree_print_invoice', branch: '2-4-stable'
   ```
 
 2. Run bundler
@@ -44,7 +44,7 @@ Configuration
 4. Set `:suppress_anonymous_address` option to get blank addresses for anonymous email addresses (as created by my spree_last_address extension for empty/unknown user info)
 
 5. Many european countries requires numeric and sequential invoices numbers. To use invoices sequential number fill the specific field in "General Settings" or by set
-  
+
   ```ruby
   Spree::PrintInvoice::Config.set(print_invoice_next_number: [1|{your current next invoice number}])
   ```
