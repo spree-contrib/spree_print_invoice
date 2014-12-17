@@ -1,10 +1,12 @@
 require 'prawn/layout'
-
+require 'open-uri'
 font "Helvetica"
-
-im = Rails.application.assets.find_asset(Spree::PrintInvoice::Config[:print_invoice_logo_path])
-image im , :at => [0,720] #, :scale => 0.35
-
+local_file = Rails.application.assets.find_asset(Spree::PrintInvoice::Config[:print_invoice_logo_path])
+if local_file
+  image local_file, :at => [0,720] #, :scale => 0.35
+else
+  image open(Spree::PrintInvoice::Config[:print_invoice_logo_path]), :at => [0,720]
+end
 fill_color "E99323"
 if @hide_prices
   text Spree.t(:packaging_slip), :align => :right, :style => :bold, :size => 18
@@ -43,7 +45,7 @@ move_down 30
 
 render :partial => "line_items_box"
 
-move_down 8
+move_down 680
 
 # Footer
 render :partial => "footer"
