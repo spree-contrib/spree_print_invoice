@@ -18,13 +18,14 @@ else
   data << [Spree.t(:sku), Spree.t(:item_description), "Size and Color", Spree.t(:price), Spree.t(:qty), Spree.t(:total)]
 end
 
-@shipment.line_items.each do |item|
-  next if @hide_prices and item.tbd?
-  row = [item.variant.product.sku, "#{item.variant.product.name} - #{item.variant.options_text} "]
-  row << item.variant.options_text
-  row << item.single_display_amount.to_s unless @hide_prices
-  row << item.quantity
-  row << item.display_total.to_s unless @hide_prices
+@shipment.manifest.each do |m|
+  next if @hide_prices and m.line_item.tbd?
+  row = [m.variant.product.sku, "#{m.variant.product.name} - #{m.variant.options_text} "]
+  row << m.variant.options_text
+  row << m.line_item.single_display_amount.to_s unless @hide_prices
+  row << m.quantity
+  row << Spree::Money.new(m.line_item.price*m.quantity, { currency: m.line_item.currency }).to_s unless @hide_prices
+      
   data << row
 end
 
@@ -35,16 +36,16 @@ if @hide_prices and @order.shipments.count > 1
   data << ["Other Items ordered (not included in this shipment)", nil, nil, nil]
   @order.shipments.each do |shipment|
     if (shipment.number != @shipment.number)
-      shipment.line_items.each do |item|
-        row = [item.variant.product.sku, "#{item.variant.product.name} - #{item.variant.options_text} "]
-        row << item.variant.options_text
-        row << item.single_display_amount.to_s unless @hide_prices
-        row << item.quantity
-        row << item.display_total.to_s unless @hide_prices
+      shipment.manifest.each do |m|
+        row = [m.variant.product.sku, "#{m.variant.product.name} - #{m.variant.options_text} "]
+        row << m.variant.options_text
+        row << m.line_item.single_display_amount.to_s unless @hide_prices
+        row << m.quantity
+        row << Spree::Money.new(m.line_item.price*m.quantity, { currency: m.line_item.currency }).to_s unless @hide_prices
         data << row
       end
-    end    
-    
+    end
+
   end  
 end
 
@@ -54,7 +55,7 @@ unless @hide_prices
   extra_row_count += 1
   data << [nil, nil, nil, nil,Spree.t(:subtotal), @shipment.display_item_cost.to_s ] 
   
-  @shipment.adjustments_by_promotion.each do |promo, total_adj|
+  @shipment.adjustments_by_promotion_display.each do |promo, total_adj|
     extra_row_count += 1  
     data << [nil, nil, nil, nil, "Promotion #{promo.name}", total_adj.to_s ]
   end
