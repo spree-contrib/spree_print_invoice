@@ -1,25 +1,28 @@
 module SpreePrintInvoice
   class Engine < Rails::Engine
+    require 'spree/core'
+    isolate_namespace Spree
     engine_name 'spree_print_invoice'
-    
-    initializer "spree.print_invoice.environment", :before => :load_config_initializers do |app|
-      Spree::PrintInvoice::Config = Spree::PrintInvoiceConfiguration.new
-    end
-    
-    initializer "spree.print_invoice.mimetypes" do |app|
-      Mime::Type.register('application/pdf', :pdf) unless Mime::Type.lookup_by_extension(:pdf)
-    end
-    
-    def self.activate
-
-      Dir.glob(File.join(File.dirname(__FILE__), "../../app/**/*_decorator*.rb")) do |c|
-        Rails.application.config.cache_classes ? require(c) : load(c)
-      end
-
-    end
 
     config.autoload_paths += %W(#{config.root}/lib)
-    config.to_prepare &method(:activate).to_proc
 
+    initializer 'spree.print_invoice.mimetypes' do
+      Mime::Type.register('application/pdf', :pdf) unless Mime::Type.lookup_by_extension(:pdf)
+    end
+
+    initializer 'spree.print_invoice.environment', before: :load_config_initializers do
+      Spree::PrintInvoice::Config = Spree::PrintInvoiceSetting.new
+    end
+
+    class << self
+      def activate
+        cache_klasses = %W(#{config.root}/app/**/*_decorator*.rb #{config.root}/app/overrides/*.rb)
+        Dir.glob(cache_klasses) do |klass|
+          Rails.configuration.cache_classes ? require(klass) : load(klass)
+        end
+      end
+    end
+
+    config.to_prepare(&method(:activate).to_proc)
   end
 end

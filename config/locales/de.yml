@@ -1,17 +1,40 @@
+---
 de:
   spree:
-    customer_invoice: Kundenrechnung
-    footer_left: "Andere Informationen"
-    footer_left2: " 14 Tage oder nie"
-
-    footer_right: "Firma Telefon www "
-    footer_right2: "Meine Firma 040 146 1222 www.gohereoften.com"
-
-    print_note: Dies ist keine echte Rechnung (NICH AN KUNDEN SENDEN!)
-
-    invoice_print: Rechnung drucken
-    packaging_slip_print: Warenbegleitschein drucken
-    packaging_slip: Packzettel drucken
-
-    invoice_number: Rechnungsnummer
-    invoice_date: Rechnungsdatum
+    print_invoice:
+      buttons:
+        invoice: Rechnung drucken
+        packaging_slip: Warenbegleitschein drucken
+      invoice: Kundenrechnung
+      item_name: Artikelnamen oder SKU
+      of: aus
+      via: über
+      on_date: Bestelldatum
+      packaging_slip: Packzettel drucken
+      page: Seite
+      payment_via: "%{gateway} Online-Zahlung #%{number} auf %{date}"
+      preferences:
+        next_number: Rechnung drucken nächste Zahl
+        use_footer: Verwenden Fußzeile
+        use_page_numbers: Verwenden Sie die Seitenzahlen
+        anomaly_message: Bestellen Anomalie Nachricht
+        footer_left: Linke Fußzeile Inhalt
+        footer_left_info: Z.B. Ihr Firmenname und Adresse.
+        footer_right: Rechts Fußzeile Inhalt
+        footer_right_info: Z.B. Ihre Telefon-und E-Mail-Adresse.
+        page_layout: Seitenlayout
+        page_size: Seitengröße
+        print_buttons: Drucktasten
+        print_buttons_info: Durch Kommata getrennte Liste.
+        logo_path: Rechnung drucken logo Weg
+        return_message: Bestellrückmeldung
+        font_face: Schriftart
+        font_size: Schriftgröße
+        logo_scale: Logo Maßstab
+      settings: Rechnung drucken Einstellungen
+      unprocessed: Unverarbeitet
+      vat: MwSt. nicht anwendbar
+      pdf_legend: PDF
+      invoice_slip_legend: Rechnung / Slip
+      invoice_number: 'Rechnungsnummer %{number}'
+      invoice_date: Rechnungsdatum
