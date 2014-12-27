@@ -67,7 +67,7 @@ See corresponding [guidelines][1]
 
 ## License
 
-Copyright (c) 2011-2014 [Spree Commerce][2], and other [contributors][3], released under the [New BSD License][4]
+Copyright (c) 2011-2015 [Spree Commerce][2], and other [contributors][3], released under the [New BSD License][4]
 
 [1]: https://github.com/spree-contrib/spree_print_invoice/blob/master/CONTRIBUTING.md
 [2]: https://github.com/spree
