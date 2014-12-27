@@ -2,7 +2,6 @@ RSpec.feature 'Admin Print Invoice', :js do
   stub_authorization!
 
   context 'can print' do
-
     background do
       @order = create(:completed_order_with_totals)
       visit spree.admin_orders_path
