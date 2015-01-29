@@ -4,7 +4,7 @@ version = File.read(File.expand_path("../SPREE_VERSION", __FILE__)).strip
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_print_invoice'
-  s.version     = '2.3.3'
+  s.version     = '2.3.4'
   s.summary     = 'Print invoices from a spree order'
   s.homepage    = 'https://github.com/spree/spree_print_invoice'
 

@@ -54,4 +54,4 @@ render :partial => "footer"
 
 move_down 700
 
-text "If you wish to exchange or return one of your Peach products, please email returns@peach.company and use the return label included in your package.", :style => :italic 
+text "If you wish to exchange or return one of your peach products, please email returns@peach.company and use the return label included in your package. Please include this original packing slip with your return.", :style => :italic 
