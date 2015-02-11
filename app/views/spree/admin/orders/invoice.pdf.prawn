@@ -110,7 +110,7 @@ grid([1,0], [6,4]).bounding_box do
       make_cell(
         content: Spree.t(:payment_via,
         gateway: (payment.source_type || Spree.t(:unprocessed, scope: :print_invoice)),
-        number: payment.identifier,
+        number: payment.number,
         date: I18n.l(payment.updated_at.to_date, format: :long),
         scope: :print_invoice)
       ),
