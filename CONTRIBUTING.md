@@ -37,8 +37,6 @@ In the issue itself please provide:
 
 In 99% of cases, this information is enough to determine the cause and solution to the problem that is being described.
 
-Any issue that is open for 14 days without actionable information or activity will be marked as "stalled" and then closed. Stalled issues can be re-opened if the information requested is provided.
-
 ---
 
 ## Pull requests
