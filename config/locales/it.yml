@@ -1,0 +1,40 @@
+---
+it:
+  spree:
+    print_invoice:
+      buttons:
+        invoice: Ricevuta
+        packaging_slip: Documento di Trasporto
+      invoice: Ricevuta per il Cliente
+      item_name: Nome o codice Articolo
+      of: di
+      via: via
+      on_date: Data Ordine
+      packaging_slip: Documento di Trasporto
+      page: Pagina
+      payment_via: "Pagamento Online %{gateway} #%{number} del %{date}"
+      preferences:
+        next_number: Numero successivo Ricevuta
+        use_footer: Usa Footer
+        use_page_numbers: Use numeri di pagina
+        anomaly_message: Messaggio Anomalia Ordine
+        footer_left: Contenuto footer sinistra
+        footer_left_info: Es. Nome e indirizzo Azienda.
+        footer_right: Contenuto footer destra
+        footer_right_info: Es. numero di telefono e indirizzo email.
+        page_layout: Layout Pagina
+        page_size: Dimensione pagina
+        print_buttons: Bottoni Stampa
+        print_buttons_info: Lista separata da virgola
+        logo_path: Percorso logo ricevuta
+        return_message: Messaggio reso ordine
+        font_face: Font Face
+        font_size: Font Size
+        logo_scale: Scala Logo
+      settings: Impostazioni Stampa Ricevuta
+      unprocessed: Non processato
+      vat: IVA non applicabile
+      pdf_legend: Layout PDF
+      invoice_slip_legend: Contenuto Ricevuta/Documento di Trasporto
+      invoice_number: 'Ricevuta Numero %{number}'
+      invoice_date: Data Ricevuta
