@@ -1,0 +1,20 @@
+it:
+  spree:
+    customer_invoice: Ricevuta per il Cliente
+    footer_left: "Return in Other info"
+    footer_left2: " 14 days or never"
+
+    footer_right: "Azienda   Telefono   Sito"
+    footer_right2: "Indirizzo azienda   Email"
+
+    print_note: Questa non è una ricevuta originale (non spedirla al cliente)
+
+    invoice_print: Stampa Ricevuta
+    packaging_slip_print: Stampa Documento di Trasporto
+    packaging_slip: Documento di Trasporto
+
+    invoice_font_face: Font Face
+    invoice_logo_scale: Scala Logo
+
+    invoice_number: Ricevuta Numero
+    invoice_date: creata il
