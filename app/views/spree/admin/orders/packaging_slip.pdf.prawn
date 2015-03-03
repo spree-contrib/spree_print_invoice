@@ -76,8 +76,8 @@ grid([1,0], [6,4]).bounding_box do
 
   @order.line_items.each do |item|
     row = [
-      item.variant.product.sku,
-      item.variant.product.name,
+      item.variant.sku,
+      item.variant.name,
       item.variant.options_text,
       item.quantity
     ]
