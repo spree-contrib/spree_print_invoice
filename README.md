@@ -25,9 +25,9 @@ Enjoy! Now allow to generate invoices with sequential numbers.
 
 1. Set the logo path preference to include your store / company logo.
 
-```ruby
-Spree::PrintInvoice::Config.set(logo_path: '/path/to/public/images/company-logo.png')
-```
+  ```ruby
+  Spree::PrintInvoice::Config.set(logo_path: '/path/to/public/images/company-logo.png')
+  ```
 
 2. Add your own own footer texts to the locale. The current footer works with `:footer_left1` , `:footer_left2` and `:footer_right1`, `:footer_right2` where the 1 version is on the left in bold, and the 2 version the "value" on the right.
 
@@ -37,25 +37,35 @@ Spree::PrintInvoice::Config.set(logo_path: '/path/to/public/images/company-logo.
 
 5. Many european countries requires numeric and sequential invoices numbers. To use invoices sequential number fill the specific field in "General Settings" or by setting:
 
-```ruby
-Spree::PrintInvoice::Config.set(next_number: [1|'your current next invoice number'])
-```
+  ```ruby
+  Spree::PrintInvoice::Config.set(next_number: [1|'your current next invoice number'])
+  ```
 
-The next invoice number will be the one that you specified. You will able to increase it in any moment, for example, to re-sync invoices number if you are making invoices also in other programs for the same business name.
+  The next invoice number will be the one that you specified. You will able to increase it in any moment, for example, to re-sync invoices number if you are making invoices also in other programs for the same business name.
 
 6. Enable packaging slips, by setting:
 
-```ruby
-Spree::PrintInvoice::Config.set(print_buttons: 'invoice,packaging_slip') # comma separated list
-```
+  ```ruby
+  Spree::PrintInvoice::Config.set(print_buttons: 'invoice,packaging_slip') # comma separated list
+  ```
 
-Use above feature for your own template if you want. For each button_name, define `button_name_print` text in your locale.
+  Use above feature for your own template if you want. For each button_name, define `button_name_print` text in your locale.
 
 7. Set page/document options with:
 
-```ruby
-Spree::PrintInvoice::Config.set(prawn_options: { page_layout: :landscape, page_size: 'A4', margin: [50, 100, 150, 200] })
+  ```ruby
+  Spree::PrintInvoice::Config.set(prawn_options: { page_layout: :landscape, page_size: 'A4', margin: [50, 100, 150, 200] })
+  ```
+
+## Customize templates
+
+In order to customize the build in invoice and packaging slip templates you need to copy them into your app:
+
+```sh
+$ bundle exec rails g spree_print_invoice:templates
 ```
+
+You can then customize them at `app/views/spree/admin/orders/invoice.pdf.prawn` and `app/views/spree/admin/orders/packaging_slip.pdf.prawn`.
 
 ---
 
