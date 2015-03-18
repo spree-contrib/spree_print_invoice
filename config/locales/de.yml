@@ -4,37 +4,37 @@ de:
     print_invoice:
       buttons:
         invoice: Rechnung drucken
-        packaging_slip: Warenbegleitschein drucken
-      invoice: Kundenrechnung
+        packaging_slip: Lieferschein drucken
+      invoice: Rechnung
       item_name: Artikelnamen oder SKU
       of: aus
-      via: über
+      via: per
       on_date: Bestelldatum
-      packaging_slip: Packzettel drucken
+      packaging_slip: Lieferschein
       page: Seite
-      payment_via: "%{gateway} Online-Zahlung #%{number} auf %{date}"
+      payment_via: "%{gateway} Zahlung #%{number} per %{date}"
       preferences:
-        next_number: Rechnung drucken nächste Zahl
-        use_footer: Verwenden Fußzeile
-        use_page_numbers: Verwenden Sie die Seitenzahlen
-        anomaly_message: Bestellen Anomalie Nachricht
-        footer_left: Linke Fußzeile Inhalt
+        next_number: nächste Rechnungsnummer
+        use_footer: Fußzeile verwenden
+        use_page_numbers: Seitenzahlen anzeigen
+        anomaly_message: Bestellanomalie-Hinweis
+        footer_left: Inhalt der linken Fußzeile
         footer_left_info: Z.B. Ihr Firmenname und Adresse.
-        footer_right: Rechts Fußzeile Inhalt
+        footer_right: Inhalt der rechten Fußzeile
         footer_right_info: Z.B. Ihre Telefon-und E-Mail-Adresse.
         page_layout: Seitenlayout
         page_size: Seitengröße
-        print_buttons: Drucktasten
-        print_buttons_info: Durch Kommata getrennte Liste.
-        logo_path: Rechnung drucken logo Weg
-        return_message: Bestellrückmeldung
+        print_buttons: Anzuzeigende Buttons
+        print_buttons_info: Durch Kommas getrennte Liste.
+        logo_path: Dateipfad zum Logo
+        return_message: Hinweis bei Rückgaben
         font_face: Schriftart
         font_size: Schriftgröße
-        logo_scale: Logo Maßstab
-      settings: Rechnung drucken Einstellungen
-      unprocessed: Unverarbeitet
+        logo_scale: Logo-Skalierung
+      settings: Rechnungsdruck-Einstellungen
+      unprocessed: offene
       vat: MwSt. nicht anwendbar
-      pdf_legend: PDF
-      invoice_slip_legend: Rechnung / Slip
+      pdf_legend: PDF-Grundeinstellungen
+      invoice_slip_legend: PDF-Inhaltseinstellungen
       invoice_number: 'Rechnungsnummer %{number}'
       invoice_date: Rechnungsdatum
