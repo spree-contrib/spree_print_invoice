@@ -31,6 +31,8 @@ fr:
         font_face: Face à font
         font_size: Taille de font
         logo_scale: Échelle de logo
+        store_pdf: Store PDF files
+        storage_path: PDF storage path
       settings: Les paramètres d'impression des factures
       unprocessed: Non traité
       vat: "TVA non applicable, article 293 B du Code Général des Impôts"

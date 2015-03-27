@@ -31,6 +31,8 @@ de:
         font_face: Schriftart
         font_size: Schriftgröße
         logo_scale: Logo-Skalierung
+        store_pdf: PDF-Dateien speichern
+        storage_path: Speicherort für PDF-Dateien
       settings: Rechnungsdruck-Einstellungen
       unprocessed: offene
       vat: MwSt. nicht anwendbar

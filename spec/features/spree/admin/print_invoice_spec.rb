@@ -1,23 +1,58 @@
-RSpec.feature 'Admin Print Invoice', :js do
+RSpec.feature 'Admin print invoice feature' do
   stub_authorization!
 
-  context 'can print' do
-    background do
-      @order = create(:completed_order_with_totals)
-      visit spree.admin_orders_path
+  let!(:order) { create(:order_ready_to_ship) }
+
+  scenario 'shows print buttons on the order detail page.' do
+    visit spree.edit_admin_order_path(id: order.number)
+
+    within('#sidebar') do
+      expect(page).to have_link 'Print Invoice'
+      expect(page).to have_link 'Print Packaging Slip'
+    end
+  end
+
+  context 'with Config.store_pdf set to true' do
+    before do
+      allow(Spree::PrintInvoice::Config).to receive(:store_pdf).and_return(true)
     end
 
-    scenario 'completed order' do
-      expect(@order.completed_at).not_to be_nil
+    context 'with pdf file already present' do
+      let(:pdf_file_path) { "spec/fixtures/invoice.pdf" }
 
-      within_table('listing_orders') do
-        expect(page).to have_text @order.user.email
-        click_icon :edit
+      before do
+        allow_any_instance_of(Spree::Order).
+          to receive(:pdf_file_path).
+          and_return(pdf_file_path)
       end
-      within('#sidebar') do
-        expect(page).to have_link 'Print Invoice'
-        expect(page).to have_link 'Print Packaging Slip'
+
+      scenario 'sends the stored file.' do
+        visit spree.admin_order_path(id: order.number, format: :pdf)
+        expect(page.body).to eq(IO.binread(pdf_file_path))
       end
+    end
+
+    context 'with pdf file not yet present' do
+      before do
+        allow(Spree::PrintInvoice::Config).to receive(:storage_path).and_return('tmp/order_prints')
+        allow(Spree::PrintInvoice::Config).to receive(:next_number).and_return(100)
+      end
+
+      scenario 'sends the stored file.' do
+        visit spree.admin_order_path(id: order.number, format: :pdf)
+        expect(page.body).to eq(IO.binread("spec/dummy/tmp/order_prints/invoices/#{order.reload.invoice_number}.pdf"))
+      end
+    end
+  end
+
+  context 'with Config.store_pdf set to false' do
+    before do
+      allow(Spree::PrintInvoice::Config).to receive(:store_pdf).and_return(false)
+    end
+
+    scenario 'sends rendered pdf.' do
+      visit spree.admin_order_path(id: order.number, format: :pdf)
+      expect(page.body).to match(/\A%PDF-1\.3/)
     end
   end
 end

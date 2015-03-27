@@ -11,7 +11,11 @@ module ActionView
           alias_method :register!, :register
 
           def call(template)
-            %(extend #{DocumentProxy}; #{template.source}; pdf.render)
+            <<-PDF
+              extend #{DocumentProxy}
+              #{template.source}
+              pdf.render
+            PDF
           end
         end
 

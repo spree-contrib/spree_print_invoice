@@ -5,23 +5,25 @@ module Spree
 
       def show
         load_order
+
         respond_with(@order) do |format|
           format.pdf do
-            template = params[:template] || 'invoice'
-            update_sequential_number_for(@order) if template == 'invoice'
-            render layout: false, template: "spree/admin/orders/#{template}.pdf.prawn"
+            @order.update_invoice_number!
+
+            send_data @order.pdf_file(pdf_template_name),
+              type: 'application/pdf', disposition: 'inline'
           end
         end
       end
 
       private
 
-      def update_sequential_number_for(order)
-        return unless Spree::PrintInvoice::Config.use_sequential_number?
-        return unless order.invoice_number.present?
-        order.invoice_number = Spree::PrintInvoice::Config.increase_invoice_number
-        order.invoice_date   = Date.today
-        order.save!
+      def pdf_template_name
+        pdf_template_name = params[:template] || 'invoice'
+        if !Spree::PrintInvoice::Config.print_templates.include?(pdf_template_name)
+          raise Spree::PrintInvoice::UnsupportedTemplateError.new(pdf_template_name)
+        end
+        pdf_template_name
       end
     end
   end

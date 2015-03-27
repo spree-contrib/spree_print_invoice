@@ -26,8 +26,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'spree_core', '~> 3.1.0.beta'
 
   s.add_development_dependency 'capybara', '~> 2.4.4'
-  s.add_development_dependency 'selenium-webdriver', '>= 2.41'
-  s.add_development_dependency 'poltergeist', '~> 1.6.0'
+  s.add_development_dependency 'poltergeist', '~> 1.5'
   s.add_development_dependency 'factory_girl', '~> 4.4'
   s.add_development_dependency 'rspec-rails', '~> 3.2.0'
   s.add_development_dependency 'simplecov', '~> 0.9.0'
