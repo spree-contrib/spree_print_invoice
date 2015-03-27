@@ -57,6 +57,17 @@ Enjoy! Now allow to generate invoices with sequential numbers.
   Spree::PrintInvoice::Config.set(prawn_options: { page_layout: :landscape, page_size: 'A4', margin: [50, 100, 150, 200] })
   ```
 
+8. Enable PDF storage feature
+
+  PDF files can be stored to disk. This is very handy, if you want to send these files as email attachment.
+
+  ```ruby
+  Spree::PrintInvoice::Config.set(store_pdf: true) # Default: false
+  Spree::PrintInvoice::Config.set(storage_path: 'pdfs/orders') # Default: tmp/order_prints
+  ```
+
+  *) Inside the `storage_path` a folder for each template will be created. Files will be saved with order number respectively invoice number as file name.
+
 ## Customize templates
 
 In order to customize the build in invoice and packaging slip templates you need to copy them into your app:

@@ -14,6 +14,8 @@ module Spree
     preference :logo_scale,       :integer, default: 50
     preference :font_face,        :string,  default: 'Helvetica'
     preference :font_size,        :integer, default: 9
+    preference :store_pdf,        :boolean, default: false
+    preference :storage_path,     :string,  default: 'tmp/order_prints'
 
     def page_sizes
       ::PDF::Core::PageGeometry::SIZES.keys
@@ -45,6 +47,10 @@ module Spree
 
     def logo_scaling
       logo_scale.to_f / 100
+    end
+
+    def print_templates
+      get_preference(:print_buttons).split(',').map(&:strip)
     end
   end
 end

@@ -1,2 +1,0 @@
-pdf.explicit_call
-implicit_call

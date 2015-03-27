@@ -30,7 +30,8 @@ es:
         return_message: Mensaje de vuelta del pedido
         font_face: Tipo de letra
         font_size: Tamaño de letra
-        logo_scale: Eescala de Logo
+        store_pdf: Store PDF files
+        storage_path: PDF storage path
       settings: Configuración de impresión de facturas
       unprocessed: No procesado
       vat: IVA no aplicable

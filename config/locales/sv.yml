@@ -31,6 +31,8 @@ sv:
         font_face: Typsnitt
         font_size: Typsnitt storlek
         logo_scale: Logo skala
+        store_pdf: Store PDF files
+        storage_path: PDF storage path
       settings: Utskrift inställningar
       unprocessed: Obearbetad
       vat: Moms inte tillämpligt
