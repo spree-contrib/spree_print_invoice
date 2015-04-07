@@ -1,4 +1,4 @@
-RSpec.feature 'Settings for Print Invoice', :js do
+RSpec.feature 'Settings for Print Invoice' do
   stub_authorization!
 
   scenario 'can update settings' do
@@ -10,10 +10,10 @@ RSpec.feature 'Settings for Print Invoice', :js do
     fill_in 'logo_path', with: '/somewhere/logo.png'
     fill_in 'print_buttons', with: 'invoice,packaging_slip'
     fill_in 'next_number', with: '200'
-    select2 'A4', from: 'Page Size'
-    select2 'portrait', from: 'Page Layout'
-    select2 'Courier', from: 'Font Face'
-    select2 '11', from: 'Font Size'
+    select 'A4', from: 'Page Size'
+    select 'portrait', from: 'Page Layout'
+    select 'Courier', from: 'Font Face'
+    select '11', from: 'Font Size'
     fill_in 'logo_scale', with: '99'
     fill_in 'footer_left', with: 'left text..'
     fill_in 'footer_right', with: 'right text..'

@@ -31,6 +31,8 @@ en:
         font_face: Font Face
         font_size: Font Size
         logo_scale: Logo Scale
+        store_pdf: Store PDF files
+        storage_path: PDF storage path
       settings: Print Invoice Settings
       unprocessed: Unprocessed
       vat: VAT not applicable
