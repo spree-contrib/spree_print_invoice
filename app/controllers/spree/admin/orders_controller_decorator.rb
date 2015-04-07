@@ -7,11 +7,20 @@ module Spree
         load_order
         respond_with(@order) do |format|
           format.pdf do
-            template = params[:template] || 'invoice'
-            @order.update_invoice_number! if template == 'invoice'
-            render layout: false, template: "spree/admin/orders/#{template}.pdf.prawn"
+            send_data @order.pdf_file(pdf_template_name),
+              type: 'application/pdf', disposition: 'inline'
           end
         end
+      end
+
+      private
+
+      def pdf_template_name
+        pdf_template_name = params[:template] || 'invoice'
+        if !Spree::PrintInvoice::Config.print_templates.include?(pdf_template_name)
+          raise Spree::PrintInvoice::UnsupportedTemplateError.new(pdf_template_name)
+        end
+        pdf_template_name
       end
     end
   end
