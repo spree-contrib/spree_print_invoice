@@ -6,7 +6,7 @@ define_grid(columns: 5, rows: 8, gutter: 10)
 # HEADER
 repeat(:all) do
   im = Rails.application.assets.find_asset(Spree::PrintInvoice::Config[:logo_path])
-  if File.exist? im.pathname
+  if im && File.exist?(im.pathname)
     image im, vposition: :top, height: 40, scale: Spree::PrintInvoice::Config[:logo_scale]
   end
 
@@ -19,7 +19,7 @@ repeat(:all) do
 
       text Spree.t(:invoice_number, number: @order.invoice_number, scope: :print_invoice), align: :right
       move_down 2
-      text "#{Spree.t(:invoice_date)} #{I18n.l @order.invoice_date}", align: :right
+      text "#{Spree.t(:invoice_date, scope: :print_invoice)} #{I18n.l @order.invoice_date}", align: :right
 
     else
 
