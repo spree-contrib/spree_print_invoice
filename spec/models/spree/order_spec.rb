@@ -33,7 +33,7 @@ RSpec.describe Spree::Order do
       end
     end
 
-    context 'context' do
+    context 'with use_sequential_number? disabled' do
       before do
         allow(Spree::PrintInvoice::Config).
           to receive(:use_sequential_number?).

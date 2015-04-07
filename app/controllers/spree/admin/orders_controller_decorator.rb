@@ -5,8 +5,11 @@ module Spree
 
       def show
         load_order
+
         respond_with(@order) do |format|
           format.pdf do
+            @order.update_invoice_number!
+
             send_data @order.pdf_file(pdf_template_name),
               type: 'application/pdf', disposition: 'inline'
           end

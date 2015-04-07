@@ -14,6 +14,12 @@ RSpec.describe Spree::Admin::OrdersController, type: :controller do
       expect(response).to be_success
     end
 
+    it 'sets the invoice number' do
+      expect {
+        spree_get :show, id: order.number, format: :pdf
+      }.to change(order, :invoice_number)
+    end
+
     context 'with wrong template name' do
       it 'raises error' do
         expect {
