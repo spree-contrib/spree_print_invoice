@@ -3,6 +3,7 @@ SimpleCov.start do
   add_filter 'spec'
   add_group  'Controllers', 'app/controllers'
   add_group  'Overrides', 'app/overrides'
+  add_group  'Models', 'app/models'
   add_group  'Libraries', 'lib'
 end
 
