@@ -66,6 +66,20 @@
               <%= label_tag :logo_scale, Spree.t(:logo_scale, scope: [:print_invoice, :preferences]) %>
               <%= number_field_tag(:logo_scale, Spree::PrintInvoice::Config[:logo_scale], in: 1...101, class: 'form-control') %>
             </div>
+
+            <div class="form-group">
+              <div class="checkbox">
+                <%= label_tag :store_pdf do %>
+                  <%= preference_field_tag(:store_pdf, Spree::PrintInvoice::Config[:store_pdf], type: :boolean) %>
+                  <%= Spree.t(:store_pdf, scope: [:print_invoice, :preferences]) %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= label_tag :storage_path, Spree.t(:storage_path, scope: [:print_invoice, :preferences]) %>
+              <%= preference_field_tag(:storage_path, Spree::PrintInvoice::Config[:storage_path], class: 'form-control', disabled: !Spree::PrintInvoice::Config[:store_pdf]) %>
+            </div>
           </fieldset>
         </div>
 

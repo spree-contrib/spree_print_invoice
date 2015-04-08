@@ -1,7 +1,7 @@
-RSpec.feature 'Settings for Print Invoice', :js do
+RSpec.feature 'Settings for Print Invoice' do
   stub_authorization!
 
-  scenario 'can update settings' do
+  scenario 'can update settings', :js do
     visit spree.edit_admin_print_invoice_settings_path
 
     check 'use_footer'
@@ -10,15 +10,18 @@ RSpec.feature 'Settings for Print Invoice', :js do
     fill_in 'logo_path', with: '/somewhere/logo.png'
     fill_in 'print_buttons', with: 'invoice,packaging_slip'
     fill_in 'next_number', with: '200'
-    select2 'A4', from: 'Page Size'
-    select2 'portrait', from: 'Page Layout'
-    select2 'Courier', from: 'Font Face'
-    select2 '11', from: 'Font Size'
+    select 'A4', from: 'Page Size'
+    select 'portrait', from: 'Page Layout'
+    select 'Courier', from: 'Font Face'
+    select '11', from: 'Font Size'
     fill_in 'logo_scale', with: '99'
     fill_in 'footer_left', with: 'left text..'
     fill_in 'footer_right', with: 'right text..'
     fill_in 'return_message', with: 'Return message..'
     fill_in 'anomaly_message', with: 'Anomaly message..'
+
+    check 'store_pdf'
+    find('#storage_path').set('pdf/files') # wait for the input to be enabled
 
     click_button 'Update'
 
@@ -39,5 +42,7 @@ RSpec.feature 'Settings for Print Invoice', :js do
     expect(setting.preferred_footer_right).to eq 'right text..'
     expect(setting.preferred_return_message).to eq 'Return message..'
     expect(setting.preferred_anomaly_message).to eq 'Anomaly message..'
+    expect(setting.preferred_store_pdf).to be(true)
+    expect(setting.preferred_storage_path).to eq 'pdf/files'
   end
 end
