@@ -33,9 +33,14 @@ RSpec.feature 'Admin print invoice feature' do
     end
 
     context 'with pdf file not yet present' do
+      before do
+        allow(Spree::PrintInvoice::Config).to receive(:storage_path).and_return('tmp/order_prints')
+        allow(Spree::PrintInvoice::Config).to receive(:next_number).and_return(100)
+      end
+
       scenario 'sends the stored file.' do
         visit spree.admin_order_path(id: order.number, format: :pdf)
-        expect(page.body).to eq(IO.binread("spec/dummy/tmp/order_prints/invoices/#{order.number}.pdf"))
+        expect(page.body).to eq(IO.binread("spec/dummy/tmp/order_prints/invoices/#{order.reload.invoice_number}.pdf"))
       end
     end
   end
