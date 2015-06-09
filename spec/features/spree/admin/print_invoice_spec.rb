@@ -1,7 +1,7 @@
 RSpec.feature 'Admin print invoice feature' do
   stub_authorization!
 
-  let!(:order) { create(:order_ready_to_ship) }
+  let!(:order) { create(:order_ready_to_ship, invoice_number: 100) }
 
   scenario 'shows print buttons on the order detail page.' do
     visit spree.edit_admin_order_path(id: order.number)
