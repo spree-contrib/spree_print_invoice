@@ -1,20 +1,24 @@
 Spree::Order.class_eval do
+  # Update the invoice number before transitioning to complete
+  #
+  state_machine.before_transition to: :complete, do: :update_invoice_number!
 
   # Updates +invoice_number+ without calling ActiveRecord callbacks
   #
   # Only updates if number is not already present and if
   # +Spree::PrintInvoice::Config.next_number+ is set and greater than zero.
   #
-  # Also sets +invoice_date+ to current date.
-  #
   def update_invoice_number!
     return unless Spree::PrintInvoice::Config.use_sequential_number?
     return if invoice_number.present?
 
-    update_columns(
-      invoice_number: Spree::PrintInvoice::Config.increase_invoice_number,
-      invoice_date: Date.today
-    )
+    update_columns(invoice_number: Spree::PrintInvoice::Config.increase_invoice_number)
+  end
+
+  # Returns the invoice date
+  #
+  def invoice_date
+    completed_at
   end
 
   # Returns the given template as pdf binary suitable for Rails send_data

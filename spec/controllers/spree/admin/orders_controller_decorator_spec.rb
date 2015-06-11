@@ -14,18 +14,6 @@ RSpec.describe Spree::Admin::OrdersController, type: :controller do
       expect(response).to be_success
     end
 
-    context 'with next_number set' do
-      before do
-        allow(Spree::PrintInvoice::Config).to receive(:next_number).and_return(100)
-      end
-
-      it 'sets the invoice number' do
-        expect {
-          spree_get :show, id: order.number, format: :pdf
-        }.to change(order, :invoice_number)
-      end
-    end
-
     context 'with wrong template name' do
       it 'raises error' do
         expect {
