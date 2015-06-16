@@ -1,5 +1,5 @@
-bill_address = invoice.invoiceable.bill_address
-ship_address = invoice.invoiceable.ship_address
+bill_address = printable.bill_address
+ship_address = printable.ship_address
 
 pdf.move_down 2
 address_cell_billing  = pdf.make_cell(content: Spree.t(:billing_address), font_style: :bold)
@@ -18,7 +18,7 @@ shipping << "\n#{ship_address.address2}" unless ship_address.address2.blank?
 shipping << "\n#{ship_address.city}, #{ship_address.state_text} #{ship_address.zipcode}"
 shipping << "\n#{ship_address.country.name}"
 shipping << "\n#{ship_address.phone}"
-shipping << "\n\n#{Spree.t(:via, scope: :print_invoice)} #{@invoice.invoiceable.shipments.first.shipping_method.name}"
+shipping << "\n\n#{Spree.t(:via, scope: :print_invoice)} #{printable.shipping_methods.join(", ")}"
 
 data = [[address_cell_billing, address_cell_shipping], [billing, shipping]]
 

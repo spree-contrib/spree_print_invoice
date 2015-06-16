@@ -1,7 +1,8 @@
 ---
 sv:
   spree:
-    print_it:
+    print_invoice:
+      documents: Dokumenten
       buttons:
         invoice: Skriv ut faktura
         packaging_slip: Skriv ut följesedel
@@ -38,5 +39,5 @@ sv:
       vat: Moms inte tillämpligt
       pdf_legend: PDF
       invoice_slip_legend: Faktura / följesedel
-      invoice_number: 'Faktura Nummer %{number}'
-      invoice_date: Faktura Datum
+      invoice_number: 'Faktura Nummer: %{number}'
+      invoice_date: 'Faktura Datum: %{date}'

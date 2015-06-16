@@ -36,7 +36,7 @@ RSpec.describe Spree::PrintInvoiceSetting do
   describe '#increase_invoice_number' do
     it 'increases invoice numer by one' do
       subject.next_number = 100
-      subject.increase_invoice_number
+      subject.increase_invoice_number!
       expect(subject.next_number).to be(101)
     end
   end
@@ -61,37 +61,5 @@ RSpec.describe Spree::PrintInvoiceSetting do
       subject.logo_scale = 100
       expect(subject.logo_scaling).to be(1.0)
     end
-  end
-
-  describe '#print_templates' do
-    before { @print_buttons = subject.print_buttons }
-
-    it 'returns array of print template names from print buttons string' do
-      subject.print_buttons = 'foo,baz'
-      expect(subject.print_templates).to eq(%w(foo baz))
-    end
-
-    context 'when print buttons has spaces' do
-      it 'ignores them' do
-        subject.print_buttons = ' foo , baz '
-        expect(subject.print_templates).to eq(%w(foo baz))
-      end
-    end
-
-    context 'when print buttons are empty' do
-      it 'returns empty array' do
-        subject.print_buttons = ''
-        expect(subject.print_templates).to eq([])
-      end
-    end
-
-    context 'when print buttons are nil' do
-      it 'returns empty array' do
-        subject.print_buttons = nil
-        expect(subject.print_templates).to eq([])
-      end
-    end
-
-    after { subject.print_buttons = @print_buttons }
   end
 end

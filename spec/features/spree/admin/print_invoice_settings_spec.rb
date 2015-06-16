@@ -8,7 +8,6 @@ RSpec.feature 'Settings for Print Invoice' do
     check 'use_page_numbers'
 
     fill_in 'logo_path', with: '/somewhere/logo.png'
-    fill_in 'print_buttons', with: 'invoice,packaging_slip'
     fill_in 'next_number', with: '200'
     select 'A4', from: 'Page Size'
     select 'portrait', from: 'Page Layout'
@@ -31,7 +30,6 @@ RSpec.feature 'Settings for Print Invoice' do
     expect(setting.preferred_use_page_numbers).to be(true)
 
     expect(setting.preferred_logo_path).to eq '/somewhere/logo.png'
-    expect(setting.preferred_print_buttons).to eq 'invoice,packaging_slip'
     expect(setting.preferred_next_number).to eq 200
     expect(setting.preferred_page_size).to eq 'A4'
     expect(setting.preferred_page_layout).to eq 'portrait'

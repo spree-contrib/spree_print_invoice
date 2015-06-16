@@ -1,11 +1,12 @@
 <% if can? :show, Spree::Order %>
   <% if @order && @order.completed_at? %>
-    <% buttons = Spree::PrintInvoice::Config[:print_buttons].split(',').to_a.compact.map(&:strip) %>
-    <% buttons.each do |button| %>
-      <% title = Spree.t(:"#{button}", scope: [:print_invoice, :buttons], default: 'PDF Slip') %>
-      <li>
-        <%= link_to_with_icon 'file', title, spree.admin_order_path(@order, :pdf, template: button), title: title, target: :blank %>
+      <li class='<%= "#{'active' if current == :documents}" %>'>
+        <%=
+          link_to_with_icon 'file',
+            Spree.t(:documents, scope: :print_invoice),
+            spree.admin_order_bookkeeping_documents_path(@order),
+            title: title
+        %>
       </li>
-    <% end %>
   <% end %>
 <% end %>

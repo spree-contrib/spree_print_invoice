@@ -8,12 +8,12 @@ header = [
 ]
 data = [header]
 
-invoice.invoiceable.line_items.each do |item|
+invoice.items.each do |item|
   row = [
-    item.variant.sku,
-    item.variant.name,
-    item.variant.options_text,
-    item.single_display_amount.to_s,
+    item.sku,
+    item.name,
+    item.options_text,
+    item.display_price.to_s,
     item.quantity,
     item.display_total.to_s
   ]

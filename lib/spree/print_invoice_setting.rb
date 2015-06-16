@@ -2,7 +2,6 @@ module Spree
   class PrintInvoiceSetting < Preferences::Configuration
     preference :next_number,      :integer, default: nil
     preference :logo_path,        :string,  default: Spree::Config[:admin_interface_logo]
-    preference :print_buttons,    :string,  default: 'invoice,packaging_slip'
     preference :page_size,        :string,  default: 'LETTER'
     preference :page_layout,      :string,  default: 'landscape'
     preference :footer_left,      :string,  default: ''
@@ -15,7 +14,7 @@ module Spree
     preference :font_face,        :string,  default: 'Helvetica'
     preference :font_size,        :integer, default: 9
     preference :store_pdf,        :boolean, default: false
-    preference :storage_path,     :string,  default: 'tmp/order_prints'
+    preference :storage_path,     :string,  default: 'tmp/invoice_prints'
 
     def page_sizes
       ::PDF::Core::PageGeometry::SIZES.keys
@@ -29,10 +28,9 @@ module Spree
       next_number.present? && next_number > 0
     end
 
-    def increase_invoice_number
+    def increase_invoice_number!
       current_invoice_number = next_number
       set_preference(:next_number, current_invoice_number + 1)
-      current_invoice_number
     end
 
     def font_faces
@@ -47,10 +45,6 @@ module Spree
 
     def logo_scaling
       logo_scale.to_f / 100
-    end
-
-    def print_templates
-      get_preference(:print_buttons).split(',').map(&:strip)
     end
   end
 end

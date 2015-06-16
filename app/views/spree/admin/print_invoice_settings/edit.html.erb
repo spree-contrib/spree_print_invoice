@@ -32,12 +32,6 @@
             </div>
 
             <div class="form-group">
-              <%= label_tag :print_buttons, Spree.t(:print_buttons, scope: [:print_invoice, :preferences]) %>
-              <%= preference_field_tag(:print_buttons, Spree::PrintInvoice::Config[:print_buttons], class: 'form-control') %>
-              <%= content_tag(:span, Spree.t(:print_buttons_info, scope: [:print_invoice, :preferences]), class: 'info') %>
-            </div>
-
-            <div class="form-group">
               <%= label_tag :next_number, Spree.t(:next_number, scope: [:print_invoice, :preferences]) %>
               <%= number_field_tag(:next_number, Spree::PrintInvoice::Config[:next_number], class: 'form-control') %>
             </div>

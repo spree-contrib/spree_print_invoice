@@ -1,14 +1,13 @@
 RSpec.feature 'Admin print invoice feature' do
   stub_authorization!
 
-  let!(:order) { create(:order_ready_to_ship, invoice_number: 100) }
+  let!(:order) { create(:invoiceable_order) }
 
-  scenario 'shows print buttons on the order detail page.' do
+  scenario 'shows documents button on order page.' do
     visit spree.edit_admin_order_path(id: order.number)
 
     within('#sidebar') do
-      expect(page).to have_link 'Print Invoice'
-      expect(page).to have_link 'Print Packaging Slip'
+      expect(page).to have_link Spree.t(:documents, scope: :print_invoice)
     end
   end
 
@@ -18,16 +17,16 @@ RSpec.feature 'Admin print invoice feature' do
     end
 
     context 'with pdf file already present' do
-      let(:pdf_file_path) { "spec/fixtures/invoice.pdf" }
+      let(:pdf_file_path) { 'spec/fixtures/invoice.pdf' }
 
       before do
-        allow_any_instance_of(Spree::Order).
-          to receive(:pdf_file_path).
+        allow_any_instance_of(Spree::BookkeepingDocument).
+          to receive(:file_path).
           and_return(pdf_file_path)
       end
 
       scenario 'sends the stored file.' do
-        visit spree.admin_order_path(id: order.number, format: :pdf)
+        visit spree.admin_bookkeeping_document_path(id: order.invoice.id, format: :pdf)
         expect(page.body).to eq(IO.binread(pdf_file_path))
       end
     end
@@ -39,10 +38,14 @@ RSpec.feature 'Admin print invoice feature' do
       end
 
       scenario 'sends the stored file.' do
-        visit spree.admin_order_path(id: order.number, format: :pdf)
-        expect(page.body).to eq(IO.binread("spec/dummy/tmp/order_prints/invoices/#{order.reload.invoice_number}.pdf"))
+        visit spree.admin_bookkeeping_document_path(id: order.invoice.id, format: :pdf)
+        expect(page.body).to eq(
+          IO.binread(
+            Rails.root.join('..', '..', 'spec', 'dummy', 'tmp', 'order_prints', 'invoices', "invoice-#{order.number}.pdf")
+            )
+          )
       end
-    end
+    end #spec/dummy/tmp/order_prints/invoices/invoice-R679215110.pdf
   end
 
   context 'with Config.store_pdf set to false' do
@@ -51,8 +54,8 @@ RSpec.feature 'Admin print invoice feature' do
     end
 
     scenario 'sends rendered pdf.' do
-      visit spree.admin_order_path(id: order.number, format: :pdf)
-      expect(page.body).to match(/\A%PDF-1\.3/)
+      visit spree.admin_bookkeeping_document_path(id: order.invoice.id, format: :pdf)
+      expect(page.body).to match(/\A%PDF-1\.\d/)
     end
   end
 end
