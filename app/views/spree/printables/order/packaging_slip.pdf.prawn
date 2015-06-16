@@ -8,7 +8,7 @@ prawn_document(force_download: true) do |pdf|
   pdf.font @font_style[:face], size: @font_style[:size]
 
   pdf.repeat(:all) do
-    render 'spree/admin/invoices/header', pdf: pdf, invoice: @invoice, template: @template
+    render 'spree/printables/shared/header', pdf: pdf, printable: @doc
   end
 
   # CONTENT
@@ -16,29 +16,29 @@ prawn_document(force_download: true) do |pdf|
 
     # address block on first page only
     if pdf.page_number == 1
-      render 'spree/admin/invoices/address_block', pdf: pdf, invoice: @invoice
+      render 'spree/printables/shared/address_block', pdf: pdf, printable: @doc
     end
 
     pdf.move_down 10
 
-    render 'spree/admin/invoices/invoice_items', pdf: pdf, invoice: @invoice
-
-    pdf.move_down 10
-
-    render 'spree/admin/invoices/totals', pdf: pdf, invoice: @invoice
+    render 'spree/printables/shared/packaging_slip/items', pdf: pdf, printable: @doc
 
     pdf.move_down 30
+    pdf.text Spree::PrintInvoice::Config[:anomaly_message], align: :left, size: @font_size
 
-    pdf.text Spree::PrintInvoice::Config[:return_message], align: :right, size: @font_style[:size]
+    pdf.move_down 20
+    pdf.bounding_box([0, pdf.cursor], width: pdf.bounds.width, height: 250) do
+      pdf.transparent(0.5) { pdf.stroke_bounds }
+    end
   end
 
   # Footer
   if Spree::PrintInvoice::Config[:use_footer]
-    render 'spree/admin/invoices/footer', pdf: pdf
+    render 'spree/printables/shared/footer', pdf: pdf
   end
 
   # Page Number
   if Spree::PrintInvoice::Config[:use_page_numbers]
-    render 'spree/admin/invoices/footer', pdf: pdf
+    render 'spree/printables/shared/page_number', pdf: pdf
   end
 end

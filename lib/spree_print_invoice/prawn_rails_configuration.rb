@@ -2,11 +2,11 @@ module Spree
   module PrintInvoice
     class PrawnRailsConfiguration
       def page_layout
-        Spree::PrintInvoice::Config.page_layout.to_sym
+        @_page_layout ||= Spree::PrintInvoice::Config.page_layout.to_sym
       end
 
       def page_size
-        Spree::PrintInvoice::Config.page_size
+        @_page_size ||= Spree::PrintInvoice::Config.page_size
       end
 
       def skip_page_creation
@@ -15,8 +15,8 @@ module Spree
 
       def to_h
         {
-          page_layout: Spree::PrintInvoice::Config.page_layout,
-          page_size: Spree::PrintInvoice::Config.page_size,
+          page_layout: page_layout,
+          page_size: page_size,
           skip_page_creation: false
         }
       end

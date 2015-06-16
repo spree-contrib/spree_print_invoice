@@ -16,7 +16,6 @@ RSpec.describe Spree::Admin::PrintInvoiceSettingsController, type: :controller d
     context 'For parameters:
             next_number: 1
             logo_path: my_path/logo.png,
-            print_buttons: myslip,
             page_size: A4,
             page_layout: portrait,
             footer_left: abc
@@ -38,11 +37,6 @@ RSpec.describe Spree::Admin::PrintInvoiceSettingsController, type: :controller d
       it 'sets preferred_logo_path to "my_path/logo.png"' do
         spree_put :update, preferences: { logo_path: 'my_path/logo.png' }
         expect(subject.preferred_logo_path).to eq('my_path/logo.png')
-      end
-
-      it 'sets preferred_print_buttons to "myslip"' do
-        spree_put :update, preferences: { print_buttons: 'myslip' }
-        expect(subject.preferred_print_buttons).to eq('myslip')
       end
 
       it 'sets preferred_page_size to "A4"' do

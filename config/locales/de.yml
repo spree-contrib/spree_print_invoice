@@ -2,10 +2,22 @@
 de:
   spree:
     print_invoice:
+      document_type: Dokumentart
+      number: Nummer
+      firstname: Vorname
+      lastname: Nachname
+      email: E-Mail
+      date: Datum
+      total: Summe
+      documents: Dokumente
+      documents_for_order: "Dokumente für Bestellung Nr. %{order_number}"
       buttons:
         invoice: Rechnung drucken
         packaging_slip: Lieferschein drucken
-      invoice: Rechnung
+      order_invoice: Rechnung
+      order_packaging_slip: Lieferschein
+      reimbursement_invoice: Korrekturrechnung
+      invoices: Rechnungen
       item_name: Artikelnamen oder SKU
       of: aus
       via: per
@@ -38,5 +50,5 @@ de:
       vat: MwSt. nicht anwendbar
       pdf_legend: PDF-Grundeinstellungen
       invoice_slip_legend: PDF-Inhaltseinstellungen
-      invoice_number: 'Rechnungsnummer %{number}'
-      invoice_date: Rechnungsdatum
+      invoice_number: 'Rechnungsnummer: %{number}'
+      invoice_date: 'Rechnungsdatum: %{date}'

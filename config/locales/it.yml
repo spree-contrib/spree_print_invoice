@@ -2,6 +2,7 @@
 it:
   spree:
     print_invoice:
+      documents: Documentos
       buttons:
         invoice: Ricevuta
         packaging_slip: Documento di Trasporto
@@ -37,4 +38,4 @@ it:
       pdf_legend: Layout PDF
       invoice_slip_legend: Contenuto Ricevuta/Documento di Trasporto
       invoice_number: 'Ricevuta Numero %{number}'
-      invoice_date: Data Ricevuta
+      invoice_date: 'Data Ricevuta: %{date}'

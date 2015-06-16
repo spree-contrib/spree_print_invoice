@@ -2,9 +2,13 @@
 es:
   spree:
     print_invoice:
+      documents: Documentos
       buttons:
         invoice: Imprimir Factura
         packaging_slip: Imprimir Recibo para el Embalaje
+      order_invoice: Factura
+      order_packaging_slip: Recibo para el Embalaje
+      reimbursement_invoice: Factura para devolución
       invoice: Factura del cliente
       item_name: Nombre de elemento o SKU
       of: de
@@ -37,5 +41,5 @@ es:
       vat: IVA no aplicable
       pdf_legend: PDF
       invoice_slip_legend: Factura / Deslizamiento
-      invoice_number: 'Número de factura %{number}'
-      invoice_date: Fecha de la factura
+      invoice_number: 'Número de factura: %{number}'
+      invoice_date: 'Fecha de la factura: %{date}'

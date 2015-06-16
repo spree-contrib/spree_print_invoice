@@ -3,7 +3,18 @@
 [![Build Status](https://travis-ci.org/spree-contrib/spree_print_invoice.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_print_invoice)
 [![Code Climate](https://codeclimate.com/github/spree-contrib/spree_print_invoice/badges/gpa.svg)](https://codeclimate.com/github/spree-contrib/spree_print_invoice)
 
-This extension provides a "Print Invoice" button (per default) on the Admin Orders view screen which generates a PDF of the order details. It's fully extendable so you can add own _print slips_ from your own Rails app. It also comes with a packaging slip.
+This extension provides two things:
+
+ * A model `Spree::Invoice`, which is generated when an order is completed or a reimbursement is created. It holds a date and a contiguous invoice number to comply with European tax regulation.
+ * A model `Spree::BookkeepingDocument`, which generates PDFs from any Spree Object with the help of View objects that translate between different object structures and PDF templates.
+
+The Gem contains example implementations for Invoices for `Spree::Order` as well as `Spree::Reimbursement`. The basic structure looks like this:
+
+`Spree::BookkeepingDocument` takes as constructor arguments a `printable` (polymorphic AR object) and a `template` (string). It then passes on all actual data generation to a ViewObject. You can find these objects in `app/spree/printables/#{printable}/#{template}_view.rb`. The object will be instantiated upon PDF generation (look at the `Spree::BookkeepingDocument#render_pdf` method to see how it's done).
+
+`Spree::Order` and `Spree::Reimbursement` are patched so that they generate both an invoice number and date and a PDF.
+
+In the `Spree::Admin::OrdersController#show` view, you'll find an additional button `Documents`, where all printable documents will be listed.
 
 ## Installation
 
@@ -17,7 +28,7 @@ Run
 bundle && exec rails g spree_print_invoice:install
 ```
 
-Enjoy! Now allow to generate invoices with sequential numbers.
+Enjoy! Now you can generate invoices and packaging slips with sequential numbers from arbitrary Spree objects.
 
 ---
 
@@ -33,9 +44,7 @@ Enjoy! Now allow to generate invoices with sequential numbers.
 
 3. Override any of the partial templates. They are address, footer, totals, header, bye, and the line_items. In bye the text `:thanks` is printed. The `:extra_note` hook has been deprecated as Spree no longer supports hooks.
 
-4. Set `:suppress_anonymous_address` option to get blank addresses for anonymous email addresses (as created by my spree_last_address extension for empty/unknown user info).
-
-5. Many european countries requires numeric and sequential invoices numbers. To use invoices sequential number fill the specific field in "General Settings" or by setting:
+4. Many european countries requires numeric and sequential invoices numbers. To use invoices sequential number fill the specific field in "General Settings" or by setting:
 
   ```ruby
   Spree::PrintInvoice::Config.set(next_number: [1|'your current next invoice number'])
@@ -43,21 +52,13 @@ Enjoy! Now allow to generate invoices with sequential numbers.
 
   The next invoice number will be the one that you specified. You will able to increase it in any moment, for example, to re-sync invoices number if you are making invoices also in other programs for the same business name.
 
-6. Enable packaging slips, by setting:
-
-  ```ruby
-  Spree::PrintInvoice::Config.set(print_buttons: 'invoice,packaging_slip') # comma separated list
-  ```
-
-  Use above feature for your own template if you want. For each button_name, define `button_name_print` text in your locale.
-
-7. Set page/document options with:
+5. Set page/document options with:
 
   ```ruby
   Spree::PrintInvoice::Config.set(prawn_options: { page_layout: :landscape, page_size: 'A4', margin: [50, 100, 150, 200] })
   ```
 
-8. Enable PDF storage feature
+6. Enable PDF storage feature
 
   PDF files can be stored to disk. This is very handy, if you want to send these files as email attachment.
 
@@ -76,7 +77,11 @@ In order to customize the build in invoice and packaging slip templates you need
 $ bundle exec rails g spree_print_invoice:templates
 ```
 
-You can then customize them at `app/views/spree/admin/orders/invoice.pdf.prawn` and `app/views/spree/admin/orders/packaging_slip.pdf.prawn`.
+You can then customize them at the following locations:
+
+ * `app/views/spree/printables/order/invoice.pdf.prawn`
+ * `app/views/spree/printables/reimbursement/invoice.pdf.prawn`
+ * `app/views/spree/printables/order/packaging_slip.pdf.prawn`.
 
 ---
 
