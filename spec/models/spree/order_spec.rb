@@ -36,7 +36,7 @@ RSpec.describe Spree::Order do
     end
   end
 
-  describe "checkout flow" do
+  describe 'checkout flow' do
     let(:order) { create :order_with_line_items, state: "confirm" }
 
     before do
@@ -52,10 +52,10 @@ RSpec.describe Spree::Order do
     end
   end
 
-  describe "invoice_date" do
+  describe 'invoice_date' do
     let(:order) { Spree::Order.new }
 
-    it "calls completed at" do
+    it 'calls completed at' do
       expect(order).to receive(:completed_at)
       order.invoice_date
     end

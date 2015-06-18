@@ -1,25 +1,10 @@
-Spree::Order.class_eval do
-  # Update the invoice number before transitioning to complete
-  #
-  state_machine.before_transition to: :complete, do: :update_invoice_number!
+class Spree::Invoice < ActiveRecord::Base
+  belongs_to :invoiceable, polymorphic: true
+  validates :invoiceable, presence: true
 
-  # Updates +invoice_number+ without calling ActiveRecord callbacks
-  #
-  # Only updates if number is not already present and if
-  # +Spree::PrintInvoice::Config.next_number+ is set and greater than zero.
-  #
-  def update_invoice_number!
-    return unless Spree::PrintInvoice::Config.use_sequential_number?
-    return if invoice_number.present?
-
-    update_columns(invoice_number: Spree::PrintInvoice::Config.increase_invoice_number)
-  end
-
-  # Returns the invoice date
-  #
-  def invoice_date
-    completed_at
-  end
+  before_save :set_date
+  before_save :set_number, if: :use_sequential_number?
+  after_save :increase_invoice_number, if: :use_sequential_number?
 
   # Returns the given template as pdf binary suitable for Rails send_data
   #
@@ -44,7 +29,7 @@ Spree::Order.class_eval do
   # If this is not present it takes the order number.
   #
   def pdf_filename
-    invoice_number.present? ? invoice_number : number
+    number.present? ? number : invoiceable.number
   end
 
   # = PDF file path for template name
@@ -74,15 +59,15 @@ Spree::Order.class_eval do
 
   # Renders the prawn template for give template name in context of ActionView.
   #
-  # Prawn templates need to be placed in +app/views/spree/admin/orders/+ folder.
+  # Prawn templates need to be placed in +app/views/spree/admin/invoices/+ folder.
   #
-  # Assigns +@order+ instance variable
+  # Assigns +@invoice+ instance variable
   #
   def render_pdf(template)
     ActionView::Base.new(
       ActionController::Base.view_paths,
-      {order: self}
-    ).render(template: "spree/admin/orders/#{template}.pdf.prawn")
+      {invoice: self, template: template}
+    ).render(template: "spree/admin/invoices/#{template}.pdf.prawn")
   end
 
   private
@@ -99,5 +84,23 @@ Spree::Order.class_eval do
     end
 
     IO.binread(file_path)
+  end
+
+  ### AR Callback actions
+
+  def set_date
+    self.date ||= Date.today
+  end
+
+  def set_number
+    self.number ||= Spree::PrintInvoice::Config.next_number
+  end
+
+  def increase_invoice_number
+    Spree::PrintInvoice::Config.increase_invoice_number!
+  end
+
+  def use_sequential_number?
+    @_use_sequential_number ||= Spree::PrintInvoice::Config.use_sequential_number?
   end
 end
