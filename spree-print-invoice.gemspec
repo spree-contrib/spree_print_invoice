@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description = s.summary
   s.required_ruby_version = '>= 2.1.0'
 
-  s.author       = 'Spree Commerce'
+  s.authors       = ['Spree Commerce', 'Tobias Bohwalli', 'Martin Meyerhoff']
   s.email        = 'gems@spreecommerce.com'
   s.homepage     = 'https://github.com/spree-contrib/spree_print_invoice'
   s.license      = 'BSD-3'
