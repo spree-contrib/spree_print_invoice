@@ -27,14 +27,6 @@ RSpec.describe Spree::BookkeepingDocument do
         expect(subject.view).to be_a(Spree::Printables::Order::InvoiceView)
       end
     end
-
-    context "with a reimbursement as printable" do
-      let(:printable) { Spree::Reimbursement.new }
-
-      it "is an ReimbursementInvoicePresenter Object"  do
-        expect(subject.view).to be_a(Spree::Printables::Reimbursement::InvoiceView)
-      end
-    end
   end
 
   describe "#pdf" do
@@ -46,14 +38,6 @@ RSpec.describe Spree::BookkeepingDocument do
 
     context "with an order" do
       let(:printable) { create :invoiceable_order }
-
-      it "creates a PDF" do
-        expect(subject.pdf).to match(/%PDF-1.\d/)
-      end
-    end
-
-    context "with a reimbursement" do
-      let!(:printable) { create :reimbursement, total: 100 }
 
       it "creates a PDF" do
         expect(subject.pdf).to match(/%PDF-1.\d/)
