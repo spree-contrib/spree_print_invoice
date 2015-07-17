@@ -11,9 +11,5 @@ module Spree
         self.send("#{key}=", value)
       end
     end
-
-    def equality_key
-      [sku, name, options_text, price]
-    end
   end
 end

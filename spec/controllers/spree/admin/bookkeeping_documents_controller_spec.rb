@@ -21,18 +21,6 @@ RSpec.describe Spree::Admin::BookkeepingDocumentsController, type: :controller d
         expect(response).to be_success
       end
     end
-
-    context 'a reimbursement invoice' do
-      # In real life, the reimbursement total is only set when the reimbursement is performed.
-      # That performance needs a refund reason and more bureaucracy, I'll just stub things here.
-      let!(:reimbursement) { create(:reimbursement, total: 100) }
-      let(:pdf) { reimbursement.invoice }
-
-      it 'renders pdf' do
-        spree_get :show, id: pdf.id, format: :pdf
-        expect(response).to be_success
-      end
-    end
   end
 
   describe '#index as :html' do
