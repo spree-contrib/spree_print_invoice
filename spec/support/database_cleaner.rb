@@ -14,6 +14,7 @@ RSpec.configure do |config|
   end
 
   config.before do
+    Spree::Preferences::Store.instance.clear_cache
     DatabaseCleaner.start
   end
 
