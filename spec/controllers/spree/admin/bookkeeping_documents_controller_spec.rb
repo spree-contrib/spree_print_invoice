@@ -6,9 +6,26 @@ RSpec.describe Spree::Admin::BookkeepingDocumentsController, type: :controller d
       let!(:order) { create(:invoiceable_order) }
       let(:pdf) { order.invoice }
 
-      it 'renders pdf' do
-        spree_get :show, id: pdf.id, format: :pdf
-        expect(response).to be_success
+      context "with a valid image as logo" do
+        before do
+          Spree::PrintInvoice::Config.set_preference(:logo_path, "logo/spree_50.png")
+        end
+
+        it 'renders pdf' do
+          spree_get :show, id: pdf.id, format: :pdf
+          expect(response).to be_success
+        end
+      end
+
+      context "with an invalid path as logo" do
+        before do
+          Spree::PrintInvoice::Config.set_preference(:logo_path, "this/is/not_an_exisiting_image.png")
+        end
+
+        it 'renders pdf' do
+          spree_get :show, id: pdf.id, format: :pdf
+          expect(response).to be_success
+        end
       end
     end
 
