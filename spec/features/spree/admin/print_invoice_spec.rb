@@ -45,7 +45,7 @@ RSpec.feature 'Admin print invoice feature' do
             )
           )
       end
-    end #spec/dummy/tmp/order_prints/invoices/invoice-R679215110.pdf
+    end # spec/dummy/tmp/order_prints/invoices/invoice-R679215110.pdf
   end
 
   context 'with Config.store_pdf set to false' do

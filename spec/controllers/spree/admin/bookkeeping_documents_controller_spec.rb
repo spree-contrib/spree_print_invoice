@@ -6,9 +6,26 @@ RSpec.describe Spree::Admin::BookkeepingDocumentsController, type: :controller d
       let!(:order) { create(:invoiceable_order) }
       let(:pdf) { order.invoice }
 
-      it 'renders pdf' do
-        spree_get :show, id: pdf.id, format: :pdf
-        expect(response).to be_success
+      context 'with a valid image as logo' do
+        before do
+          Spree::PrintInvoice::Config.set_preference(:logo_path, 'logo/spree_50.png')
+        end
+
+        it 'renders pdf' do
+          spree_get :show, id: pdf.id, format: :pdf
+          expect(response).to be_success
+        end
+      end
+
+      context 'with an invalid path as logo' do
+        before do
+          Spree::PrintInvoice::Config.set_preference(:logo_path, 'this/is/not_an_exisiting_image.png')
+        end
+
+        it 'renders pdf' do
+          spree_get :show, id: pdf.id, format: :pdf
+          expect(response).to be_success
+        end
       end
     end
 
@@ -26,26 +43,26 @@ RSpec.describe Spree::Admin::BookkeepingDocumentsController, type: :controller d
   describe '#index as :html' do
     let(:bills_address) do
       create :address,
-        firstname: 'Bill',
-        lastname: 'Murray'
+             firstname: 'Bill',
+             lastname: 'Murray'
     end
 
     let(:joes_address) do
       create :address,
-        firstname: 'Joe',
-        lastname: 'Dalton'
+             firstname: 'Joe',
+             lastname: 'Dalton'
     end
 
     let!(:bills_order) do
       create :invoiceable_order,
-        ship_address: bills_address,
-        email: 'bill@murray.net'
+             ship_address: bills_address,
+             email: 'bill@murray.net'
     end
 
     let!(:joes_order) do
       create :invoiceable_order,
-        ship_address: joes_address,
-        email: 'joe@dalton.com'
+             ship_address: joes_address,
+             email: 'joe@dalton.com'
     end
 
     context 'from the Spree::Orders#edit view' do
@@ -81,6 +98,5 @@ RSpec.describe Spree::Admin::BookkeepingDocumentsController, type: :controller d
         expect(assigns(:bookkeeping_documents)).to include(bills_order.invoice)
       end
     end
-
   end
 end

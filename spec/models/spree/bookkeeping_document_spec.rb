@@ -20,7 +20,7 @@ RSpec.describe Spree::BookkeepingDocument do
   end
 
   describe '#view' do
-    it {is_expected.to respond_to(:view) }
+    it { is_expected.to respond_to(:view) }
 
     context 'with an order as printable' do
       it 'is an Spree::Printables::Order::InvoiceView'  do
