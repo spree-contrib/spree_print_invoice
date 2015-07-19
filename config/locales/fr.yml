@@ -1,7 +1,8 @@
 ---
 fr:
   spree:
-    print_it:
+    print_invoice:
+      documents: Documents
       buttons:
         invoice: Imprimer Facture
         packaging_slip: Imprimer Bordereau de Livraison
@@ -38,5 +39,5 @@ fr:
       vat: "TVA non applicable, article 293 B du Code Général des Impôts"
       pdf_legend: PDF
       invoice_slip_legend: Facture / Slip
-      invoice_number: 'Numéro de facture %{number}'
-      invoice_date: Date de la facture
+      invoice_number: 'Numéro de facture: %{number}'
+      invoice_date: 'Date de la facture: %{date}'

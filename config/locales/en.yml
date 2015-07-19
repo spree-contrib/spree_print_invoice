@@ -2,10 +2,18 @@
 en:
   spree:
     print_invoice:
+      documents: Documents
+      documents_for_order: "Documents for order %{order_number}"
       buttons:
         invoice: Print Invoice
         packaging_slip: Print Packaging Slip
-      invoice: Customer Invoice
+      order_invoice: Invoice
+      order_packaging_slip: Packaging Slip
+      reimbursement_invoice: Reimbursement Invoice
+      invoice: Invoice
+      invoices: Invoices
+      reimbursement: Reimbursement
+      reimbursements: Reimbursements
       item_name: Item Name or SKU
       of: of
       via: via
@@ -38,5 +46,5 @@ en:
       vat: VAT not applicable
       pdf_legend: PDF Layout
       invoice_slip_legend: Invoice/Slip Content
-      invoice_number: 'Invoice Number %{number}'
-      invoice_date: Invoice Date
+      invoice_number: 'Invoice number: %{number}'
+      invoice_date: 'Invoice date: %{date}'

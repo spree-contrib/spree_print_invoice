@@ -6,10 +6,6 @@ module SpreePrintInvoice
 
     config.autoload_paths += %W(#{config.root}/lib)
 
-    initializer 'spree.print_invoice.mimetypes' do
-      Mime::Type.register('application/pdf', :pdf) unless Mime::Type.lookup_by_extension(:pdf)
-    end
-
     initializer 'spree.print_invoice.environment', before: :load_config_initializers do
       Spree::PrintInvoice::Config = Spree::PrintInvoiceSetting.new
     end
