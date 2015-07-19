@@ -22,7 +22,6 @@ module Spree
     before_create :copy_view_attributes
     after_save :after_save_actions
 
-
     # An instance of Spree::Printable::#{YourModel}::#{YourTemplate}Presenter
     #
     def view
@@ -110,7 +109,7 @@ module Spree
     def render_pdf
       ActionView::Base.new(
         ActionController::Base.view_paths,
-        {doc: self}
+        doc: self
       ).render(template: "#{template_name}.pdf.prawn")
     end
 
@@ -118,7 +117,7 @@ module Spree
 
     def copy_view_attributes
       PERSISTED_ATTRS.each do |attr|
-        self.send("#{attr}=", view.send(attr))
+        send("#{attr}=", view.send(attr))
       end
     end
 

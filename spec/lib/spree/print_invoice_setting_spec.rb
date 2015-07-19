@@ -52,7 +52,7 @@ RSpec.describe Spree::PrintInvoiceSetting do
     it 'has a list of font sizes' do
       expect(subject.font_sizes).to be_a(Array)
       expect(subject.font_sizes.first).to be(7)
-      expect(subject.font_sizes.last).to  be(14)
+      expect(subject.font_sizes.last).to be(14)
     end
   end
 

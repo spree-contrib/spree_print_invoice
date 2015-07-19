@@ -20,9 +20,7 @@ RSpec.feature 'Admin print invoice feature' do
       let(:pdf_file_path) { 'spec/fixtures/invoice.pdf' }
 
       before do
-        allow_any_instance_of(Spree::BookkeepingDocument).
-          to receive(:file_path).
-          and_return(pdf_file_path)
+        allow_any_instance_of(Spree::BookkeepingDocument).to receive(:file_path).and_return(pdf_file_path)
       end
 
       scenario 'sends the stored file.' do
@@ -42,8 +40,8 @@ RSpec.feature 'Admin print invoice feature' do
         expect(page.body).to eq(
           IO.binread(
             Rails.root.join('..', '..', 'spec', 'dummy', 'tmp', 'order_prints', 'invoices', "invoice-#{order.number}.pdf")
-            )
           )
+        )
       end
     end # spec/dummy/tmp/order_prints/invoices/invoice-R679215110.pdf
   end

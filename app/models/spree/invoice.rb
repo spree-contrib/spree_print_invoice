@@ -66,7 +66,7 @@ class Spree::Invoice < ActiveRecord::Base
   def render_pdf(template)
     ActionView::Base.new(
       ActionController::Base.view_paths,
-      {invoice: self, template: template}
+      invoice: self, template: template
     ).render(template: "spree/admin/invoices/#{template}.pdf.prawn")
   end
 

@@ -8,7 +8,7 @@ module Spree
 
     def initialize(args = {})
       args.each do |key, value|
-        self.send("#{key}=", value)
+        send("#{key}=", value)
       end
     end
   end
