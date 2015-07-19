@@ -23,3 +23,7 @@ Style/StringLiterals:
 # It say we should use fail over raise..yeah right
 Style/SignalException:
   Enabled: false
+
+# Too hard refactor for now ..
+Style/ClassAndModuleChildren:
+  Enabled: false
