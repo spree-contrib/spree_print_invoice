@@ -70,7 +70,7 @@ module Spree
     # = The PDF file_name
     #
     def file_name
-      @_file_name ||= "#{template}-#{printable.number}.pdf"
+      @_file_name ||= "#{template}-D#{id}-N#{number}.pdf"
     end
 
     # = PDF file path

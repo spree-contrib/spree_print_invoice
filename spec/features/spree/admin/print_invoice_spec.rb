@@ -39,7 +39,7 @@ RSpec.feature 'Admin print invoice feature' do
         visit spree.admin_bookkeeping_document_path(id: order.invoice.id, format: :pdf)
         expect(page.body).to eq(
           IO.binread(
-            Rails.root.join('..', '..', 'spec', 'dummy', 'tmp', 'order_prints', 'invoices', "invoice-#{order.number}.pdf")
+            Rails.root.join('..', '..', 'spec', 'dummy', 'tmp', 'order_prints', 'invoices', "invoice-D#{order.invoice.id}-N#{order.invoice.number}.pdf")
           )
         )
       end
