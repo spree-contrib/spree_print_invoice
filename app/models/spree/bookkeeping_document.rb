@@ -118,7 +118,7 @@ module Spree
       # storage_path
 
       ## Max S3 test
-      file_path
+      # file_path
     end
 
     # Renders the prawn template for give template name in context of ActionView.
@@ -166,7 +166,6 @@ module Spree
 
         # => MAX S3 Test
         pdf_upload = File.open(file_path, 'wb') { |f| f.puts render_pdf }
-
       end
 
       IO.binread(file_path)
