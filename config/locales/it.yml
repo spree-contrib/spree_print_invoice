@@ -32,6 +32,8 @@ it:
         font_face: Font Face
         font_size: Font Size
         logo_scale: Scala Logo
+        store_pdf: Salva File PDF
+        storage_path: Percorso salvataggio PDF
       settings: Impostazioni Stampa Ricevuta
       unprocessed: Non processato
       vat: IVA non applicabile
