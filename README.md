@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/spree-contrib/spree_print_invoice.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_print_invoice)
 [![Code Climate](https://codeclimate.com/github/spree-contrib/spree_print_invoice/badges/gpa.svg)](https://codeclimate.com/github/spree-contrib/spree_print_invoice)
 
-This extension provides a model `Spree::BookkeepingDocument`, which generates PDFs from any Spree Object with the help of View objects that translate between different object structures and PDF templates. It stores a "number" string as well as first name, last name, email, and amount with each document for convenient searching in the backend.
+This extension provides a model `Spree::BookkeepingDocument`, which generates PDFs from any Spree Object with the help of View objects that translate between different object structures and PDF templates. It stores a `number` string as well as first `name`, `last name`, `email`, and `amount` with each document for convenient searching in the backend.
 
 The Gem contains an example implementation for Invoices for `Spree::Orders`. The basic structure looks like this:
 
@@ -13,6 +13,20 @@ The Gem contains an example implementation for Invoices for `Spree::Orders`. The
 
 In the `Spree::Admin::OrdersController#edit` view, you'll find an additional button `Documents`, where all printable documents will be listed. Additionally, you can find all available Documents in a "Documents" tab in the main menu.
 
+There's also the option of adding a custom `Spree::PrintInvoice::NumberFormatter` class. If that class is present, it will be used to generate a custom string from the next invoice number, complete with (for example) a prefix and padding. Here's what we did:
+
+```
+class Spree::PrintInvoice::NumberFormatter
+  # Generates a number that starts with INV- and pads the invoice number to ten digits
+  def initialize(number)
+    @number = number
+  end
+
+  def to_s
+    "INV-#{'%.10d' % number}"
+  end
+end
+```
 
 ## Installation
 
