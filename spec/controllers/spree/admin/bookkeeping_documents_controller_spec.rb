@@ -1,6 +1,12 @@
 RSpec.describe Spree::Admin::BookkeepingDocumentsController, type: :controller do
   stub_authorization!
 
+  before do
+    reset_spree_preferences
+    user = build(:admin_user)
+    allow(controller).to receive(:try_spree_current_user).and_return(user)
+  end
+
   describe '#show as :pdf' do
     context 'an order invoice' do
       let!(:order) { create(:invoiceable_order) }
