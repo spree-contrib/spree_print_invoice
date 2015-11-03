@@ -3,7 +3,7 @@ RSpec.describe Spree::Admin::PrintInvoiceSettingsController, type: :controller d
 
   before do
     reset_spree_preferences
-    user = create(:admin_user)
+    user = build(:admin_user)
     allow(controller).to receive(:try_spree_current_user).and_return(user)
   end
 
