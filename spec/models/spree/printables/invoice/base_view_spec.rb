@@ -68,14 +68,17 @@ RSpec.describe Spree::Printables::Invoice::BaseView do
   end
 
   describe '#number' do
+    before do
+      allow(Spree::PrintInvoice::Config).to receive(:next_number) { 77 }
+    end
+
     context 'when using sequential numbers' do
       before do
         allow(Spree::PrintInvoice::Config).to receive(:use_sequential_number?) { true }
       end
 
-      it 'calls next_number on Spree::PrintInvoice::Config' do
-        expect(Spree::PrintInvoice::Config).to receive(:next_number)
-        base_view.number
+      it 'returns the next number without additional formatting' do
+        expect(base_view.number).to eq(77)
       end
     end
 
@@ -87,6 +90,24 @@ RSpec.describe Spree::Printables::Invoice::BaseView do
       it 'calls the printables number' do
         expect(printable).to receive(:number)
         base_view.number
+      end
+    end
+
+    context 'when using a NumberFormatter' do
+      before do
+        class Spree::PrintInvoice::NumberFormatter
+          def initialize(number)
+            @number = number
+          end
+
+          def to_s
+            "MY-NICE-INVOICE-#{@number}"
+          end
+        end
+      end
+
+      it 'returns a nicely formatted number' do
+        expect(base_view.number).to eq("MY-NICE-INVOICE-77")
       end
     end
   end
