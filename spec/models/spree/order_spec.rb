@@ -89,5 +89,17 @@ RSpec.describe Spree::Order do
         end
       end
     end
+
+    describe 'destruction' do
+      let!(:order) { create :invoiceable_order }
+
+      context "when destroyed" do
+        it 'also destroys the invoice' do
+          expect(Spree::BookkeepingDocument.count).not_to eq(0)
+          order.destroy!
+          expect(Spree::BookkeepingDocument.count).to eq(0)
+        end
+      end
+    end
   end
 end
