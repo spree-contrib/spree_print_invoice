@@ -27,9 +27,9 @@ pt-BR:
         use_page_numbers: Usar numeração de página
         anomaly_message: Mensagem de anomalia do pedido
         footer_left: Conteúdo do Rodapé esquerdo
-        footer_left_info: Ex.: Nome e endereço da empresa.
+        footer_left_info: 'Ex.: Nome e endereço da empresa.'
         footer_right: Conteúdo do Rodapé direito
-        footer_right_info: Ex.: Telefone e etc.
+        footer_right_info: 'Ex.: Telefone e etc.'
         page_layout: Layout da página
         page_size: Tamanho da folha
         print_buttons: Botões de Impressão
