@@ -1,6 +1,10 @@
 ---
 pt-BR:
   spree:
+    admin:
+      tab:
+        invoices: Faturas
+        packaging_slips: Notas de Pacote
     print_invoice:
       date: Data
       documents: Documentos
