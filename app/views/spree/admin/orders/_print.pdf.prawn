@@ -5,7 +5,8 @@ require 'prawn/layout'
 font @font_face
 
 im = Rails.application.assets.find_asset(Spree::PrintInvoice::Config[:print_invoice_logo_path])
-image im.pathname, :at => [0,720], :scale => logo_scale
+logo_path = Sprockets::VERSION.start_with? '2' ? im : im.pathname
+image logo_path, :at => [0,720], :scale => logo_scale
 
 fill_color "E99323"
 if @hide_prices
