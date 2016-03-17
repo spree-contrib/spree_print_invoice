@@ -5,7 +5,7 @@ define_grid(columns: 5, rows: 8, gutter: 10)
 
 # HEADER
 repeat(:all) do
-  im = Rails.application.assets.find_asset(Spree::PrintInvoice::Config[:logo_path])
+  im = asset_path(Spree::PrintInvoice::Config[:logo_path])
 
   if im && File.exist?(im.pathname)
     image im.filename, vposition: :top, height: 40, scale: Spree::PrintInvoice::Config[:logo_scale]
