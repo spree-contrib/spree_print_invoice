@@ -12,13 +12,13 @@ class CreateSpreeBookkeepingDocuments < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    Spree::Order.complete.where.not(invoice_number: nil).find_each do |order|
-      order.pdfs.create(
-        template: 'invoice',
-        number: order.invoice_number,
-        created_at: order.completed_at.to_date
-      )
-    end
+    # Spree::Order.complete.where.not(invoice_number: nil).find_each do |order|
+    #   order.pdfs.create(
+    #     template: 'invoice',
+    #     number: order.invoice_number,
+    #     created_at: order.completed_at.to_date
+    #   )
+    # end
 
     remove_column :spree_orders, :invoice_number, :string
   end

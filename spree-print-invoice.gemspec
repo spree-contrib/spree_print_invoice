@@ -1,13 +1,13 @@
 # coding: utf-8
-lib = File.expand_path('../lib/', __FILE__)
-$LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
+# lib = File.expand_path('../lib/', __FILE__)
+# $LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
 
-require 'spree_print_invoice/version'
+# require 'spree_print_invoice/version'
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_print_invoice'
-  s.version     = SpreePrintInvoice.version
+  s.version     = '3.0.1' #SpreePrintInvoice.version
   s.summary     = 'Print invoices and slips from Spree Commerce'
   s.description = s.summary
   s.required_ruby_version = '>= 2.1.0'
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_runtime_dependency 'prawn-rails', '~> 0.1.1'
-  s.add_runtime_dependency 'spree_core', '~> 3.1.0.beta'
+  s.add_runtime_dependency 'spree_core', '~> 3.0.1'
 
   s.add_development_dependency 'capybara', '~> 2.4.4'
   s.add_development_dependency 'poltergeist', '~> 1.5'

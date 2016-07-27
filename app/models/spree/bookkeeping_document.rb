@@ -15,6 +15,24 @@ module Spree
     # template should be a string, such as "invoice" or "packaging_slip"
     #
     belongs_to :printable, polymorphic: true
+
+    # MAX S3 test
+    has_attached_file :pdf_attachment,
+                      # styles: { invoice: "invoice", packaging_slip: "packaging_slip" },
+                      :storage => :s3,
+                      # :s3_credentials => "#{Rails.root}/config/aws.yml",
+                      :url => ':s3_domain_url',
+                      # :path => ":class/:attachment/:id/:style/:filename",
+                      :path => '/:rails_env/:class/:attachment/:id_partition/:template/:filename',
+                      :s3_credentials = {
+                        bucket:             ENV['S3_BUCKET_NAME'],        # \
+                        access_key_id:      ENV['AWS_ACCESS_KEY_ID'],     #  |- DO NOT replace this
+                        secret_access_key:  ENV['AWS_SECRET_ACCESS_KEY']  # /
+                      }
+    validates_attachment :pdf_attachment,
+          :presence => true,
+          content_type: 'application/pdf'
+
     validates :printable, :template, presence: true
     validates *PERSISTED_ATTRS, presence: true, if: -> { self.persisted? }
     scope :invoices, -> { where(template: 'invoice') }
@@ -76,7 +94,8 @@ module Spree
     # = PDF file path
     #
     def file_path
-      @_file_path ||= Rails.root.join(storage_path, "#{file_name}")
+      # @_file_path ||= Rails.root.join(storage_path, "#{file_name}") # => original method
+       @_file_path ||= pdf_attachment.url # => Max S3 test
     end
 
     # = PDF storage folder path for given template name
@@ -93,9 +112,13 @@ module Spree
     # Creates the folder if it's not present yet.
     #
     def storage_path
-      storage_path = Rails.root.join(Spree::PrintInvoice::Config.storage_path, template.pluralize)
-      FileUtils.mkdir_p(storage_path)
-      storage_path
+      # # => original method
+      # storage_path = Rails.root.join(Spree::PrintInvoice::Config.storage_path, template.pluralize)
+      # FileUtils.mkdir_p(storage_path)
+      # storage_path
+
+      ## Max S3 test
+      # file_path
     end
 
     # Renders the prawn template for give template name in context of ActionView.
@@ -139,10 +162,16 @@ module Spree
     #
     def send_or_create_pdf
       unless File.exist?(file_path)
-        File.open(file_path, 'wb') { |f| f.puts render_pdf }
+        # File.open(file_path, 'wb') { |f| f.puts render_pdf }  # => original method
+
+        # => MAX S3 Test
+        pdf_upload = File.open(file_path, 'wb') { |f| f.puts render_pdf }
       end
 
       IO.binread(file_path)
     end
   end
 end
+
+
+#MAX TO DO change filepath and IO
