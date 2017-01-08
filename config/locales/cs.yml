@@ -1,0 +1,57 @@
+---
+cs:
+  spree:
+    print_invoice:
+      date: Datum
+      document_type: Typ dokumentu
+      firstname: Jméno
+      lastname: Příjmení
+      order_number: Číslo objednávky
+      email: E-mail
+
+      documents: Dokumenty
+      documents_for_order: "Dokumenty pro objednávku %{order_number}"
+      buttons:
+        invoice: Vytisknout fakturu
+        packaging_slip: Print Packaging Slip
+      order_invoice: Faktura
+      order_packaging_slip: Packaging Slip
+      reimbursement_invoice: Reimbursement Invoice
+      invoice: Faktura
+      invoices: Faktury
+      reimbursement: Reimbursement
+      reimbursements: Reimbursements
+      item_name: Item Name or SKU
+      of: of
+      via: via
+      on_date: Order Date
+      packaging_slip: Packaging Slip
+      page: Page
+      payment_via: "%{gateway} Online Payment #%{number} on %{date}"
+      preferences:
+        next_number: Další číslo faktury
+        use_footer: Použít patičku
+        use_page_numbers: Použít čísla stránek
+        anomaly_message: Order Anomaly Message
+        footer_left: Left Footer Content
+        footer_left_info: E.g. Your company name and address.
+        footer_right: Right Footer Content
+        footer_right_info: E.g. Your phone and email address.
+        page_layout: Rorvržení stránky
+        page_size: Page Size
+        print_buttons: Print Buttons
+        print_buttons_info: Comma separated list.
+        logo_path: Print Invoice Logo Path
+        return_message: Order Return Message
+        font_face: Font Face
+        font_size: Font Size
+        logo_scale: Logo Scale
+        store_pdf: Store PDF files
+        storage_path: PDF storage path
+      settings: Nastavení tisknutelných faktur
+      unprocessed: Nezpracováno
+      vat: VAT not applicable
+      pdf_legend: PDF Layout
+      invoice_slip_legend: Invoice/Slip Content
+      invoice_number: 'Číslo faktury: %{number}'
+      invoice_date: 'Datum faktury: %{date}'
