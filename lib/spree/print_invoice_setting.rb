@@ -18,10 +18,12 @@ module Spree
 
     def self.additional_fonts
       @additional_font_faces ||= {
-        "DejaVuSans" => { :bold        => SpreePrintInvoice::Engine.root.join('data', 'fonts', 'DejaVuSans-Bold.ttf'),
-                          :italic      => SpreePrintInvoice::Engine.root.join('data', 'fonts', 'DejaVuSans-Oblique.ttf'),
-                          :bold_italic => SpreePrintInvoice::Engine.root.join('data', 'fonts', 'DejaVuSans-BoldOblique.ttf'),
-                          :normal      => SpreePrintInvoice::Engine.root.join('data', 'fonts', 'DejaVuSans.ttf') }
+        "DejaVuSans" => {
+          bold:        SpreePrintInvoice::Engine.root.join('data', 'fonts', 'DejaVuSans-Bold.ttf'),
+          italic:      SpreePrintInvoice::Engine.root.join('data', 'fonts', 'DejaVuSans-Oblique.ttf'),
+          bold_italic: SpreePrintInvoice::Engine.root.join('data', 'fonts', 'DejaVuSans-BoldOblique.ttf'),
+          normal:      SpreePrintInvoice::Engine.root.join('data', 'fonts', 'DejaVuSans.ttf')
+        }
       }
     end
 
