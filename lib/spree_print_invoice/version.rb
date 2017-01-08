@@ -9,7 +9,7 @@ module SpreePrintInvoice
 
   module VERSION
     MAJOR = 3
-    MINOR = 0
+    MINOR = 2
     TINY  = 0
     PRE   = 'beta'
 
