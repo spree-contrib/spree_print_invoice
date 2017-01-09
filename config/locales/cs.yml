@@ -1,6 +1,10 @@
 ---
 cs:
   spree:
+    admin:
+      tab:
+        invoices: Faktury
+        packaging_slips: Packaging Slips
     print_invoice:
       date: Datum
       document_type: Typ dokumentu
