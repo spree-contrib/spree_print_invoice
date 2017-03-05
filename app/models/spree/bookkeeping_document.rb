@@ -122,7 +122,7 @@ module Spree
     end
 
     # For a Spree::Order printable and an "invoice" template,
-    # you would get "spree/documents/order/invoice_view"
+    # you would get "spree/printables/order/invoice_view"
     # --> Spree::Printables::Order::InvoiceView
     #
     def view_class
