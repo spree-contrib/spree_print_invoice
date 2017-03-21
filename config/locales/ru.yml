@@ -7,7 +7,7 @@ ru:
       buttons:
         invoice: Напечатать счёт
         packaging_slip: Print Packaging Slip
-      order_invoice: Счёт
+      order_invoice: Заказ
       order_packaging_slip: Packaging Slip
       reimbursement_invoice: Reimbursement Invoice
       invoice: Счёт
@@ -31,20 +31,20 @@ ru:
         footer_right: Right Footer Content
         footer_right_info: E.g. Your phone and email address.
         page_layout: Page Layout
-        page_size: Page Size
+        page_size: Размер страницы
         print_buttons: Print Buttons
         print_buttons_info: Comma separated list.
         logo_path: Print Invoice Logo Path
         return_message: Order Return Message
-        font_face: Font Face
-        font_size: Font Size
+        font_face: Шрифт
+        font_size: Размер шрифта
         logo_scale: Logo Scale
-        store_pdf: Store PDF files
+        store_pdf: Сохранять PDF файлы
         storage_path: PDF storage path
       settings: Print Invoice Settings
       unprocessed: Unprocessed
       vat: VAT not applicable
       pdf_legend: PDF Layout
       invoice_slip_legend: Invoice/Slip Content
-      invoice_number: 'Номер счёта: %{number}'
-      invoice_date: 'Дата счёта: %{date}'
+      invoice_number: 'Номер заказа: %{number}'
+      invoice_date: 'Дата заказа: %{date}'
