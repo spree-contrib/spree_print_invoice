@@ -48,3 +48,10 @@ ru:
       invoice_slip_legend: Invoice/Slip Content
       invoice_number: 'Номер заказа: %{number}'
       invoice_date: 'Дата заказа: %{date}'
+      date: Дата
+      document_type: Тип документа
+      number: Номер
+      firstname: Имя
+      lastname: Фамилия
+      email: Email
+      total: Итого
