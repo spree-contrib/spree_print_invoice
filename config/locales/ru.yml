@@ -1,0 +1,50 @@
+---
+ru:
+  spree:
+    print_invoice:
+      documents: Документы
+      documents_for_order: "Документы для заказа %{order_number}"
+      buttons:
+        invoice: Напечатать счёт
+        packaging_slip: Print Packaging Slip
+      order_invoice: Счёт
+      order_packaging_slip: Packaging Slip
+      reimbursement_invoice: Reimbursement Invoice
+      invoice: Счёт
+      invoices: Счета
+      reimbursement: Reimbursement
+      reimbursements: Reimbursements
+      item_name: Название позиции или артикул
+      of: of
+      via: используя
+      on_date: Дата заказа
+      packaging_slip: Packaging Slip
+      page: Страница
+      payment_via: "%{gateway} Online Payment #%{number} on %{date}"
+      preferences:
+        next_number: Печатать следующий номер счёта
+        use_footer: Использовать Footer
+        use_page_numbers: Использовать номера страниц
+        anomaly_message: Order Anomaly Message
+        footer_left: Left Footer Content
+        footer_left_info: E.g. Your company name and address.
+        footer_right: Right Footer Content
+        footer_right_info: E.g. Your phone and email address.
+        page_layout: Page Layout
+        page_size: Page Size
+        print_buttons: Print Buttons
+        print_buttons_info: Comma separated list.
+        logo_path: Print Invoice Logo Path
+        return_message: Order Return Message
+        font_face: Font Face
+        font_size: Font Size
+        logo_scale: Logo Scale
+        store_pdf: Store PDF files
+        storage_path: PDF storage path
+      settings: Print Invoice Settings
+      unprocessed: Unprocessed
+      vat: VAT not applicable
+      pdf_legend: PDF Layout
+      invoice_slip_legend: Invoice/Slip Content
+      invoice_number: 'Номер счёта: %{number}'
+      invoice_date: 'Дата счёта: %{date}'
