@@ -1,0 +1,61 @@
+---
+pt-BR:
+  spree:
+    admin:
+      tab:
+        invoices: Faturas
+        packaging_slips: Notas de Pacote
+    print_invoice:
+      date: Data
+      documents: Documentos
+      documents_for_order: "Documentos para pedido %{order_number}"
+      document_type: Tipo de Documento
+      firstname: Nome
+      lastname: Sobrenome
+      number: Número
+      email: E-mail
+      total: Total
+      buttons:
+        invoice: Imprimir fatura
+        packaging_slip: Imprimir Nota de pacote
+      order_invoice: Fatura
+      order_packaging_slip: Nota de Pacote
+      reimbursement_invoice: Fatura de Reembolso
+      invoice: Fatura
+      invoices: Faturas
+      reimbursement: Reembolso
+      reimbursements: Reembolsos
+      item_name: Nome ou SKU
+      of: de
+      via: via
+      on_date: Data
+      packaging_slip: Nota de Pacote
+      page: Página
+      payment_via: "%{gateway}: pagamento #%{number} em %{date}"
+      preferences:
+        next_number: Imprimir próximo número do pedido
+        use_footer: Usar rodapé
+        use_page_numbers: Usar numeração de página
+        anomaly_message: Mensagem de anomalia do pedido
+        footer_left: Conteúdo do Rodapé esquerdo
+        footer_left_info: 'Ex.: Nome e endereço da empresa.'
+        footer_right: Conteúdo do Rodapé direito
+        footer_right_info: 'Ex.: Telefone e etc.'
+        page_layout: Layout da página
+        page_size: Tamanho da folha
+        print_buttons: Botões de Impressão
+        print_buttons_info: Separe por vírgulas os itens.
+        logo_path: Logotipo para a fatura
+        return_message: Mensagem de retorno do pedido
+        font_face: Fonte
+        font_size: Tamanho da Fonte
+        logo_scale: Tamanho do Logo
+        store_pdf: "Armazenar PDF's"
+        storage_path: "Caminho de armazenamento de PDF's"
+      settings: Configuração de Impressão de Fatura
+      unprocessed: Não processado
+      vat: VAT não aplicável
+      pdf_legend: Layout do PDF
+      invoice_slip_legend: Fatura/Pacote
+      invoice_number: 'Número da Fatura: %{number}'
+      invoice_date: 'Data da Fatura: %{date}'
