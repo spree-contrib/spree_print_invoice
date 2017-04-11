@@ -1,14 +1,21 @@
 ---
 ru:
+  activerecord:
+    models:
+      spree/bookkeeping_document:
+        one: Документ
+        few: Документа
+        many: Документов
+        other: Документы
   spree:
     print_invoice:
       documents: Документы
       documents_for_order: "Документы для заказа %{order_number}"
       buttons:
         invoice: Напечатать счёт
-        packaging_slip: Print Packaging Slip
+        packaging_slip: Распечатать упаковочный лист
       order_invoice: Заказ
-      order_packaging_slip: Packaging Slip
+      order_packaging_slip: Упаковочный лист
       reimbursement_invoice: Reimbursement Invoice
       invoice: Счёт
       invoices: Счета
@@ -18,7 +25,7 @@ ru:
       of: of
       via: используя
       on_date: Дата заказа
-      packaging_slip: Packaging Slip
+      packaging_slip: Упаковочный лист
       page: Страница
       payment_via: "%{gateway} Online Payment #%{number} on %{date}"
       preferences:
@@ -33,7 +40,7 @@ ru:
         page_layout: Page Layout
         page_size: Размер страницы
         print_buttons: Print Buttons
-        print_buttons_info: Comma separated list.
+        print_buttons_info: Список элементов, разделенных запятой.
         logo_path: Print Invoice Logo Path
         return_message: Order Return Message
         font_face: Шрифт
