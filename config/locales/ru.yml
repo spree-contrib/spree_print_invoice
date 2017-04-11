@@ -8,6 +8,11 @@ ru:
         many: Документов
         other: Документы
   spree:
+    printable_number: Номер
+    admin:
+      tab:
+        invoices: Заказы
+        packaging_slips: Упаковочные листы        
     print_invoice:
       documents: Документы
       documents_for_order: "Документы для заказа %{order_number}"
