@@ -1,4 +1,4 @@
-class CreateSpreeBookkeepingDocuments < ActiveRecord::Migration
+class CreateSpreeBookkeepingDocuments < SpreeExtension::Migration[4.2]
   def up
     create_table :spree_bookkeeping_documents do |t|
       t.references :printable, polymorphic: true
