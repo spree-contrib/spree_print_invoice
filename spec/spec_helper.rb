@@ -36,3 +36,4 @@ RSpec.configure do |config|
 end
 
 Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |file| require file }
+Spree::Core::Engine.eager_load! # temporary fix for problem with loading Spree::Stock::ContentItem class
