@@ -1,6 +1,6 @@
 # Contributing
 
-Spree Print Invoice is an open source project and we encourage contributions. Please see the [contributors guidelines](http://spreecommerce.com/documentation/contributing_to_spree.html) for more information before contributing.
+Spree Print Invoice is an open source project and we encourage contributions. Please see the [contributors guidelines](https://github.com/spree/spree/blob/master/.github/CONTRIBUTING.md) for more information before contributing.
 
 In the spirit of [free software][1], **everyone** is encouraged to help improve this project.
 
