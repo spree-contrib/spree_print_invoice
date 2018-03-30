@@ -49,7 +49,7 @@ module Spree
     end
 
     def shipping_methods
-      shipments.map(&:shipping_method).map(&:name)
+      shipments.map(&:shipping_method).reject(&:nil?).map(&:name)
     end
 
     def number
