@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :invoiceable_order, class: Spree::Order do
     user
     bill_address
