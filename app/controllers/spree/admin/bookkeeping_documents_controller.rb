@@ -23,8 +23,10 @@ module Spree
       end
 
       def refresh
-        @order.bookkeeping_documents.delete_all
-        @order.invoice_for_order
+        unless @order.nil?
+          @order.bookkeeping_documents.delete_all
+          @order.invoice_for_order
+        end
         redirect_to action: 'index'
       end
 
