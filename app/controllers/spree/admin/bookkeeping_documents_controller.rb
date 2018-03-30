@@ -22,6 +22,12 @@ module Spree
         @bookkeeping_documents = @bookkeeping_documents.page(params[:page] || 1).per(10)
       end
 
+      def refresh
+        @order.bookkeeping_documents.delete_all
+        @order.invoice_for_order
+        redirect_to action: 'index'
+      end
+
       private
 
       def order_focused?
