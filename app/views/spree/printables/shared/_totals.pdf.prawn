@@ -19,7 +19,7 @@ totals << [pdf.make_cell(content: Spree.t(:order_total)), invoice.display_total.
 
 # Payments
 total_payments = 0.0
-invoice.payments.each do |payment|
+invoice.payments.completed.each do |payment|
   totals << [
     pdf.make_cell(
       content: Spree.t(:payment_via,
