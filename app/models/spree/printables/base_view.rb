@@ -1,8 +1,5 @@
-include Forwardable
-
 module Spree
   class Printables::BaseView
-    extend Forwardable
     extend Spree::DisplayMoney
 
     attr_reader :printable

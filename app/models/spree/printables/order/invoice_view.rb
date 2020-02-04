@@ -1,14 +1,15 @@
+# frozen_string_literal: true
+
 module Spree
   class Printables::Order::InvoiceView < Printables::Invoice::BaseView
-    def_delegators :@printable,
-                   :email,
-                   :bill_address,
-                   :ship_address,
-                   :tax_address,
-                   :item_total,
-                   :total,
-                   :payments,
-                   :shipments
+    delegate  :tax_address, to: :@printable
+    delegate  :item_total, to: :@printable
+    delegate  :total, to: :@printable
+    delegate  :payments, to: :@printable
+    delegate  :shipments, to: :@printable
+    delegate  :email, to: :@printable
+    delegate  :bill_address, to: :@printable
+    delegate  :ship_address, to: :@printable
 
     def items
       printable.line_items.map do |item|
