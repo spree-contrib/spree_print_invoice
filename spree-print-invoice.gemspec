@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_runtime_dependency 'prawn-rails', '~> 0.1.1'
-  s.add_runtime_dependency 'spree_core', '>= 3.1.0', '< 4.0'
+  s.add_runtime_dependency 'spree_core', '>= 3.1.0', '< 5.0'
   s.add_runtime_dependency 'spree_extension'
 
   s.add_development_dependency 'capybara'
