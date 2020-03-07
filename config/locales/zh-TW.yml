@@ -1,0 +1,50 @@
+---
+zh-TW:
+  spree:
+    print_invoice:
+      documents: 所有文件
+      documents_for_order: "訂單 %{order_number} 的所有文件"
+      buttons:
+        invoice: 列印單據
+        packaging_slip: 列印裝箱單
+      order_invoice: 單據
+      order_packaging_slip: 裝箱單
+      reimbursement_invoice: 核銷單據
+      invoice: 單據
+      invoices: 所有單據
+      reimbursement: 核銷
+      reimbursements: 所有核銷
+      item_name: 項目名稱或 SKU
+      of: 的
+      via: 藉由
+      on_date: 訂購日期
+      packaging_slip: 單據
+      page: 頁面
+      payment_via: "於 %{date} 藉由 %{gateway} #%{number} 付款"
+      preferences:
+        next_number: 列印單據的下一筆數字
+        use_footer: 使用頁尾
+        use_page_numbers: 使用頁碼
+        anomaly_message: 訂單異常訊息
+        footer_left: 左側頁尾訊息
+        footer_left_info: 例如：公司名稱或地址
+        footer_right: 右側頁尾訊息
+        footer_right_info: 例如：電話或 Email 
+        page_layout: 頁面版型
+        page_size: 頁面尺寸
+        print_buttons: 列印按鈕
+        print_buttons_info: 使用逗點分隔
+        logo_path: 列印單據時 logo 的位置
+        return_message: 訂單退回訊息
+        font_face: 字體
+        font_size: 字型
+        logo_scale: Logo 比例
+        store_pdf: 儲存 PDF 檔案
+        storage_path: PDF 儲存路徑
+      settings: 列印單據設定
+      unprocessed: 尚未處理
+      vat: 稅率不可
+      pdf_legend: PDF 版型
+      invoice_slip_legend: 單據/裝箱單的說明
+      invoice_number: '單據號碼: %{number}'
+      invoice_date: '單據產生時間: %{date}'
