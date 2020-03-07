@@ -48,3 +48,10 @@ zh-TW:
       invoice_slip_legend: 單據/裝箱單的說明
       invoice_number: '單據號碼: %{number}'
       invoice_date: '單據產生時間: %{date}'
+      date: 日期
+      document_type: 文件類型
+      number: 編號
+      firstname: 名字
+      lastname: 姓氏
+      email: Email
+      total: 總額
