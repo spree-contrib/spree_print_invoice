@@ -1,0 +1,4 @@
+<ul id="sidebar-documents" class="border-top bg-white collapse nav nav-pills nav-stacked" data-hook="admin_document_sub_tabs">
+  <%= configurations_sidebar_menu_item(Spree.t(:invoices), spree.admin_bookkeeping_documents_path(q: { template_eq: 'invoice' })) %>
+  <%= configurations_sidebar_menu_item(Spree.t(:packaging_slips), spree.admin_bookkeeping_documents_path(q: { template_eq: 'packaging_slip' })) %>
+</ul>
