@@ -16,6 +16,17 @@ module Spree
     preference :store_pdf,        :boolean, default: false
     preference :storage_path,     :string,  default: 'tmp/invoice_prints'
 
+    def self.additional_fonts
+      @additional_font_faces ||= {
+        "DejaVuSans" => {
+          bold:        SpreePrintInvoice::Engine.root.join('data', 'fonts', 'DejaVuSans-Bold.ttf'),
+          italic:      SpreePrintInvoice::Engine.root.join('data', 'fonts', 'DejaVuSans-Oblique.ttf'),
+          bold_italic: SpreePrintInvoice::Engine.root.join('data', 'fonts', 'DejaVuSans-BoldOblique.ttf'),
+          normal:      SpreePrintInvoice::Engine.root.join('data', 'fonts', 'DejaVuSans.ttf')
+        }
+      }
+    end
+
     def page_sizes
       ::PDF::Core::PageGeometry::SIZES.keys
     end
@@ -36,7 +47,7 @@ module Spree
     def font_faces
       ::Prawn::Font::AFM::BUILT_INS.reject do |font|
         font =~ /zapf|symbol|bold|italic|oblique/i
-      end
+      end + self.class.additional_fonts.keys
     end
 
     def font_sizes

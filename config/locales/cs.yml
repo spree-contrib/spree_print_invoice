@@ -1,21 +1,28 @@
 ---
-en:
+cs:
   spree:
     admin:
       tab:
-        invoices: Invoices
+        invoices: Faktury
         packaging_slips: Packaging Slips
     print_invoice:
-      documents: Documents
-      documents_for_order: "Documents for order %{order_number}"
+      date: Datum
+      document_type: Typ dokumentu
+      firstname: Jméno
+      lastname: Příjmení
+      order_number: Číslo objednávky
+      email: E-mail
+
+      documents: Dokumenty
+      documents_for_order: "Dokumenty pro objednávku %{order_number}"
       buttons:
-        invoice: Print Invoice
+        invoice: Vytisknout fakturu
         packaging_slip: Print Packaging Slip
-      order_invoice: Invoice
+      order_invoice: Faktura
       order_packaging_slip: Packaging Slip
       reimbursement_invoice: Reimbursement Invoice
-      invoice: Invoice
-      invoices: Invoices
+      invoice: Faktura
+      invoices: Faktury
       reimbursement: Reimbursement
       reimbursements: Reimbursements
       item_name: Item Name or SKU
@@ -26,15 +33,15 @@ en:
       page: Page
       payment_via: "%{gateway} Online Payment #%{number} on %{date}"
       preferences:
-        next_number: Print Invoice Next Number
-        use_footer: Use Footer
-        use_page_numbers: Use Page Numbers
+        next_number: Další číslo faktury
+        use_footer: Použít patičku
+        use_page_numbers: Použít čísla stránek
         anomaly_message: Order Anomaly Message
         footer_left: Left Footer Content
         footer_left_info: E.g. Your company name and address.
         footer_right: Right Footer Content
         footer_right_info: E.g. Your phone and email address.
-        page_layout: Page Layout
+        page_layout: Rorvržení stránky
         page_size: Page Size
         print_buttons: Print Buttons
         print_buttons_info: Comma separated list.
@@ -45,10 +52,10 @@ en:
         logo_scale: Logo Scale
         store_pdf: Store PDF files
         storage_path: PDF storage path
-      settings: Print Invoice Settings
-      unprocessed: Unprocessed
+      settings: Nastavení tisknutelných faktur
+      unprocessed: Nezpracováno
       vat: VAT not applicable
       pdf_legend: PDF Layout
       invoice_slip_legend: Invoice/Slip Content
-      invoice_number: 'Invoice number: %{number}'
-      invoice_date: 'Invoice date: %{date}'
+      invoice_number: 'Číslo faktury: %{number}'
+      invoice_date: 'Datum faktury: %{date}'
