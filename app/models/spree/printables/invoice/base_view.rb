@@ -1,4 +1,4 @@
-include Forwardable
+require 'forwardable'
 
 module Spree
   class Printables::Invoice::BaseView < Printables::BaseView
@@ -49,7 +49,7 @@ module Spree
     end
 
     def shipping_methods
-      shipments.map(&:shipping_method).map(&:name)
+      shipments.map(&:shipping_method).reject(&:nil?).map(&:name)
     end
 
     def number

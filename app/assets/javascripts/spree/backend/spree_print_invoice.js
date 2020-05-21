@@ -1,2 +1,2 @@
 //= require spree/backend
-//= require ./print_invoice_settings
+//= require ./print_invoice_configuration

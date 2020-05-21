@@ -52,7 +52,7 @@ pt-BR:
         logo_scale: Tamanho do Logo
         store_pdf: "Armazenar PDF's"
         storage_path: "Caminho de armazenamento de PDF's"
-      settings: Configuração de Impressão de Fatura
+      configuration: Configuração de Impressão de Fatura
       unprocessed: Não processado
       vat: VAT não aplicável
       pdf_legend: Layout do PDF

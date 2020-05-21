@@ -1,6 +1,10 @@
 <% if order_focused? %>
   <%= render partial: 'spree/admin/shared/order_tabs', locals: { current: :documents } %>
 
+  <% content_for :page_actions do %>
+    <%= button_link_to(Spree.t(@bookkeeping_documents.any? ? :refresh_documents : :create_documents), spree.refresh_admin_order_bookkeeping_documents_path(@order), { class: "btn-primary", icon: @bookkeeping_documents.any? ? 'refresh' :'add', id: 'refresh-bookkeeping' }) %>
+  <% end %>
+
   <% content_for :page_title do %>
     <%= t(:documents_for_order, scope: [:spree, :print_invoice], order_number: @order.number) %>
   <% end %>
@@ -86,15 +90,15 @@
 <% end %>
 
 <% if @bookkeeping_documents.any? %>
-  <table class="table" id="listing_orders" data-hook>
+  <table class="table table-responsive" id="listing_orders" data-hook>
     <thead>
       <tr data-hook="printables_index_headers">
-        <th><%= sort_link @search, :created_at, Spree.t(:date, scope: [:print_invoice]) %></th>
-        <th><%= sort_link @search, :template, Spree.t(:document_type, scope: [:print_invoice]) %></th>
-        <th><%= sort_link @search, :number, Spree.t(:order_number, scope: [:print_invoice]) %></th>
-        <th><%= sort_link @search, :firstname, Spree.t(:firstname, scope: [:print_invoice]) %></th>
-        <th><%= sort_link @search, :lastname, Spree.t(:lastname, scope: [:print_invoice]) %></th>
-        <th><%= sort_link @search, :email, Spree.t(:email, scope: [:print_invoice]) %></th>
+        <th><%= sort_link @search, :created_at, Spree.t(:date, scope: :print_invoice) %></th>
+        <th><%= sort_link @search, :template, Spree.t(:document_type, scope: :print_invoice) %></th>
+        <th><%= sort_link @search, :number, Spree.t(:order_number, scope: :print_invoice) %></th>
+        <th><%= sort_link @search, :firstname, Spree.t(:firstname, scope: :print_invoice) %></th>
+        <th><%= sort_link @search, :lastname, Spree.t(:lastname, scope: :print_invoice) %></th>
+        <th><%= sort_link @search, :email, Spree.t(:email, scope: :print_invoice) %></th>
         <th><%= sort_link @search, :total, Spree.t(:total) %></th>
         <th data-hook="admin_orders_index_header_actions" class="actions"></th>
       </tr>
@@ -103,14 +107,14 @@
     <% @bookkeeping_documents.each do |bookkeeping_document| %>
       <tr data-hook="admin_printables_index_rows" class="<%= cycle('odd', 'even') %>">
         <td><%= l bookkeeping_document.created_at.to_date %></td>
-        <td><%= I18n.t(bookkeeping_document.document_type, scope: [:spree, :print_invoice]) %></td>
+        <td><%= Spree.t(bookkeeping_document.document_type, scope: [:print_invoice]) %></td>
         <td><%= bookkeeping_document.number %></td>
         <td><%= bookkeeping_document.firstname %></td>
         <td><%= bookkeeping_document.lastname %></td>
         <td><%= bookkeeping_document.email %></td>
         <td><%= bookkeeping_document.display_total.to_html %></td>
         <td class='actions actions-1' data-hook="admin_orders_index_row_actions">
-          <%= link_to_with_icon "file", "", admin_bookkeeping_document_path(bookkeeping_document, format: :pdf), title: "show_bookkeeping_document_#{bookkeeping_document.id}", no_text: true %>
+          <%= link_to_with_icon "file", "", admin_bookkeeping_document_path(bookkeeping_document, format: :pdf), title: "show_bookkeeping_document_#{bookkeeping_document.id}", target: :blank, no_text: true %>
         </td>
       </tr>
     <% end %>

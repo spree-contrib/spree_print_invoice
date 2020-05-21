@@ -1,8 +1,8 @@
-RSpec.feature 'Settings for Print Invoice' do
+RSpec.feature 'Configuration for Print Invoice' do
   stub_authorization!
 
-  scenario 'can update settings', :js do
-    visit spree.edit_admin_print_invoice_settings_path
+  scenario 'can update configuration', :js do
+    visit spree.edit_admin_print_invoice_configuration_path
 
     check 'use_footer'
     check 'use_page_numbers'
@@ -24,23 +24,23 @@ RSpec.feature 'Settings for Print Invoice' do
 
     click_button 'Update'
 
-    setting = Spree::PrintInvoiceSetting.new
+    configuration = Spree::PrintInvoiceConfiguration.new
 
-    expect(setting.preferred_use_footer).to be(true)
-    expect(setting.preferred_use_page_numbers).to be(true)
+    expect(configuration.preferred_use_footer).to be(true)
+    expect(configuration.preferred_use_page_numbers).to be(true)
 
-    expect(setting.preferred_logo_path).to eq '/somewhere/logo.png'
-    expect(setting.preferred_next_number).to eq 200
-    expect(setting.preferred_page_size).to eq 'A4'
-    expect(setting.preferred_page_layout).to eq 'portrait'
-    expect(setting.preferred_font_face).to eq 'Courier'
-    expect(setting.preferred_font_size).to eq 11
-    expect(setting.preferred_logo_scale).to eq 99
-    expect(setting.preferred_footer_left).to eq 'left text..'
-    expect(setting.preferred_footer_right).to eq 'right text..'
-    expect(setting.preferred_return_message).to eq 'Return message..'
-    expect(setting.preferred_anomaly_message).to eq 'Anomaly message..'
-    expect(setting.preferred_store_pdf).to be(true)
-    expect(setting.preferred_storage_path).to eq 'pdf/files'
+    expect(configuration.preferred_logo_path).to eq '/somewhere/logo.png'
+    expect(configuration.preferred_next_number).to eq 200
+    expect(configuration.preferred_page_size).to eq 'A4'
+    expect(configuration.preferred_page_layout).to eq 'portrait'
+    expect(configuration.preferred_font_face).to eq 'Courier'
+    expect(configuration.preferred_font_size).to eq 11
+    expect(configuration.preferred_logo_scale).to eq 99
+    expect(configuration.preferred_footer_left).to eq 'left text..'
+    expect(configuration.preferred_footer_right).to eq 'right text..'
+    expect(configuration.preferred_return_message).to eq 'Return message..'
+    expect(configuration.preferred_anomaly_message).to eq 'Anomaly message..'
+    expect(configuration.preferred_store_pdf).to be(true)
+    expect(configuration.preferred_storage_path).to eq 'pdf/files'
   end
 end

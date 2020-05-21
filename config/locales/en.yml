@@ -45,10 +45,17 @@ en:
         logo_scale: Logo Scale
         store_pdf: Store PDF files
         storage_path: PDF storage path
-      settings: Print Invoice Settings
+      configuration: Print Invoice Configuration
       unprocessed: Unprocessed
       vat: VAT not applicable
       pdf_legend: PDF Layout
       invoice_slip_legend: Invoice/Slip Content
       invoice_number: 'Invoice number: %{number}'
       invoice_date: 'Invoice date: %{date}'
+      date: Date
+      number: Number
+      firstname: First name
+      lastname: Last name
+      document_type: Document type
+      email: Email
+      total: Total

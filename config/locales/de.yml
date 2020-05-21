@@ -45,7 +45,7 @@ de:
         logo_scale: Logo-Skalierung
         store_pdf: PDF-Dateien speichern
         storage_path: Speicherort für PDF-Dateien
-      settings: Rechnungsdruck-Einstellungen
+      configuration: Rechnungsdruck-Einstellungen
       unprocessed: offene
       vat: MwSt. nicht anwendbar
       pdf_legend: PDF-Grundeinstellungen

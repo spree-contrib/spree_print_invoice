@@ -1,4 +1,4 @@
-RSpec.describe Spree::PrintInvoiceSetting do
+RSpec.describe Spree::PrintInvoiceConfiguration do
   subject { described_class.new }
 
   describe '#page_sizes' do

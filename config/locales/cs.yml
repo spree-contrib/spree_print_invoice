@@ -52,7 +52,7 @@ cs:
         logo_scale: Logo Scale
         store_pdf: Store PDF files
         storage_path: PDF storage path
-      settings: Nastavení tisknutelných faktur
+      configuration: Nastavení tisknutelných faktur
       unprocessed: Nezpracováno
       vat: VAT not applicable
       pdf_legend: PDF Layout

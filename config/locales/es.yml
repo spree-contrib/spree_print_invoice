@@ -36,7 +36,7 @@ es:
         font_size: Tamaño de letra
         store_pdf: Store PDF files
         storage_path: PDF storage path
-      settings: Configuración de impresión de facturas
+      configuration: Configuración de impresión de facturas
       unprocessed: No procesado
       vat: IVA no aplicable
       pdf_legend: PDF

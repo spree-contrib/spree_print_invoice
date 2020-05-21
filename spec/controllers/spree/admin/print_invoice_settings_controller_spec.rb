@@ -1,4 +1,4 @@
-RSpec.describe Spree::Admin::PrintInvoiceSettingsController, type: :controller do
+RSpec.describe Spree::Admin::PrintInvoiceConfigurationsController, type: :controller do
   stub_authorization!
 
   before do
@@ -8,9 +8,9 @@ RSpec.describe Spree::Admin::PrintInvoiceSettingsController, type: :controller d
   end
 
   context '#update' do
-    it 'redirects to print invoice settings page' do
+    it 'redirects to print invoice configuration page' do
       spree_put :update, preferences: { logo_path: 4 }
-      expect(response).to redirect_to spree.edit_admin_print_invoice_settings_path
+      expect(response).to redirect_to spree.edit_admin_print_invoice_configuration_path
     end
 
     context 'For parameters:

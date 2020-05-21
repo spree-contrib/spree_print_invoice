@@ -4,7 +4,7 @@ font_style = {
 }
 
 prawn_document(force_download: true) do |pdf|
-  pdf.font_families.update(Spree::PrintInvoiceSetting.additional_fonts)
+  pdf.font_families.update(Spree::PrintInvoiceConfiguration.additional_fonts)
 
   pdf.define_grid(columns: 5, rows: 8, gutter: 10)
   pdf.font font_style[:face], size: font_style[:size]

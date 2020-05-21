@@ -55,7 +55,7 @@ module Spree
     # If the file is already present it returns this
     # else it generates a new file, stores and returns this.
     #
-    # You can disable the pdf file generation with setting
+    # You can disable the pdf file generation with configuration
     #
     #   Spree::PrintInvoice::Config.store_pdf to false
     #

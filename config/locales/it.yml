@@ -34,7 +34,7 @@ it:
         logo_scale: Scala Logo
         store_pdf: Salva File PDF
         storage_path: Percorso salvataggio PDF
-      settings: Impostazioni Stampa Ricevuta
+      configuration: Impostazioni Stampa Ricevuta
       unprocessed: Non processato
       vat: IVA non applicabile
       pdf_legend: Layout PDF

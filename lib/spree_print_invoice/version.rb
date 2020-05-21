@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SpreePrintInvoice
   module_function
 
@@ -8,8 +10,8 @@ module SpreePrintInvoice
   end
 
   module VERSION
-    MAJOR = 3
-    MINOR = 2
+    MAJOR = 4
+    MINOR = 0
     TINY  = 0
     PRE   = 'beta'
 
