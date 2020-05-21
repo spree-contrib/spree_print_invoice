@@ -2,6 +2,13 @@
 en:
   spree:
     print_invoice:
+      date: Date
+      number: Number
+      firstname: First name
+      lastname: Last name
+      document_type: Document type
+      email: Email
+      total: Total
       documents: Documents
       documents_for_order: "Documents for order %{order_number}"
       buttons:
