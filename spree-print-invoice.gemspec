@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_runtime_dependency 'coffee-rails'
   s.add_runtime_dependency 'prawn-rails', '~> 0.1.1'
   s.add_runtime_dependency 'spree_core', '>= 3.1.0', '< 5.0'
   s.add_runtime_dependency 'spree_extension'
@@ -34,7 +33,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'database_cleaner'
-  s.add_development_dependency 'coffee-rails'
   s.add_development_dependency 'sass-rails'
   s.add_development_dependency 'pdf-inspector'
   s.add_development_dependency 'ffaker'
