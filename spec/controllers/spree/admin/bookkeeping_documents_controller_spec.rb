@@ -18,8 +18,8 @@ RSpec.describe Spree::Admin::BookkeepingDocumentsController, type: :controller d
         end
 
         it 'renders pdf' do
-          spree_get :show, id: pdf.id, format: :pdf
-          expect(response).to be_success
+          get :show, params: { id: pdf.id, format: :pdf }
+          expect(response).to be_successful
         end
       end
 
@@ -29,8 +29,8 @@ RSpec.describe Spree::Admin::BookkeepingDocumentsController, type: :controller d
         end
 
         it 'renders pdf' do
-          spree_get :show, id: pdf.id, format: :pdf
-          expect(response).to be_success
+          get :show, params: { id: pdf.id, format: :pdf }
+          expect(response).to be_successful
         end
       end
     end
@@ -40,8 +40,8 @@ RSpec.describe Spree::Admin::BookkeepingDocumentsController, type: :controller d
       let(:pdf) { order.packaging_slip }
 
       it 'renders pdf' do
-        spree_get :show, id: pdf.id, format: :pdf
-        expect(response).to be_success
+        get :show, params: { id: pdf.id, format: :pdf }
+        expect(response).to be_successful
       end
     end
   end
@@ -75,7 +75,7 @@ RSpec.describe Spree::Admin::BookkeepingDocumentsController, type: :controller d
       before { spree_get(:index, order_id: bills_order.number) }
 
       it 'returns 200 success' do
-        expect(response).to be_success
+        expect(response).to be_successful
       end
 
       it 'assigns @bookkeeping_documents' do
@@ -92,7 +92,7 @@ RSpec.describe Spree::Admin::BookkeepingDocumentsController, type: :controller d
       before {  spree_get(:index) }
 
       it 'returns 200 success' do
-        expect(response).to be_success
+        expect(response).to be_successful
       end
 
       it 'assigns @bookkeeping_documents' do

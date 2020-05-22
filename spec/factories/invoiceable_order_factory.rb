@@ -3,16 +3,16 @@ FactoryBot.define do
     user
     bill_address
     ship_address
-    completed_at nil
+    completed_at { Time.now }
     email { user.email }
-    state 'confirm'
+    state { "confirm" }
     store
 
     transient do
-      line_items_count 1
-      line_items_price 10
-      shipment_cost 100
-      shipping_method_filter Spree::ShippingMethod::DISPLAY_ON_FRONT_END
+      line_items_count { 1 }
+      line_items_price { 10 }
+      shipment_cost { 100 }
+      shipping_method_filter { Spree::ShippingMethod::DISPLAY_ON_FRONT_END }
     end
 
     after(:create) do |order, evaluator|
