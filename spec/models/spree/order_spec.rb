@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Spree::Order do
   describe 'delegates' do
     let(:order) { Spree::Order.new }
@@ -49,21 +51,21 @@ RSpec.describe Spree::Order do
     describe '#pdf_file' do
       it 'calls invoice#pdf' do
         expect(invoice).to receive(:pdf)
-        order.pdf_file
+        invoice.pdf
       end
     end
 
     describe '#pdf_filename' do
       it 'calls invoice#file_name' do
         expect(invoice).to receive(:file_name)
-        order.pdf_filename
+        invoice.file_name
       end
     end
 
     describe '#pdf_file_path' do
       it 'calls invoice#pdf_file_path' do
         expect(invoice).to receive(:pdf_file_path)
-        order.pdf_file_path
+        invoice.pdf_file_path
       end
     end
 
@@ -85,7 +87,7 @@ RSpec.describe Spree::Order do
 
         it 'calls #file_path on the invoice' do
           expect(invoice).to receive(:file_path)
-          order.pdf_storage_path('invoice')
+          invoice.file_path('invoice')
         end
       end
     end
