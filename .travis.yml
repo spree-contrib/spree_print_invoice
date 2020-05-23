@@ -1,26 +1,33 @@
-sudo: required
-dist: trusty
+dist: bionic
 
-before_script: "bundle install"
+language: ruby
+
+before_install:
+  - mysql -u root -e "GRANT ALL ON *.* TO 'travis'@'%';"
+  - bundler install
+
+rvm:
+  - 2.7.1
+  # - 2.6.6
+  # - 2.5.8
+
+env:
+  # - DB=postgres
+  - DB=mysql
+
+gemfile:
+  # - gemfiles/spree_4.0.gemfile
+  # - gemfiles/spree_4.1.gemfile
+  - gemfiles/spree_master.gemfile
+
 script:
   - bundle exec rake test_app
   - bundle exec rake spec
 
-env:
-  - DB=mysql
-  - DB=postgres
-
-language: ruby
-
-rvm:
-  - 2.3.1
-  - 2.2.7
-
-gemfile:
-  - gemfiles/spree_3.1.gemfile
-  - gemfiles/spree_3.2.gemfile
-  - gemfiles/spree_3.3.gemfile
-  - gemfiles/spree_master.gemfile
-
-before_install:
-  - mysql -u root -e "GRANT ALL ON *.* TO 'travis'@'%';"
+addons:
+  apt:
+    packages:
+    - mysql-server-5.6
+    - mysql-client-core-5.6
+    - mysql-client-5.6
+  # postgresql: 9.6

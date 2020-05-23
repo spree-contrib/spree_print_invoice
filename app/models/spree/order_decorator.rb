@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+class Spree::OrderDecorator; end
+
 Spree::Order.class_eval do
   has_many :bookkeeping_documents, as: :printable, dependent: :destroy
   has_one :invoice, -> { where(template: 'invoice') },
