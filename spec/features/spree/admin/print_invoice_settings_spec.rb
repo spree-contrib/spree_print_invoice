@@ -9,10 +9,12 @@ RSpec.feature 'Settings for Print Invoice' do
 
     fill_in 'logo_path', with: '/somewhere/logo.png'
     fill_in 'next_number', with: '200'
-    select 'A4', from: 'Page Size'
-    select 'portrait', from: 'Page Layout'
-    select 'Courier', from: 'Font Face'
-    select '11', from: 'Font Size'
+
+    select_select2_dropdown(:page_size, 'A4')
+    select_select2_dropdown(:page_layout, 'portrait')
+    select_select2_dropdown(:font_face, 'Courier')
+    select_select2_dropdown(:font_size, '11')
+
     fill_in 'logo_scale', with: '99'
     fill_in 'footer_left', with: 'left text..'
     fill_in 'footer_right', with: 'right text..'

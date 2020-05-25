@@ -1,0 +1,36 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12.1
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Ruby
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.7.x
+    - name: Install PostgreSQL Client
+      run: sudo apt-get -yqq install libpq-dev postgresql-client sqlite3 libsqlite3-dev
+    - name: Install Bundler
+      run: gem install bundler
+    - name: Install Dependencies
+      run: bundle install
+    - name: Set ENV Variables
+      run: |
+        echo ::set-env name=PGHOST::localhost
+        echo ::set-env name=PGUSER::postgres
+        echo ::set-env name=RAILS_ENV::test
+    - name: Install dummy app
+      run: bundle exec rake test_app
+    - name: Run Tests
+      run: bundle exec rspec spec
