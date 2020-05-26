@@ -105,4 +105,13 @@ RSpec.describe Spree::Admin::BookkeepingDocumentsController, type: :controller d
       end
     end
   end
+  describe '#refresh as :html' do
+    let!(:order) { create(:invoiceable_order) }
+
+    it 'create/refresh documents' do
+      get :refresh, params: { order_id: order.number }
+      expect(response).to redirect_to(action: :index)
+      expect(order.bookkeeping_documents).to exist
+    end
+  end
 end
