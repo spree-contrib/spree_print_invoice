@@ -1,4 +1,4 @@
-include Forwardable
+require 'forwardable'
 
 module Spree
   class Printables::Invoice::BaseView < Printables::BaseView
