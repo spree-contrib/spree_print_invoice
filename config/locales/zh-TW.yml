@@ -1,0 +1,61 @@
+---
+zh-TW:
+  spree:
+    admin:
+      tab:
+        invoices: 收據
+        packaging_slips: 裝箱單
+    print_invoice:
+      configuration: 收據列印設定
+      documents: 收據與裝箱單
+      documents_for_order: "訂單：%{order_number}的收據與裝箱單"
+      buttons:
+        invoice: 列印收據
+        packaging_slip: 列印
+      order_invoice: 收據
+      order_packaging_slip: 裝箱單
+      reimbursement_invoice: 退貨收據
+      invoice: 收據
+      invoices: 收據
+      reimbursement: 退換貨
+      reimbursements: 退換貨
+      item_name: 商品名稱或 SKU
+      of: 的
+      via: 運送方式
+      on_date: 訂單日期
+      packaging_slip: 裝箱單
+      page: 頁數
+      payment_via: "由%{gateway}於%{date}付款，付款代號：#%{number}"
+      preferences:
+        next_number: 下張收據開始號碼
+        use_footer: 使用頁尾
+        use_page_numbers: 使用頁碼
+        anomaly_message: 訂單異常訊息
+        footer_left: 左側頁尾內容
+        footer_left_info: "左側頁尾資訊例如：公司名以及地址"
+        footer_right: 右側頁尾內容
+        footer_right_info: "右側頁尾資訊例如：電話與 Email"
+        page_layout: 版型
+        page_size: 尺寸
+        print_buttons: 列印按鈕
+        print_buttons_info: 列印清單，由英文半形逗點分隔
+        logo_path: 圖片
+        return_message: 訂單退換貨資訊
+        font_face: 字體
+        font_size: 字的大小
+        logo_scale: 圖片的縮放比例
+        store_pdf: 儲存成 PDF
+        storage_path: PDF 儲存的位置
+      unprocessed: 尚未處理
+      vat: 不需要增值稅
+      pdf_legend: PDF 版型
+      invoice_slip_legend: 收據/裝箱單內容
+      invoice_number: '收據號碼: %{number}'
+      invoice_date: '收據開立日期: %{date}'
+      date: 日期
+      document_type: 文件類型
+      order_number: 訂單編號
+      firstname: 名字
+      lastname: 姓氏
+      email: Email
+      total: 總計

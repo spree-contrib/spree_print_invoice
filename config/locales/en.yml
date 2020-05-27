@@ -1,6 +1,10 @@
 ---
 en:
   spree:
+    admin:
+      tab:
+        invoices: Invoices
+        packaging_slips: Packaging Slips
     print_invoice:
       documents: Documents
       documents_for_order: "Documents for order %{order_number}"
@@ -48,3 +52,10 @@ en:
       invoice_slip_legend: Invoice/Slip Content
       invoice_number: 'Invoice number: %{number}'
       invoice_date: 'Invoice date: %{date}'
+      date: Date
+      number: Number
+      firstname: First name
+      lastname: Last name
+      document_type: Document type
+      email: Email
+      total: Total
