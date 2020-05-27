@@ -86,16 +86,16 @@
 <% end %>
 
 <% if @bookkeeping_documents.any? %>
-  <table class="table" id="listing_orders" data-hook>
+  <table class="table table-responsive-lg" id="listing_orders" data-hook>
     <thead>
       <tr data-hook="printables_index_headers">
-        <th><%= sort_link @search, :created_at, I18n.t(:date, scope: [:spree, :print_invoice]) %></th>
-        <th><%= sort_link @search, :template, I18n.t(:document_type, scope: [:spree, :print_invoice]) %></th>
-        <th><%= sort_link @search, :number, I18n.t(:number, scope: [:spree, :print_invoice]) %></th>
-        <th><%= sort_link @search, :firstname, I18n.t(:firstname, scope: [:spree, :print_invoice]) %></th>
-        <th><%= sort_link @search, :lastname, I18n.t(:lastname, scope: [:spree, :print_invoice]) %></th>
-        <th><%= sort_link @search, :email, I18n.t(:email, scope: [:spree, :print_invoice]) %></th>
-        <th><%= sort_link @search, :total, I18n.t(:total, scope: [:spree, :print_invoice]) %></th>
+        <th><%= sort_link @search, :created_at, Spree.t(:date, scope: :print_invoice) %></th>
+        <th><%= sort_link @search, :template, Spree.t(:document_type, scope: :print_invoice) %></th>
+        <th><%= sort_link @search, :number, Spree.t(:order_number, scope: :print_invoice) %></th>
+        <th><%= sort_link @search, :firstname, Spree.t(:firstname, scope: :print_invoice) %></th>
+        <th><%= sort_link @search, :lastname, Spree.t(:lastname, scope: :print_invoice) %></th>
+        <th><%= sort_link @search, :email, Spree.t(:email, scope: :print_invoice) %></th>
+        <th><%= sort_link @search, :total, Spree.t(:total) %></th>
         <th data-hook="admin_orders_index_header_actions" class="actions"></th>
       </tr>
     </thead>
@@ -103,7 +103,7 @@
     <% @bookkeeping_documents.each do |bookkeeping_document| %>
       <tr data-hook="admin_printables_index_rows" class="<%= cycle('odd', 'even') %>">
         <td><%= l bookkeeping_document.created_at.to_date %></td>
-        <td><%= I18n.t(bookkeeping_document.document_type, scope: [:spree, :print_invoice]) %></td>
+        <td><%= Spree.t(bookkeeping_document.document_type, scope: [:print_invoice]) %></td>
         <td><%= bookkeeping_document.number %></td>
         <td><%= bookkeeping_document.firstname %></td>
         <td><%= bookkeeping_document.lastname %></td>

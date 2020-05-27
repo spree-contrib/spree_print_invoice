@@ -1,12 +1,12 @@
 <% if can? :show, Spree::Order %>
   <% if @order && @order.completed_at? %>
-      <li class='<%= "#{'active' if current == :documents}" %>'>
-        <%=
-          link_to_with_icon 'file',
-            Spree.t(:documents, scope: :print_invoice),
-            spree.admin_order_bookkeeping_documents_path(@order),
-            title: title
-        %>
-      </li>
+    <li data-hook="admin_order_tabs_bookkeeping_documents">
+      <%=
+        link_to_with_icon 'file',
+                          Spree.t(:documents, scope: [:print_invoice]),
+                          spree.admin_order_bookkeeping_documents_path(@order),
+                          { title: title, class: "nav-link #{'active' if current == :documents}" }
+      %>
+    </li>
   <% end %>
 <% end %>
