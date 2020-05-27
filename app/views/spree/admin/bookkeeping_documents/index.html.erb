@@ -1,6 +1,10 @@
 <% if order_focused? %>
   <%= render partial: 'spree/admin/shared/order_tabs', locals: { current: :documents } %>
 
+  <% content_for :page_actions do %>
+    <%= button_link_to(Spree.t(@bookkeeping_documents.any? ? :refresh_documents : :create_documents), spree.refresh_admin_order_bookkeeping_documents_path(@order), { class: "btn-primary", icon: @bookkeeping_documents.any? ? 'refresh' :'add', id: 'refresh-bookkeeping' }) %>
+  <% end %>
+
   <% content_for :page_title do %>
     <%= t(:documents_for_order, scope: [:spree, :print_invoice], order_number: @order.number) %>
   <% end %>
