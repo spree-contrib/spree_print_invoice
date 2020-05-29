@@ -44,7 +44,7 @@ RSpec.describe Spree::PrintInvoiceSetting do
   describe '#font_faces' do
     it 'has a list of font faces' do
       expect(subject.font_faces).to be_a(Array)
-      expect(subject.font_faces).to match_array %w(Courier Helvetica Times-Roman)
+      expect(subject.font_faces).to match_array %w(Courier Helvetica Times-Roman DejaVuSans msjh msyh)
     end
   end
 
