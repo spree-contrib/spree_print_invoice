@@ -6,7 +6,6 @@ zh-TW:
         invoices: 收據
         packaging_slips: 裝箱單
     print_invoice:
-      configuration: 收據列印設定
       documents: 收據與裝箱單
       documents_for_order: "訂單：%{order_number}的收據與裝箱單"
       buttons:
@@ -46,6 +45,7 @@ zh-TW:
         logo_scale: 圖片的縮放比例
         store_pdf: 儲存成 PDF
         storage_path: PDF 儲存的位置
+      settings: 收據列印設定
       unprocessed: 尚未處理
       vat: 不需要增值稅
       pdf_legend: PDF 版型
