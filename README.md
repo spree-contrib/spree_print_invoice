@@ -1,6 +1,6 @@
 # Spree Print Invoice
 
-[![Build Status](https://travis-ci.org/spree-contrib/spree_print_invoice.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_print_invoice)
+[![Build Status](https://travis-ci.com/machiyami/spree_print_invoice.svg?branch=master)](https://travis-ci.com/machiyami/spree_print_invoice)
 [![Code Climate](https://codeclimate.com/github/spree-contrib/spree_print_invoice/badges/gpa.svg)](https://codeclimate.com/github/spree-contrib/spree_print_invoice)
 
 This extension provides a model `Spree::BookkeepingDocument`, which generates PDFs from any Spree Object with the help of View objects that translate between different object structures and PDF templates. It stores a "number" string as well as first name, last name, email, and amount with each document for convenient searching in the backend.
