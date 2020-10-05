@@ -11,7 +11,7 @@ module Spree
                    class_name: 'Spree::BookkeepingDocument',
                    as: :printable
 
-      base.delegate :number, :date, to: :invoice, prefix: true
+      base.delegate :number, :date, to: :invoice, prefix: true, allow_nil: true
 
       # Create a new invoice before transitioning to complete
       #
