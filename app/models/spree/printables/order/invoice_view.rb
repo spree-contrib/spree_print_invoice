@@ -8,6 +8,7 @@ module Spree
                    :item_total,
                    :total,
                    :payments,
+                   :refunds,
                    :shipments
 
     def items
