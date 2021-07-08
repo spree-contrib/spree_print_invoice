@@ -54,7 +54,7 @@ module Spree
 
     def number
       if use_sequential_number?
-        Spree::PrintInvoice::Config.next_number
+        formatted_number
       else
         printable.number
       end
@@ -65,6 +65,18 @@ module Spree
     end
 
     private
+
+    def formatted_number
+      if (Object.const_get('::Spree::PrintInvoice::NumberFormatter') rescue false)
+        ::Spree::PrintInvoice::NumberFormatter.new(next_number).to_s
+      else
+        next_number
+      end
+    end
+
+    def next_number
+      Spree::PrintInvoice::Config.next_number
+    end
 
     def increase_invoice_number!
       Spree::PrintInvoice::Config.increase_invoice_number!
