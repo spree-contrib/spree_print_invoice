@@ -17,6 +17,7 @@ module Spree
         # Massaging the params for the index view like Spree::Admin::Orders#index
         params[:q] ||= {}
         @search = Spree::BookkeepingDocument.ransack(params[:q])
+        @is_a_purchase_order   = @order.try(:po?)
         @bookkeeping_documents = @search.result
         @bookkeeping_documents = @bookkeeping_documents.where(printable: @order) if order_focused?
         @bookkeeping_documents = @bookkeeping_documents.page(params[:page] || 1).per(10)
