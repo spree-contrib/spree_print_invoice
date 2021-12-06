@@ -1,7 +1,7 @@
 module Spree
   class PrintInvoiceSetting < Preferences::Configuration
     preference :next_number,      :integer, default: nil
-    preference :logo_path,        :string,  default: Spree::Config[:admin_interface_logo]
+    preference :logo_path,        :string,  default: 'admin/logo.png'
     preference :page_size,        :string,  default: 'LETTER'
     preference :page_layout,      :string,  default: 'landscape'
     preference :footer_left,      :string,  default: ''
