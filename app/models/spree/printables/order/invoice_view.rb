@@ -8,6 +8,7 @@ module Spree
                    :item_total,
                    :total,
                    :payments,
+                   :refunds,
                    :shipments
 
     def items
@@ -15,7 +16,7 @@ module Spree
         Spree::Printables::Invoice::Item.new(
           sku: item.variant.sku,
           name: item.variant.name,
-          options_text: item.variant.options_text,
+          options_text: item.variant.front_end_options_text,
           price: item.price,
           quantity: item.quantity,
           total: item.total
