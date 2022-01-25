@@ -1,0 +1,69 @@
+---
+ru:
+  activerecord:
+    models:
+      spree/bookkeeping_document:
+        one: Документ
+        few: Документа
+        many: Документов
+        other: Документы
+  spree:
+    printable_number: Номер
+    admin:
+      tab:
+        invoices: Заказы
+        packaging_slips: Упаковочные листы        
+    print_invoice:
+      documents: Документы
+      documents_for_order: "Документы для заказа %{order_number}"
+      buttons:
+        invoice: Напечатать счёт
+        packaging_slip: Распечатать упаковочный лист
+      order_invoice: Заказ
+      order_packaging_slip: Упаковочный лист
+      reimbursement_invoice: Reimbursement Invoice
+      invoice: Счёт
+      invoices: Счета
+      reimbursement: Компенсация
+      reimbursements: Компенсации
+      item_name: Название позиции или артикул
+      of: of
+      via: используя
+      on_date: Дата заказа
+      packaging_slip: Упаковочный лист
+      page: Страница
+      payment_via: "%{gateway} Online Payment #%{number} on %{date}"
+      preferences:
+        next_number: Печатать следующий номер счёта
+        use_footer: Использовать Footer
+        use_page_numbers: Использовать номера страниц
+        anomaly_message: Сообщение при неправильном/некорректном заказе
+        footer_left: Содержимое левой части футера
+        footer_left_info: Напр., название компании и адрес.
+        footer_right: Содержимое правой части футера
+        footer_right_info: Напр., телефон и email.
+        page_layout: Расположение страницы
+        page_size: Размер страницы
+        print_buttons: Print Buttons
+        print_buttons_info: Список элементов, разделенных запятой.
+        logo_path: Путь к логотипу
+        return_message: Сообщение при возврате заказа
+        font_face: Шрифт
+        font_size: Размер шрифта
+        logo_scale: Масштаб логотипа
+        store_pdf: Сохранять PDF файлы
+        storage_path: PDF storage path
+      settings: Настройки генерации документов
+      unprocessed: Unprocessed
+      vat: VAT not applicable
+      pdf_legend: Шаблон PDF
+      invoice_slip_legend: Содержимое документов
+      invoice_number: 'Номер заказа: %{number}'
+      invoice_date: 'Дата заказа: %{date}'
+      date: Дата
+      document_type: Тип документа
+      number: Номер
+      firstname: Имя
+      lastname: Фамилия
+      email: Email
+      total: Итого
