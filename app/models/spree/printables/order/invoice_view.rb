@@ -24,11 +24,11 @@ module Spree
     end
 
     def firstname
-      printable.tax_address.firstname
+      (printable.tax_address || printable.bill_address).firstname
     end
 
     def lastname
-      printable.tax_address.lastname
+      (printable.tax_address || printable.bill_address).lastname
     end
 
     private
