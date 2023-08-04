@@ -1,0 +1,93 @@
+<% content_for :page_title do %>
+  <%= page_header_back_button spree.admin_orders_path %>
+  <%= @order.number %>
+<% end %>
+
+<% content_for :page_tabs do %>
+  <% if ((can? :update, @order) && (@order.shipments.size.zero? || @order.shipments.shipped.size.zero?)) %>
+    <li class="nav-item" data-hook='admin_order_tabs_cart_details'>
+      <%= link_to_with_icon 'cart-check.svg',
+        Spree.t(:cart),
+        cart_admin_order_url(@order),
+        class: "#{'active' if current == :cart} nav-link" %>
+    </li>
+  <% end %>
+
+  <% if can? :update, @order %>
+    <li class="nav-item" data-hook='admin_order_tabs_channel_details'>
+      <%= link_to_with_icon 'funnel.svg',
+        Spree.t(:channel),
+        channel_admin_order_url(@order),
+        class: "#{'active' if current == :channel} nav-link" %>
+    </li>
+  <% end %>
+
+  <% if can?(:update, @order) && @order.checkout_steps.include?("address") %>
+    <li class="nav-item" data-hook='admin_order_tabs_customer_details'>
+      <%= link_to_with_icon 'person-lines-fill.svg',
+        Spree.t(:customer),
+        spree.admin_order_customer_url(@order),
+        class: "#{'active' if current == :customer_details} nav-link" %>
+    </li>
+  <% end %>
+
+  <% if can? :update, @order %>
+    <li class="nav-item" data-hook='admin_order_tabs_shipment_details'>
+      <%= link_to_with_icon 'truck.svg',
+        Spree.t(:shipments),
+        edit_admin_order_url(@order),
+        class: "#{'active' if current == :shipments} nav-link" %>
+    </li>
+  <% end %>
+
+  <% if can? :index, Spree::Adjustment %>
+    <li class="nav-item" data-hook='admin_order_tabs_adjustments'>
+      <%= link_to_with_icon 'adjust.svg',
+        Spree.t(:adjustments),
+        spree.admin_order_adjustments_url(@order),
+        class: "#{'active' if current == :adjustments} nav-link" %>
+    </li>
+  <% end %>
+
+  <% if can?(:index, Spree::Payment) %>
+    <li class="nav-item" data-hook='admin_order_tabs_payments'>
+      <%= link_to_with_icon 'credit-card.svg',
+        Spree.t(:payments),
+        spree.admin_order_payments_url(@order),
+        class: "#{'active' if current == :payments} nav-link" %>
+    </li>
+  <% end %>
+
+  <% if can? :index, Spree::ReturnAuthorization %>
+    <% if @order.completed? %>
+      <li class="nav-item" data-hook='admin_order_tabs_return_authorizations'>
+        <%= link_to_with_icon 'enter.svg',
+          Spree.t(:return_authorizations),
+          spree.admin_order_return_authorizations_url(@order),
+          class: "#{'active' if current == :return_authorizations} nav-link" %>
+      </li>
+    <% end %>
+  <% end %>
+
+  <% if can? :index, Spree::CustomerReturn %>
+    <% if @order.completed? %>
+      <li class="nav-item">
+        <%= link_to_with_icon 'returns.svg',
+          Spree.t(:customer_returns),
+          spree.admin_order_customer_returns_url(@order),
+          class: "#{'active' if current == :customer_returns} nav-link" %>
+      </li>
+    <% end %>
+  <% end %>
+
+  <% if can? :update, @order %>
+    <li class="nav-item" data-hook='admin_order_tabs_state_changes'>
+      <%= link_to_with_icon 'calendar3.svg',
+        Spree::StateChange.human_attribute_name(:state_changes),
+        spree.admin_order_state_changes_url(@order),
+        class: "#{'active' if current == :state_changes} nav-link" %>
+    </li>
+  <% end %>
+
+  <%= render  partial: 'spree/admin/orders/print_invoice_order_tab_links', locals: { current: current } %>
+<% end %>
