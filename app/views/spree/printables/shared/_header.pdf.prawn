@@ -1,6 +1,7 @@
+require 'uri'
 im = (Rails.application.assets || ::Sprockets::Railtie.build_environment(Rails.application)).find_asset(Spree::PrintInvoice::Config[:logo_path])
-
-if im && File.exist?(im.pathname)
+im_path = URI(im.uri).path
+if im && File.exist?(im_path)
   pdf.image im.filename, vposition: :top, height: 40, scale: Spree::PrintInvoice::Config[:logo_scale]
 end
 
