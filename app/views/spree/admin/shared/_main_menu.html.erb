@@ -1,0 +1,95 @@
+<nav class="pb-3 pt-lg-3 px-1">
+  <div class="text-right d-lg-none pl-3 py-2 border-bottom d-flex align-items-center">
+    <div class="d-flex flex-grow-1 text-primary"></div>
+    <button
+      id="sidebar-close"
+      class="btn btn-link d-flex"
+      type="button"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <%= svg_icon name: "cancel.svg", width: '20', height: '20', classes: 'p-0 m-0' %>
+    </button>
+  </div>
+
+  <ul class="nav nav-sidebar" id="sidebarDashboard">
+    <%= tab Spree.t('admin.home'), url: spree.admin_dashboard_path, match_path: '/dashboard', icon: 'house-door-fill.svg' %>
+  </ul>
+
+  <% if can? :admin, Spree::Order %>
+    <ul class="nav nav-sidebar" id="sidebarOrder">
+      <%= main_menu_tree Spree.t(:orders), icon: "inbox-fill.svg", sub_menu: "orders", url: "#sidebar-orders" %>
+    </ul>
+  <% end %>
+
+  <% if can?(:admin, Spree::ReturnAuthorization) || can?(:admin, Spree::CustomerReturn) %>
+    <ul class="nav nav-sidebar" id="sidebarReturn">
+      <%= main_menu_tree Spree.t(:returns), icon: "reply-fill.svg", sub_menu: "returns", url: "#sidebar-returns" %>
+    </ul>
+  <% end %>
+
+  <% if can? :admin, Spree::Product %>
+    <ul class="nav nav-sidebar" id="sidebarProduct">
+      <%= main_menu_tree Spree.t(:products), icon: "tags-fill.svg", sub_menu: "product", url: "#sidebar-product" %>
+    </ul>
+  <% end %>
+
+  <% if can?(:admin, Spree::StockLocation) || can?(:admin, Spree::StockTransfer) %>
+    <ul class="nav nav-sidebar" id="sidebarStock">
+      <%= main_menu_tree Spree.t(:stock), icon: "box-seam.svg", sub_menu: "stock", url: "#sidebar-stock" %>
+    </ul>
+  <% end %>
+
+  <% if can? :admin, Spree::Admin::ReportsController %>
+    <ul class="nav nav-sidebar" id="sidebarReport">
+      <%= tab *Spree::Backend::Configuration::REPORT_TABS, icon: 'pie-chart-fill.svg' %>
+    </ul>
+  <% end %>
+
+  <% if can? :admin, Spree::Promotion %>
+    <ul class="nav nav-sidebar" id="sidebarPromotion">
+      <%= main_menu_tree Spree.t(:promotions), icon: "percent.svg", sub_menu: "promotion", url: "#sidebar-promotions" %>
+    </ul>
+  <% end %>
+
+  <% if defined?(Spree::Vendor) && can?(:manage, Spree::Vendor) && can?(:index, Spree::Vendor) %>
+    <ul class="nav nav-sidebar" id="sidebarOrganizations">
+      <%= main_menu_tree Spree.t(:organizations), icon: "building.svg", sub_menu: "organizations", url: "#sidebar-organizations" %>
+    </ul>
+  <% end %>
+
+  <% if Spree.user_class && can?(:admin, Spree.user_class) %>
+    <ul class="nav nav-sidebar" id="sidebarUser">
+      <%= tab *Spree::Backend::Configuration::USER_TABS, url: spree.admin_users_path, icon: 'people-fill.svg' %>
+    </ul>
+  <% end %>
+
+  <% if can? :admin, Spree::Menu %>
+    <ul class="nav nav-sidebar" id="sidebarMenu">
+      <%= main_menu_tree Spree.t('admin.tab.content'), icon: "card-heading.svg", sub_menu: "content", url: "#sidebar-content" %>
+    </ul>
+  <% end %>
+
+  <% if can?(:admin, Spree::Webhooks::Subscriber) || can?(:admin, Spree::PaymentMethod) %>
+    <ul class="nav nav-sidebar" id="sidebarIntegrations">
+      <%= main_menu_tree Spree.t('admin.tab.integrations'), icon: "stack.svg", sub_menu: "integrations", url: "#sidebar-integrations" %>
+    </ul>
+  <% end %>
+
+  <% if can? :admin, Spree::OauthApplication %>
+    <ul class="nav nav-sidebar" id="sidebarApps">
+      <%= main_menu_tree Spree.t('admin.tab.apps'), icon: "terminal-fill.svg", sub_menu: "apps", url: "#sidebar-apps" %>
+    </ul>
+  <% end %>
+
+  <% if can? :admin, current_store %>
+    <ul class="nav nav-sidebar" id="sidebarConfiguration">
+      <%= main_menu_tree Spree.t('admin.settings'), icon: "gear-fill.svg", sub_menu: "configuration", url: "#sidebar-configuration" %>
+    </ul>
+  <% elsif defined?(current_spree_vendor) && current_spree_vendor.present? %>
+    <ul class="nav nav-sidebar" id="sidebarConfiguration">
+      <%= main_menu_tree Spree.t('admin.settings'), icon: "gear-fill.svg", sub_menu: "vendor_configuration", url: "#sidebar-configuration" %>
+    </ul>
+  <% end %>
+
+  <%= render partial: 'spree/admin/shared/menu/documents_tab'%>
+</nav>
