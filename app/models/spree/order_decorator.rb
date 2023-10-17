@@ -12,10 +12,6 @@ module Spree
                    as: :printable
 
       base.delegate :number, :date, to: :invoice, prefix: true
-
-      # Create a new invoice before transitioning to complete
-      #
-      base.state_machine.before_transition to: :complete, do: :invoice_for_order
     end
 
     # Backwards compatibility stuff. Please don't use these methods, rather use the
