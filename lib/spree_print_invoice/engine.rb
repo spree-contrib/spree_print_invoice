@@ -1,3 +1,5 @@
+require_relative '../spree/print_invoice_setting'
+
 module SpreePrintInvoice
   class Engine < Rails::Engine
     require 'spree/core'
