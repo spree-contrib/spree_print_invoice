@@ -10,7 +10,7 @@
           <fieldset class="no-border-bottom">
             <legend><%= Spree.t(:pdf_legend, scope: :print_invoice) %></legend>
 
-            <div class="form-group">
+            <div class="form-group ml-4">
               <div class="checkbox">
                 <%= label_tag :use_footer do %>
                   <%= preference_field_tag(:use_footer, Spree::PrintInvoice::Config[:use_footer], type: :boolean) %>
@@ -61,7 +61,7 @@
               <%= number_field_tag(:logo_scale, Spree::PrintInvoice::Config[:logo_scale], in: 1...101, class: 'form-control') %>
             </div>
 
-            <div class="form-group">
+            <div class="form-group ml-4">
               <div class="checkbox">
                 <%= label_tag :store_pdf do %>
                   <%= preference_field_tag(:store_pdf, Spree::PrintInvoice::Config[:store_pdf], type: :boolean) %>
